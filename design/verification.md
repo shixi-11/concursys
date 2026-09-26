@@ -47,4 +47,16 @@ ALUX 当前源码 script.js 的 supportedLanguages 为 en、zh、ko、ja、ar；
 
 新增检查覆盖五语言 × 320/390/820/1536像素，共20组视口、各语言全部五个技术视图、URL切换与刷新、非法语言回退、邮件草稿、RTL键盘方向。均无页面或HTTP错误及横向溢出，证据为 output/i18n-verification.json。阿拉伯语首页与技术区已实际查看，修正数字双向混排和执行流程方向；日文、韩文OCAP图长标签分行后检查框内显示。原有双语交互回归检查仍通过。
 
-用户授权新建 concursys 仓库，已创建 shixi-11/concursys 私有仓库并完成首轮推送。多语言修改继续同步此仓库，不涉及 ALUX 仓库。GoDaddy 域名替换仍未完成：浏览器控制连接失败，前台工具因无法可靠识别当前网址自动停止。没有修改域名、DNS、邮箱或旧站。需要恢复受支持连接后确认正式托管目标并上线；不能将域名指向本机预览。
+用户授权新建 concursys 仓库，已创建 shixi-11/concursys 私有仓库并完成首轮推送。多语言修改继续同步此仓库，不涉及 ALUX 仓库。初次上线曾因浏览器控制连接失败而受阻，当时未修改域名、DNS、邮箱或旧站。
+
+## 正式发布核验（2026-09-27）
+
+Chrome 受支持连接已恢复，实际读取并点击了 GoDaddy 网站与 DNS 管理页面。ConcurSys 已独立发布在用户已有的 Vercel「11 · Pro」团队，Git 来源为本仓库 main，静态根目录 public。
+
+上线前核对 Vercel 公网12个已跟踪文件全部返回200；文本按LF归一后与Git源码一致，图片字节级一致。Windows工作区CRLF产生的原始哈希差异已排除；index.html 与 app.js 的 Git blob ID 也分别匹配。
+
+用户在 GoDaddy 页面完成验证器验证后，根域 A 记录已成功更新为216.150.1.1。原有www CNAME指向根域，会随根域更新；保留该记录，未提交非必要的CNAME替换。Vercel对两个域名均显示Valid Configuration。
+
+https://concursys.io/?lang=zh 与 https://www.concursys.io/?lang=zh 均实际返回HTTPS 200，首页与Git对象一致，Logo和主视觉哈希一致；Chrome内中文页面和英文BlockGit视图已实际检查。Google DoH已返回新的根域A；www链式查询仍可能出现旧缓存。五条Google Workspace MX完整保留，未修改TXT、NS或邮箱设置。
+
+本地证据在 output/deployment；部署设置、改前记录与恢复依据见 deployment.md。没有通过测试发送邮件，也未把浏览器控制恢复等内部说明加入访客页面。

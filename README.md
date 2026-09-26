@@ -29,6 +29,8 @@
 
 ## 发布状态
 
-当前为本地可运行交付，未替换 concursys.io 线上站点。源码仓库为 https://github.com/shixi-11/concursys ，保持私有。正式部署目录为 public；GoDaddy 域名绑定与线上验证仍待完成。
+正式网站：https://concursys.io/ ，www.concursys.io 同样可访问。网站于2026年9月27日发布到 Vercel 的「11 · Pro」团队，项目名 concursys，连接私有源码仓库 https://github.com/shixi-11/concursys 的 main 分支。部署根目录为 public，使用 Other 静态站预设，无构建命令。
+
+域名继续由 GoDaddy 管理，仅将根域 A 记录改为 Vercel 指定的 216.150.1.1；www 保留指向 concursys.io 的 CNAME，Google Workspace 邮箱及其他 DNS 记录未改。两个 HTTPS 域名已实际访问并核验新版内容；部分递归 DNS 的旧缓存可能稍后更新。发布与回滚依据见 design/deployment.md。
 
 语言文件：`public/content.js` 包含英中文案，`public/locales/` 包含韩语、日语和阿拉伯语。各语言覆盖117个文案字段。`design/verify-i18n.mjs` 检查五种语言和四种视口宽度。
