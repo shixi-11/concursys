@@ -9,6 +9,9 @@
   <link rel="canonical" href="https://concursys.io/">
   <link rel="alternate" hreflang="en" href="https://concursys.io/">
   <link rel="alternate" hreflang="zh-Hans" href="https://concursys.io/?lang=zh">
+  <link rel="alternate" hreflang="ko" href="https://concursys.io/?lang=ko">
+  <link rel="alternate" hreflang="ja" href="https://concursys.io/?lang=ja">
+  <link rel="alternate" hreflang="ar" href="https://concursys.io/?lang=ar">
   <link rel="alternate" hreflang="x-default" href="https://concursys.io/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ConcurSys">
@@ -21,6 +24,9 @@
   <link rel="icon" href="./assets/favicon.png" type="image/png">
   <link rel="stylesheet" href="./styles.css">
   <script src="./content.js" defer></script>
+  <script src="./locales/ko.js" defer></script>
+  <script src="./locales/ja.js" defer></script>
+  <script src="./locales/ar.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body>
@@ -33,7 +39,7 @@
       <a href="#company" data-t="navCompany">Company</a>
     </nav>
     <div class="header-actions">
-      <button id="language" class="language" aria-label="切换到中文">EN <span>/ 中文</span></button>
+      <select id="language" class="language" aria-label="Select language"><option value="en" lang="en">English</option><option value="zh" lang="zh">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ja" lang="ja">日本語</option><option value="ar" lang="ar">العربية</option></select>
       <a class="button outline header-contact" href="#contact"><span data-t="talk">Let’s talk</span><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
       <button id="menu" aria-expanded="false" aria-controls="navigation" aria-label="Open navigation"><span></span><span></span></button>
     </div>

@@ -2,4 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://concursys.io/</loc></url>
   <url><loc>https://concursys.io/?lang=zh</loc></url>
+  <url><loc>https://concursys.io/?lang=ko</loc></url>
+  <url><loc>https://concursys.io/?lang=ja</loc></url>
+  <url><loc>https://concursys.io/?lang=ar</loc></url>
 </urlset>

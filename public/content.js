@@ -52,3 +52,6 @@ window.siteCopy = {
     menuOpen:'打开导航',menuClose:'关闭导航',skip:'跳到正文',artAlt:'由相连执行层构成的三维概念结构',meta:'ConcurSys 为公链 Agent 执行、字节码虚拟机与分布式系统提供底层技术服务。'
   }
 };
+
+Object.assign(window.siteCopy.en, {pageTitle:'ConcurSys — Deep engineering. Real execution.',navLabel:'Main navigation',languageLabel:'Select language',emailSubject:'ConcurSys technical services',emailBody:'Project overview:\n\nTechnical challenge:\n\nExpected scope and timeline:\n'});
+Object.assign(window.siteCopy.zh, {pageTitle:'ConcurSys｜底层技术与系统工程服务',navLabel:'主导航',languageLabel:'选择语言',emailSubject:'ConcurSys 技术服务咨询',emailBody:'项目简介：\n\n技术问题：\n\n预期合作范围与时间：\n'});

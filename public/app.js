@@ -3,7 +3,7 @@
   const $ = (id) => document.getElementById(id);
   const languages = window.siteCopy;
   const url = new URL(location.href);
-  let language = url.searchParams.get('lang') === 'zh' ? 'zh' : 'en';
+  let language = Object.hasOwn(languages,url.searchParams.get('lang')) ? url.searchParams.get('lang') : 'en';
   let selected = 'glvm';
   let step = 0;
   let playing = false;
@@ -33,11 +33,11 @@
   }
   function drawOCAP(d) {
     const capabilityLabel=language==='en'?text(324,198,'Capability')+text(324,219,'reference','small'):text(324,208,d.capability);
-    const reachableLabel=language==='en'?text(525,176,'Reachable')+text(525,198,'object'):text(525,190,d.allowed);
+    const reachableLabel=language==='en'?text(525,176,'Reachable')+text(525,198,'object'):d.allowed.split('\n').map((label,i,labels)=>text(525,labels.length>1?176+i*22:190,label)).join('');
     return svg(`<rect x="33" y="40" width="594" height="310" rx="3" fill="#0b151a" stroke="#315e5a" stroke-dasharray="6 5"/>${text(330,72,d.boundary,'small')}${rect(64,164,129,79)}${text(128,210,d.task,'big')}${line('M193 203H452')}${rect(247,178,154,50)}${capabilityLabel}${rect(452,148,145,110)}${reachableLabel}${dot(525,228,9)}${rect(256,280,136,44)}${text(324,307,d.unreachable,'small')}`,d.boundary);
   }
   function drawDurable(d) {
-    const xs=[66,198,330,462,594];
+    const xs=language==='ar'?[594,462,330,198,66]:[66,198,330,462,594];
     let body=line('M66 158H594');
     xs.forEach((x,i)=>{body+=`<circle cx="${x}" cy="158" r="${i===step?23:15}" fill="${i<=step?'#73f5de':'#152229'}" stroke="${i<=step?'#73f5de':'#527078'}"/>`+`<text x="${x}" y="163" style="fill:${i<=step?'#09221b':'#b6c4cb'}">${i+1}</text>`+text(x,209,d.stages[i]);});
     body+=rect(109,265,442,53)+text(330,298,d.stages[step],'big');
@@ -64,7 +64,7 @@
     $('demo-controls').hidden=selected!=='durable';$('demo-status').hidden=selected!=='durable';
     $('demo-play').textContent=playing?c.pause:step===4?c.replay:c.play;
     $('demo-next').disabled=step===4;
-    $('demo-status').textContent=`${c.step} ${step+1} / 5 — ${c.diagram.steps[step]}`;
+    $('demo-status').innerHTML=`${escape(c.step)} <bdi dir="ltr">${step+1} / 5</bdi> — ${escape(c.diagram.steps[step])}`;
   }
   function stop(){clearTimeout(timer);playing=false;}
   function tick(){if(!playing)return;if(step<4){step++;renderTech();}if(step===4){stop();renderTech();}else timer=setTimeout(tick,1600);}
@@ -72,31 +72,41 @@
   function renderLanguage(){
     const c=languages[language];
     document.documentElement.lang=language;
-    document.querySelectorAll('[data-t]').forEach(el=>{const value=c[el.dataset.t];if(value!==undefined)el.innerHTML=displayCopy(value);});
-    $('language').innerHTML=language==='en'?'EN <span>/ 中文</span>':'中文 <span>/ EN</span>';
-    $('language').setAttribute('aria-label',language==='en'?'切换到中文':'Switch to English');
+    document.documentElement.dir=language==='ar'?'rtl':'ltr';
+    $('navigation').setAttribute('aria-label',c.navLabel);
+    document.querySelector('[role=tablist]').setAttribute('aria-label',c.navTechnology);
+    document.querySelector('.expertise-rail').setAttribute('aria-label',c.navServices);
+    $('tab-tvm').textContent=`TVM / ${c.diagram.bytecode}`;
+    document.querySelectorAll('[data-t]').forEach(el=>{const value=c[el.dataset.t];if(value!==undefined)el.innerHTML=displayCopy(String(value).replace(/<br>/g,'<br> '));});
+    $('language').value=language;
+    $('language').setAttribute('aria-label',c.languageLabel);
     $('hero-art').setAttribute('aria-label',c.artAlt);
     document.querySelector('.skip').textContent=c.skip;
     document.querySelector('meta[name=description]').content=c.meta;
-    document.title=language==='en'?'ConcurSys — Deep engineering. Real execution.':'ConcurSys｜底层技术与系统工程服务';
-    document.querySelector('link[rel=canonical]').href=language==='zh'?'https://concursys.io/?lang=zh':'https://concursys.io/';
+    document.title=c.pageTitle;
+    const canonical=language==='en'?'https://concursys.io/':`https://concursys.io/?lang=${language}`;
+    document.querySelector('link[rel=canonical]').href=canonical;
+    document.querySelector('meta[property="og:title"]').content=c.pageTitle;
+    document.querySelector('meta[property="og:description"]').content=c.meta;
+    document.querySelector('meta[property="og:url"]').content=canonical;
+    document.querySelector('meta[property="og:image:alt"]').content=c.artAlt;
     $('service-rows').innerHTML=c.services.map((s,i)=>`<article class="service-row" id="service-${s.id}"><span class="number mono">${String(i+1).padStart(2,'0')}</span><h3>${displayCopy(s.title)}</h3><p>${displayCopy(s.body)}</p><div class="service-scope"><span class="mono">${c.deliverables}</span><p>${displayCopy(s.scope)}</p></div></article>`).join('');
     $('process').innerHTML=c.process.map((p,i)=>`<article><span class="mono">0${i+1}</span><h3>${displayCopy(p[0])}</h3><p>${displayCopy(p[1])}</p></article>`).join('');
-    const subject=language==='en'?'ConcurSys technical services':'ConcurSys 技术服务咨询';
-    const body=language==='en'?'Project overview:\n\nTechnical challenge:\n\nExpected scope and timeline:\n':'项目简介：\n\n技术问题：\n\n预期合作范围与时间：\n';
+    const subject=c.emailSubject;
+    const body=c.emailBody;
     $('email-cta').href=`mailto:info@concursys.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     $('copy-status').textContent='';
     $('menu').setAttribute('aria-label',$('navigation').classList.contains('open')?c.menuClose:c.menuOpen);
     renderTech();
   }
-  $('language').addEventListener('click',()=>{language=language==='en'?'zh':'en';const nextURL=new URL(location.href);nextURL.searchParams.set('lang',language);history.replaceState(null,'',nextURL);renderLanguage();});
+  $('language').addEventListener('change',()=>{stop();language=$('language').value;const nextURL=new URL(location.href);nextURL.searchParams.set('lang',language);history.replaceState(null,'',nextURL);renderLanguage();});
   $('menu').addEventListener('click',()=>{const open=$('navigation').classList.toggle('open');$('menu').setAttribute('aria-expanded',String(open));$('menu').setAttribute('aria-label',languages[language][open?'menuClose':'menuOpen']);});
   const closeMenu=()=>{$('navigation').classList.remove('open');$('menu').setAttribute('aria-expanded','false');$('menu').setAttribute('aria-label',languages[language].menuOpen);};
   $('navigation').querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('navigation').classList.contains('open')){closeMenu();$('menu').focus();}});
   document.querySelectorAll('[data-tech]').forEach((button)=>{
     button.addEventListener('click',()=>chooseTech(button.dataset.tech));
-    button.addEventListener('keydown',e=>{const tabs=[...document.querySelectorAll('[data-tech]')];let i=tabs.indexOf(button);if(e.key==='ArrowRight')i=(i+1)%tabs.length;else if(e.key==='ArrowLeft')i=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=tabs.length-1;else return;e.preventDefault();chooseTech(tabs[i].dataset.tech);tabs[i].focus();});
+    button.addEventListener('keydown',e=>{const tabs=[...document.querySelectorAll('[data-tech]')];let i=tabs.indexOf(button);if(e.key==='ArrowRight')i=(i+(language==='ar'?tabs.length-1:1))%tabs.length;else if(e.key==='ArrowLeft')i=(i+(language==='ar'?1:tabs.length-1))%tabs.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=tabs.length-1;else return;e.preventDefault();chooseTech(tabs[i].dataset.tech);tabs[i].focus();});
   });
   $('demo-play').addEventListener('click',()=>{if(playing){stop();}else{if(step===4)step=0;playing=true;timer=setTimeout(tick,1600);}renderTech();});
   $('demo-next').addEventListener('click',()=>{stop();step=Math.min(4,step+1);renderTech();});

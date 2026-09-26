@@ -60,7 +60,7 @@ try{
   await page.locator('#navigation a[href="#services"]').click();
   assert.equal(await page.locator('#menu').getAttribute('aria-expanded'),'false');
   assert.equal(new URL(page.url()).hash,'#services');
-  await page.locator('#language').click();
+  await page.locator('#language').selectOption(lang==='en'?'zh':'en');
   assert.equal(await page.locator('html').getAttribute('lang'),lang==='en'?'zh':'en');
   await page.reload();
   assert.equal(await page.locator('html').getAttribute('lang'),lang==='en'?'zh':'en');
