@@ -92,7 +92,7 @@
   $('menu').addEventListener('click',()=>{const open=$('navigation').classList.toggle('open');$('menu').setAttribute('aria-expanded',String(open));$('menu').setAttribute('aria-label',languages[language][open?'menuClose':'menuOpen']);});
   const closeMenu=()=>{$('navigation').classList.remove('open');$('menu').setAttribute('aria-expanded','false');$('menu').setAttribute('aria-label',languages[language].menuOpen);};
   $('navigation').querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('navigation').classList.contains('open')){closeMenu();$('menu').focus();}});
   document.querySelectorAll('[data-tech]').forEach((button)=>{
     button.addEventListener('click',()=>chooseTech(button.dataset.tech));
     button.addEventListener('keydown',e=>{const tabs=[...document.querySelectorAll('[data-tech]')];let i=tabs.indexOf(button);if(e.key==='ArrowRight')i=(i+1)%tabs.length;else if(e.key==='ArrowLeft')i=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=tabs.length-1;else return;e.preventDefault();chooseTech(tabs[i].dataset.tech);tabs[i].focus();});
