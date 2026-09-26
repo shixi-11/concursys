@@ -12,7 +12,7 @@ for(const catalog of ['siteCopy','pageCopy','technologyCopy','teamCopy','joinCop
 }
 const htmlFiles=fs.readdirSync('public',{recursive:true}).filter(f=>f.endsWith('.html'));
 assert.equal(htmlFiles.length,24,'24 independent routes');
-for(const file of htmlFiles){const html=fs.readFileSync('public/'+file,'utf8');for(const match of html.matchAll(/(?:src|href)="(\/[^"?#]+)"/g)){const path='public'+match[1];assert.ok(fs.existsSync(path),file+' missing '+path);}assert.equal((html.match(/hreflang=/g)||[]).length,6,file+' alternate languages');}
+for(const file of htmlFiles){const html=fs.readFileSync('public/'+file,'utf8');for(const match of html.matchAll(/(?:src|href)="(\/[^"?#]+)"/g)){const path='public'+match[1];assert.ok(fs.existsSync(path),file+' missing '+path);}assert.equal((html.match(/hreflang=/g)||[]).length,6,file+' alternate languages');assert.ok(/app\.js\?v=[a-f0-9]{12}/.test(html),file+' versioned application');}
 assert.equal((fs.readFileSync('public/sitemap.xml','utf8').match(/<url>/g)||[]).length,120);
 for(const lang of langs){assert.equal(ctx.window.teamCopy[lang].frank.bio.length,2);assert.equal(ctx.window.teamCopy[lang].tomislav.bio.length,2);assert.ok(ctx.window.joinCopy[lang].email.includes('\n'),'email must contain actual line breaks');}
 assert.ok(!/rho-calculus|过程演算|反射高阶/.test(JSON.stringify(ctx.window.teamCopy.zh)));
