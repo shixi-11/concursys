@@ -1,0 +1,23 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+const context={window:{}};vm.createContext(context);
+for(const file of ['content','locales/ko','locales/ja','locales/ar','brand-copy','page-copy','technology-copy','team-copy','join-copy','agent-copy','agent-relevance','tolang-copy'])vm.runInContext(fs.readFileSync('public/'+file+'.js','utf8'),context);
+const copy=context.window,plain=s=>String(s||'').replace(/<br\s*\/?\s*>/g,' ').replace(/<[^>]+>/g,'');
+const attr=s=>plain(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+function metadata(route){const [group,key]=route.split('/'),c=copy.siteCopy.en,p=copy.pageCopy.en,t=copy.technologyCopy.en;let title,description;
+if(group==='home')return {title:c.pageTitle,description:c.heroBody};
+if(group==='services'){title=key?p.serviceDetails[key].title:c.navServices;description=key?p.serviceDetails[key].intro:p.servicesIntro;}
+else if(group==='technology'){const mod=t.modules[key]||c.tech?.[key];title=key?(mod?.name||key.toUpperCase()):c.navTechnology;description=key?(mod?.body||mod?.intro||p.technologyIntro):p.technologyIntro;}
+else if(group==='team'){title='Team';description=copy.teamCopy.en.intro;}
+else if(group==='join'){title=copy.joinCopy.en.nav;description=copy.joinCopy.en.intro;}
+else if(group==='company'){title=c.navCompany;description=p.companyIntro;}
+else{title='Contact';description=p.contactIntro;}
+return {title:plain(title)+' | ConcurSys',description:plain(description)};}
+const routes=['home','services','services/agent','services/vm','services/distributed','technology',...['glvm','tolang','tvm','blockgit','ocap','durable','atomicity','replay','framework','evm','node','tooling','sharding','worldos'].map(k=>'technology/'+k),'company','team','join','contact'];
+for(const route of routes){const rel=route==='home'?'index.html':route+'.html';const meta=metadata(route),title=attr(meta.title),description=attr(meta.description);const url='https://concursys.io'+(route==='home'?'/':'/'+rel);fs.mkdirSync(path.dirname('public/'+rel),{recursive:true});fs.writeFileSync('public/'+rel,`<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1217"><title>${title}</title><meta name="description" content="${description}"><link rel="canonical" href="${url}">${['en','zh-Hans','ko','ja','ar','x-default'].map(l=>`<link rel="alternate" hreflang="${l}" href="${url}${['en','x-default'].includes(l)?'':'?lang='+(l==='zh-Hans'?'zh':l)}">`).join('')}<meta property="og:type" content="website"><meta property="og:site_name" content="ConcurSys"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${url}"><meta property="og:image" content="https://concursys.io/assets/concurrent-sculpture.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/assets/favicon.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/design.css"><script src="/content.js" defer></script>${['ko','ja','ar'].map(l=>`<script src="/locales/${l}.js" defer></script>`).join('')}<script src="/brand-copy.js" defer></script><script src="/page-copy.js" defer></script><script src="/technology-copy.js" defer></script><script src="/architecture.js" defer></script><script src="/team-copy.js" defer></script><script src="/join-copy.js" defer></script><script src="/agent-copy.js" defer></script><script src="/agent-relevance.js" defer></script><script src="/tolang-copy.js" defer></script><script src="/app.js" defer></script></head><body data-page="${route}"><div id="site"></div><noscript><main><h1>${title}</h1><p>${description}</p><nav><a href="/services.html">Services</a> · <a href="/technology.html">Technology</a> · <a href="/team.html">Team</a> · <a href="/company.html">Company</a></nav><a href="mailto:info@concursys.io">info@concursys.io</a></main></noscript></body></html>`);}
+console.log('Generated '+routes.length+' pages');
+const localeCodes={en:'en',zh:'zh-Hans',ko:'ko',ja:'ja',ar:'ar'};
+const routeUrl=(route,lang)=>'https://concursys.io'+(route==='home'?'/':'/'+route+'.html')+(lang==='en'?'':'?lang='+lang);
+fs.writeFileSync('public/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+routes.flatMap(route=>Object.keys(localeCodes).map(lang=>`<url><loc>${routeUrl(route,lang)}</loc>${Object.entries(localeCodes).map(([l,code])=>`<xhtml:link rel="alternate" hreflang="${code}" href="${routeUrl(route,l)}"/>`).join('')}</url>`)).join('\n')+'\n</urlset>\n');

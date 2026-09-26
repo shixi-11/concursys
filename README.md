@@ -1,36 +1,34 @@
 # ConcurSys 网站
 
-多语言技术服务网站，与 ALUX 当前语言配置对齐：英语、简体中文、韩语、日语、阿拉伯语。默认英语，通过页头语言选择器切换，URL 保存语言；阿拉伯语采用 RTL 布局。以公链 Agent 执行支持、虚拟机工程与分布式系统为服务主线，展示 ConcurSys 自研技术与 ALUX 的关系。
+面向 Agent 执行底座的五语言技术官网：英语、简体中文、韩语、日语、阿拉伯语。ConcurSys 研发 ALUX 背后的语言、运行时和共识技术。默认英语，URL 保存语言，阿拉伯语采用 RTL。
 
-## 打开
+## 运行与检查
 
-在此目录运行 `node server.mjs`，访问 http://127.0.0.1:4317/ 。无需安装依赖。也可双击“启动预览.cmd”。端口由 `PORT` 环境变量配置；预览仅监听本机。
+运行 `node server.mjs`，访问 http://127.0.0.1:4317/ 。无需安装依赖，预览仅监听本机。静态托管根目录为 `public`。
 
-可直接把 `public` 目录交给静态网站托管平台。`public/index.html` 也支持本地直接打开；邮箱复制需要浏览器允许的安全上下文，无法复制时可选中邮箱。
+- `node design/build-pages.mjs`：生成24个独立页面、元数据、语言链接和站点地图。
+- `node design/verify-i18n.mjs`：检查五语言字段、页面资源、语言入口、站点地图及术语。
+- `node design/export-copy.mjs`：更新五语言文案阅读稿。
+- `npm run check`：语法和上述结构检查。浏览器视觉验证另见 design/verification.md。
 
-## 文件
+## 页面与功能
 
-- `public/`：正式网页、双语文案、样式、脚本和图片。
-- `20260927_ConcurSys网站文案.md`：从实际网页文案导出的五语言阅读稿。
-- `design/brief.md`：本次设计与范围说明。
-- `design/technology-research.md`：技术依据与实现边界。
-- `design/verification.md`：视觉和交互检查范围。
-- `output/`：浏览器截图与本机检查证据（不进入 Git）。
+首页、服务概览及3个服务详情、技术概览及14个技术详情、公司、团队、加入我们、联系，共24个页面。页头 Services / Technology / Company 可进入独立页面，箭头展开子菜单；Team 是一级导航。Logo 返回对应语言首页。
 
-## 功能
+首页聚焦 Tolang、TVM、OCAP、BlockGit、GLVM；Tolang 独立板块展示其新一代区块链语言定位、并发与类型化通信、编译至 TVM 的路径和开发工具。14模块能力地图支持选择、关联连线、流程播放、单步、重置，以及各模块面向 Agent 的作用说明。技术状态区分当前基础、持续演进与路线图。
 
-五语言切换及 URL 语言保留；手机导航；GLVM、TVM、BlockGit、OCAP、持久执行五个技术视图；持久执行流程的播放、暂停、单步与重置；邮箱复制与邮件草稿链接。邮件链接打开用户邮件客户端，不自动发送，也没有伪造提交成功状态。
+团队仅 Frank He 与 Tomislav Grospić，保留旧站职位和履历，使用全新非写实虚拟人物。来源见 design/team-source-audit.md。
 
-首屏使用专门生成的三维概念插画并配合轻微指针透视，不是可旋转的 WebGL 三维模型。流程图由 SVG 与真实文字构成。尊重减少动态设置；无自动播放的无限动画。无分析追踪、第三方字体请求或运行时外部脚本。
+联系表单通过本地校验后准备邮件草稿，不自动发送、不显示虚假提交成功。支持邮箱复制、手机菜单、键盘焦点、减少动态设置。图片使用可访问背景元素，保持浏览器原生页面右键菜单。
 
-## 品牌与资产
+## 文件与品牌
 
-采用用户提供的 ConcurSys 白字原标识；没有修改源目录文件。主视觉使用内置图像生成工具生成，1536×1024 原图等比转换为 3840×2560 JPG，未裁切；4K 文件尺寸不代表原生 4K 细节。页面所有图片来自本地 `public/assets`。
+正式网页位于 public；五语言文案阅读稿为 `20260927_ConcurSys网站文案.md`。结构化文案分为基础、页面、技术、团队、Agent 相关性和 Tolang 板块，均覆盖五语言。
 
-## 发布状态
+使用用户指定的原彩色 ConcurSys_logo.png，未重绘标识。深色页头以浅色底承托原Logo。主视觉为原创生成的互锁金属与青色玻璃结构；人物为卡通虚拟形象。Space Grotesk 本地托管并附 OFL 许可。页面没有运行时外部字体或第三方脚本请求。
 
-正式网站：https://concursys.io/ ，www.concursys.io 同样可访问。网站于2026年9月27日发布到 Vercel 的「11 · Pro」团队，项目名 concursys，连接私有源码仓库 https://github.com/shixi-11/concursys 的 main 分支。部署根目录为 public，使用 Other 静态站预设，无构建命令。
+截图和测试证据在本机 output/upgrade，不进入 Git。技术网站参考见 design/website-references.md，验收记录见 design/verification.md。
 
-域名继续由 GoDaddy 管理，仅将根域 A 记录改为 Vercel 指定的 216.150.1.1；www 保留指向 concursys.io 的 CNAME，Google Workspace 邮箱及其他 DNS 记录未改。两个 HTTPS 域名已实际访问并核验新版内容；部分递归 DNS 的旧缓存可能稍后更新。发布与回滚依据见 design/deployment.md。
+## 托管
 
-语言文件：`public/content.js` 包含英中文案，`public/locales/` 包含韩语、日语和阿拉伯语。各语言覆盖117个文案字段。`design/verify-i18n.mjs` 检查五种语言和四种视口宽度。
+正式入口 https://concursys.io/ 与 https://www.concursys.io/ 。Vercel 项目 concursys 位于既有 shixilin 团队，连接私有仓库 shixi-11/concursys 的 main 分支。根目录 public，Other 静态预设，无构建命令。部署核验与回滚依据见 design/deployment.md。此次升级不修改 DNS、邮箱或 ALUX 仓库。

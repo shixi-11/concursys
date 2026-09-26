@@ -1,25 +1,19 @@
-import { chromium } from 'file:///C:/Users/ShixiLin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
-import {readFile,writeFile} from 'node:fs/promises';
-import vm from 'node:vm';import assert from 'node:assert/strict';
-const ctx=vm.createContext({window:{}});for(const f of ['public/content.js',...['ko','ja','ar'].map(l=>`public/locales/${l}.js`)])vm.runInContext(await readFile(f,'utf8'),ctx);
-const langs=['en','zh','ko','ja','ar'];function shape(o,p=''){return Object.entries(o).flatMap(([k,v])=>v&&typeof v==='object'?shape(v,p+k+'.'):[p+k]);}
-const keys=shape(ctx.window.siteCopy.en).sort();for(const l of langs)assert.deepEqual(shape(ctx.window.siteCopy[l]).sort(),keys,l+' missing translations');
-const b=await chromium.launch({channel:'msedge',headless:true});const p=await b.newPage();const errors=[],evidence=[],overflow=[];
-p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url());});
-for(const lang of langs){
- for(const width of [320,390,820,1536]){
-  await p.setViewportSize({width,height:width===1536?1024:844});await p.goto(`http://127.0.0.1:4317/?lang=${lang}`);
-  assert.equal(await p.locator('html').getAttribute('lang'),lang);assert.equal(await p.locator('html').getAttribute('dir'),lang==='ar'?'rtl':'ltr');
-  assert.equal(await p.locator('#language').inputValue(),lang);
-  const dims=await p.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));if(dims.scroll>width)overflow.push({lang,...dims});
-  await p.screenshot({path:`output/i18n-${lang}-${width}.png`});
-  for(const tab of ['glvm','tvm','blockgit','ocap','durable']){await p.locator('#tab-'+tab).click();const d=await p.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));if(d.scroll>width)overflow.push({lang,tab,...d});}
-  if(width===390||width===1536)await p.locator('#technology').screenshot({path:`output/i18n-tech-${lang}-${width}.png`});
-  evidence.push({lang,width});
- }
- await p.locator('#language').selectOption(lang);await p.reload();assert.equal(await p.locator('html').getAttribute('lang'),lang);
- const mail=await p.locator('#email-cta').getAttribute('href');assert.equal(new URL(mail).searchParams.get('body'),ctx.window.siteCopy[lang].emailBody);
- await p.locator('#tab-glvm').focus();await p.keyboard.press(lang==='ar'?'ArrowLeft':'ArrowRight');assert.equal(await p.locator('#tab-tvm').getAttribute('aria-selected'),'true');
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const ctx={window:{}};vm.createContext(ctx);
+for(const file of ['content','locales/ko','locales/ja','locales/ar','brand-copy','page-copy','technology-copy','team-copy','join-copy','agent-copy','agent-relevance','tolang-copy'])vm.runInContext(fs.readFileSync('public/'+file+'.js','utf8'),ctx);
+const langs=['en','zh','ko','ja','ar'];
+const shape=(obj,prefix='')=>Object.entries(obj).flatMap(([k,v])=>v&&typeof v==='object'?shape(v,prefix+k+'.'):[prefix+k]).sort();
+const summary={};
+for(const catalog of ['siteCopy','pageCopy','technologyCopy','teamCopy','joinCopy','agentCopy','agentRelevance','tolangCopy']){
+ const reference=shape(ctx.window[catalog].en);summary[catalog]=reference.length;
+ for(const lang of langs){const data=ctx.window[catalog][lang];assert.deepEqual(shape(data),reference,catalog+': '+lang);const walk=o=>Object.values(o).forEach(v=>typeof v==='object'?walk(v):assert.ok(typeof v==='string'&&v.trim().length,catalog+' '+lang+' empty field'));walk(data);}
 }
-await p.goto('http://127.0.0.1:4317/?lang=invalid');assert.equal(await p.locator('html').getAttribute('lang'),'en');
-await writeFile('output/i18n-verification.json',JSON.stringify({evidence,errors,overflow,keysPerLocale:keys.length},null,2));await b.close();console.log(JSON.stringify({viewports:evidence.length,errors,overflow,keysPerLocale:keys.length}));assert.equal(errors.length,0);assert.equal(overflow.length,0);
+const htmlFiles=fs.readdirSync('public',{recursive:true}).filter(f=>f.endsWith('.html'));
+assert.equal(htmlFiles.length,24,'24 independent routes');
+for(const file of htmlFiles){const html=fs.readFileSync('public/'+file,'utf8');for(const match of html.matchAll(/(?:src|href)="(\/[^"?#]+)"/g)){const path='public'+match[1];assert.ok(fs.existsSync(path),file+' missing '+path);}assert.equal((html.match(/hreflang=/g)||[]).length,6,file+' alternate languages');}
+assert.equal((fs.readFileSync('public/sitemap.xml','utf8').match(/<url>/g)||[]).length,120);
+for(const lang of langs){assert.equal(ctx.window.teamCopy[lang].frank.bio.length,2);assert.equal(ctx.window.teamCopy[lang].tomislav.bio.length,2);assert.ok(ctx.window.joinCopy[lang].email.includes('\n'),'email must contain actual line breaks');}
+assert.ok(!/rho-calculus|过程演算|反射高阶/.test(JSON.stringify(ctx.window.teamCopy.zh)));
+console.log(JSON.stringify({languages:langs.length,pages:htmlFiles.length,sitemapUrls:120,fieldsPerCatalog:summary}));

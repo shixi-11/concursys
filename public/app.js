@@ -1,22 +1,19 @@
 (() => {
-  'use strict';
-  const $ = (id) => document.getElementById(id);
-  const languages = window.siteCopy;
-  const url = new URL(location.href);
-  let language = Object.hasOwn(languages,url.searchParams.get('lang')) ? url.searchParams.get('lang') : 'en';
-  let selected = 'glvm';
-  let step = 0;
-  let playing = false;
-  let timer;
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const displayCopy = (s) => language === 'zh' ? String(s).replace(/全局逻辑虚拟机|全球计算机|逻辑执行模型|执行模型|技术服务|字节码|虚拟机|分布式|系统级|系统|每一层/g,word=>`<span class="term">${word}</span>`) : s;
-  const svg = (body, label) => `<svg viewBox="0 0 660 400" role="img" aria-label="${escape(label)}">${body}</svg>`;
-  const text = (x,y,s,cls='') => `<text x="${x}" y="${y}" class="${cls}">${escape(s)}</text>`;
-  const line = (d,extra='') => `<path class="line ${extra}" d="${d}"/>`;
-  const rect = (x,y,w,h,cls='node') => `<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}" rx="3"/>`;
-  const dot = (x,y,r=4,cls='accent') => `<circle class="${cls}" cx="${x}" cy="${y}" r="${r}"/>`;
-
+'use strict';
+const $=id=>document.getElementById(id);
+const langs=window.siteCopy;
+let language=Object.hasOwn(langs,new URL(location.href).searchParams.get('lang'))?new URL(location.href).searchParams.get('lang'):'en';
+const page=document.body.dataset.page||'home';
+const [group,key]=page.split('/');
+let selected=group==='technology'&&key?key:'glvm',step=0,playing=false,timer;
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)');
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clean=s=>String(s).replace(/<br>/g,' ');
+const svg=(body,label)=>`<svg viewBox="0 0 660 400" role="img" aria-label="${escape(label)}">${body}</svg>`;
+const text=(x,y,s,cls='')=>`<text x="${x}" y="${y}" class="${cls}">${escape(s)}</text>`;
+const line=(d,extra='')=>`<path class="line ${extra}" d="${d}"/>`;
+const rect=(x,y,w,h,cls='node')=>`<rect class="${cls}" x="${x}" y="${y}" width="${w}" height="${h}" rx="4"/>`;
+const dot=(x,y,r=4,cls='accent')=>`<circle class="${cls}" cx="${x}" cy="${y}" r="${r}"/>`;
   function drawGLVM(d) {
     let body = `<path d="M92 47H568L623 142H37Z" fill="#11292b" stroke="#73f5de" stroke-width="1.3"/>${text(330,89,'GLVM','big')}${text(330,116,d.shared,'small')}`;
     [118,330,542].forEach((x,i)=>{
@@ -52,70 +49,88 @@
     body+=text(330,47,'BlockGit','big')+text(330,365,d.blockgitCaption||'Concurrent history → coordinated finality','small');
     return svg(body,'BlockGit');
   }
-  function renderTech() {
-    const c=languages[language], t=c.tech[selected];
-    document.querySelectorAll('[data-tech]').forEach(b=>{const active=b.dataset.tech===selected;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});
-    $('tech-panel').setAttribute('aria-labelledby',`tab-${selected}`);
-    $('tech-name').textContent=t.name;$('tech-title').innerHTML=displayCopy(escape(t.title));$('tech-description').innerHTML=displayCopy(escape(t.body));$('tech-help').innerHTML=displayCopy(escape(t.help));
-    const drawers={glvm:drawGLVM,tvm:drawTVM,ocap:drawOCAP,durable:drawDurable,blockgit:drawBlockGit};
-    $('diagram').innerHTML=drawers[selected](c.diagram);
-    $('diagram').classList.toggle('playing',playing && !reduceMotion.matches);
-    $('diagram-code').textContent=`${selected.toUpperCase()} / ${String(Object.keys(c.tech).indexOf(selected)+1).padStart(2,'0')}`;
-    $('demo-controls').hidden=selected!=='durable';$('demo-status').hidden=selected!=='durable';
-    $('demo-play').textContent=playing?c.pause:step===4?c.replay:c.play;
-    $('demo-next').disabled=step===4;
-    $('demo-status').innerHTML=`${escape(c.step)} <bdi dir="ltr">${step+1} / 5</bdi> — ${escape(c.diagram.steps[step])}`;
+
+const arrow='<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
+const coreTechKeys=['glvm','tvm','blockgit','ocap','durable'];
+const techKeys=['glvm','tolang','tvm','ocap','durable','atomicity','replay','framework','blockgit','evm','node','tooling','sharding','worldos'];
+let architectureStop;
+for(const lang of Object.keys(window.technologyCopy)){
+  for(const [key,v] of Object.entries(window.technologyCopy[lang].modules)){
+    langs[lang].tech[key]={name:v.name,title:v.title,body:v.body,help:v.help};
+    window.pageCopy[lang].techDetails[key]={focusTitle:v.title,points:v.points};
   }
-  function stop(){clearTimeout(timer);playing=false;}
-  function tick(){if(!playing)return;if(step<4){step++;renderTech();}if(step===4){stop();renderTech();}else timer=setTimeout(tick,1600);}
-  function chooseTech(key){stop();selected=key;renderTech();}
-  function renderLanguage(){
-    const c=languages[language];
-    document.documentElement.lang=language;
-    document.documentElement.dir=language==='ar'?'rtl':'ltr';
-    $('navigation').setAttribute('aria-label',c.navLabel);
-    document.querySelector('[role=tablist]').setAttribute('aria-label',c.navTechnology);
-    document.querySelector('.expertise-rail').setAttribute('aria-label',c.navServices);
-    $('tab-tvm').textContent=`TVM / ${c.diagram.bytecode}`;
-    document.querySelectorAll('[data-t]').forEach(el=>{const value=c[el.dataset.t];if(value!==undefined)el.innerHTML=displayCopy(String(value).replace(/<br>/g,'<br> '));});
-    $('language').value=language;
-    $('language').setAttribute('aria-label',c.languageLabel);
-    $('hero-art').setAttribute('aria-label',c.artAlt);
-    document.querySelector('.skip').textContent=c.skip;
-    document.querySelector('meta[name=description]').content=c.meta;
-    document.title=c.pageTitle;
-    const canonical=language==='en'?'https://concursys.io/':`https://concursys.io/?lang=${language}`;
-    document.querySelector('link[rel=canonical]').href=canonical;
-    document.querySelector('meta[property="og:title"]').content=c.pageTitle;
-    document.querySelector('meta[property="og:description"]').content=c.meta;
-    document.querySelector('meta[property="og:url"]').content=canonical;
-    document.querySelector('meta[property="og:image:alt"]').content=c.artAlt;
-    $('service-rows').innerHTML=c.services.map((s,i)=>`<article class="service-row" id="service-${s.id}"><span class="number mono">${String(i+1).padStart(2,'0')}</span><h3>${displayCopy(s.title)}</h3><p>${displayCopy(s.body)}</p><div class="service-scope"><span class="mono">${c.deliverables}</span><p>${displayCopy(s.scope)}</p></div></article>`).join('');
-    $('process').innerHTML=c.process.map((p,i)=>`<article><span class="mono">0${i+1}</span><h3>${displayCopy(p[0])}</h3><p>${displayCopy(p[1])}</p></article>`).join('');
-    const subject=c.emailSubject;
-    const body=c.emailBody;
-    $('email-cta').href=`mailto:info@concursys.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    $('copy-status').textContent='';
-    $('menu').setAttribute('aria-label',$('navigation').classList.contains('open')?c.menuClose:c.menuOpen);
-    renderTech();
-  }
-  $('language').addEventListener('change',()=>{stop();language=$('language').value;const nextURL=new URL(location.href);nextURL.searchParams.set('lang',language);history.replaceState(null,'',nextURL);renderLanguage();});
-  $('menu').addEventListener('click',()=>{const open=$('navigation').classList.toggle('open');$('menu').setAttribute('aria-expanded',String(open));$('menu').setAttribute('aria-label',languages[language][open?'menuClose':'menuOpen']);});
-  const closeMenu=()=>{$('navigation').classList.remove('open');$('menu').setAttribute('aria-expanded','false');$('menu').setAttribute('aria-label',languages[language].menuOpen);};
-  $('navigation').querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('navigation').classList.contains('open')){closeMenu();$('menu').focus();}});
-  document.querySelectorAll('[data-tech]').forEach((button)=>{
-    button.addEventListener('click',()=>chooseTech(button.dataset.tech));
-    button.addEventListener('keydown',e=>{const tabs=[...document.querySelectorAll('[data-tech]')];let i=tabs.indexOf(button);if(e.key==='ArrowRight')i=(i+(language==='ar'?tabs.length-1:1))%tabs.length;else if(e.key==='ArrowLeft')i=(i+(language==='ar'?1:tabs.length-1))%tabs.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=tabs.length-1;else return;e.preventDefault();chooseTech(tabs[i].dataset.tech);tabs[i].focus();});
-  });
-  $('demo-play').addEventListener('click',()=>{if(playing){stop();}else{if(step===4)step=0;playing=true;timer=setTimeout(tick,1600);}renderTech();});
-  $('demo-next').addEventListener('click',()=>{stop();step=Math.min(4,step+1);renderTech();});
-  $('demo-reset').addEventListener('click',()=>{stop();step=0;renderTech();});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing){stop();renderTech();}});
-  $('copy-email').addEventListener('click',async()=>{try{await navigator.clipboard.writeText('info@concursys.io');$('copy-status').textContent=languages[language].copied;}catch{$('copy-status').textContent=languages[language].copyFailed;}});
-  const art=$('hero-art');
-  art.addEventListener('pointermove',e=>{if(reduceMotion.matches||e.pointerType!=='mouse')return;const r=art.getBoundingClientRect();art.style.setProperty('--rx',`${-(e.clientY-r.top-r.height/2)/r.height*5}deg`);art.style.setProperty('--ry',`${(e.clientX-r.left-r.width/2)/r.width*7}deg`);});
-  art.addEventListener('pointerleave',()=>{art.style.setProperty('--rx','0deg');art.style.setProperty('--ry','0deg');});
-  reduceMotion.addEventListener('change',()=>{art.style.setProperty('--rx','0deg');art.style.setProperty('--ry','0deg');if(playing){stop();renderTech();}});
-  renderLanguage();
+}
+const c=()=>langs[language], p=()=>window.pageCopy[language];
+function href(route='home'){return (route==='home'?'/':'/'+route+'.html')+(language==='en'?'':'?lang='+language);}
+function link(route,label,cls='text-link'){return `<a class="${cls}" href="${href(route)}">${label}${arrow}</a>`;}
+function brand(){return `<a class="brand" href="${href()}" aria-label="ConcurSys — ${p().home}"><span class="brand-logo" role="img" aria-label="ConcurSys"></span></a>`;}
+function serviceName(id){return clean(c().services.find(s=>s.id===id).title);}
+function techName(id){return id==='durable'?c().durableTab:({glvm:'GLVM',tvm:'TVM',ocap:'OCAP',blockgit:'BlockGit'})[id]||({tolang:'Tolang',replay:'ReplayTrie',framework:'Segments / Fringe',evm:'EVM / TSAC',node:'RPC / P2P',tooling:'LSP / Playground'})[id]||window.technologyCopy[language].modules[id].name;}
+function menu(name,route,items){
+const rows=items.map(([r,t],i)=>`<a href="${href(r)}"><span class="mono">0${i+1}</span><span>${t}</span>${arrow}</a>`).join('');
+const groups=[['tolang','tvm','glvm','tooling'],['ocap','durable','atomicity','replay'],['framework','blockgit','evm','node'],['sharding','worldos']];
+const labels=window.technologyCopy[language].menuGroups;
+const body=route==='technology'?`<div class="mega-columns">${groups.map((keys,i)=>`<section><h3>${labels[i]}</h3>${keys.map(k=>`<a href="${href('technology/'+k)}"><span>${techName(k)}</span>${arrow}</a>`).join('')}</section>`).join('')}</div>`:rows;
+return `<div class="nav-group"><a class="nav-link" ${group===route||(route==='company'&&group==='team')?'aria-current="page"':''} href="${href(route)}">${name}</a><button class="nav-toggle" aria-label="${name}" aria-expanded="false" aria-controls="nav-${route}"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m2 4 4 4 4-4"/></svg></button><div id="nav-${route}" class="dropdown ${route==='technology'?'mega':''}" hidden>${link(route,p().overview,'dropdown-overview')}${body}</div></div>`;
+}
+function header(){return `<header class="header"><div class="wrap header-inner">${brand()}<nav id="navigation" aria-label="${c().navLabel}">${menu(c().navServices,'services',c().services.map(s=>['services/'+s.id,clean(s.title)]))}${menu(c().navTechnology,'technology',techKeys.map(k=>['technology/'+k,techName(k)]))}${menu(c().navCompany,'company',[['join',window.joinCopy[language].nav],['contact',c().talk]])}<a class="nav-link" ${group==='team'?'aria-current="page"':''} href="${href('team')}">${window.technologyCopy[language].team}</a></nav><div class="header-actions"><select id="language" aria-label="${c().languageLabel}">${[['en','English'],['zh','简体中文'],['ko','한국어'],['ja','日本語'],['ar','العربية']].map(([k,t])=>`<option value="${k}" lang="${k}" ${language===k?'selected':''}>${t}</option>`).join('')}</select>${link('contact',c().talk,'button header-contact')}<button id="menu" aria-expanded="false" aria-controls="navigation" aria-label="${c().menuOpen}"><span></span><span></span></button></div></div></header>`;}
+function footer(){return `<footer class="footer"><div class="wrap footer-grid"><div>${brand()}<p>${c().footerLine}</p></div><div><h3>${c().navServices}</h3>${c().services.map(s=>link('services/'+s.id,clean(s.title),'footer-link')).join('')}</div><div><h3>${c().navTechnology}</h3>${techKeys.map(k=>link('technology/'+k,techName(k),'footer-link')).join('')}</div><div><h3>${c().navCompany}</h3>${link('company',c().navCompany,'footer-link')}${link('team',window.technologyCopy[language].team,'footer-link')}${link('join',window.joinCopy[language].nav,'footer-link')}${link('contact',c().talk,'footer-link')}<a class="footer-link" href="mailto:info@concursys.io">info@concursys.io</a><a class="footer-link" href="https://www.alux.network/" target="_blank" rel="noopener">${c().aluxLink}${arrow}</a></div></div><div class="wrap footer-base"><span>© ${new Date().getFullYear()} ConcurSys Inc.</span><span>Tolang · TVM · ReplayTrie · BlockGit</span></div></footer>`;}
+function breadcrumb(name,parent){return `<div class="breadcrumb wrap"><a href="${href()}">${p().home}</a><span>/</span>${parent?`<a href="${href(["team","join","contact"].includes(group)?"company":group)}">${parent}</a><span>/</span>`:''}<span aria-current="page">${name}</span></div>`;}
+function sectionHead(label,title,intro){return `<div class="section-heading"><div><span class="eyebrow">${label}</span><h2>${title}</h2></div>${intro?`<p>${intro}</p>`:''}</div>`;}
+function art(){return `<div class="hero-art" id="hero-art" role="img" aria-label="${c().artAlt}"><div class="art-image"></div><div class="art-cross top">+</div><div class="art-cross bottom">+</div><span class="art-caption mono">TOLANG / TVM / BLOCKGIT</span></div>`;}
+function flow(){return `<div class="stack-flow" aria-label="${c().originalTitle}">${[['Tolang',c().tolangDetail],['TVM',c().tech.tvm.title],['ReplayTrie',c().replayDetail],['BlockGit',c().tech.blockgit.title]].map(([n,t],i)=>`<a href="${href('technology/'+['tolang','tvm','replay','blockgit'][i])}"><span class="mono">0${i+1}</span><strong>${n}</strong><span>${t}</span>${arrow}</a>`).join('')}</div>`;}
+function serviceCards(){return `<div class="service-cards">${c().services.map((s,i)=>`<article class="service-card"><div class="card-top"><span class="mono">0${i+1}</span><svg class="service-symbol" viewBox="0 0 100 80" aria-hidden="true">${i===0?'<path d="M10 40h80M50 8v64"/><rect x="32" y="22" width="36" height="36"/><circle cx="10" cy="40" r="5"/><circle cx="90" cy="40" r="5"/>':i===1?'<rect x="22" y="12" width="56" height="56"/><rect x="35" y="25" width="30" height="30"/><path d="M10 25h12M10 40h12M10 55h12M78 25h12M78 40h12M78 55h12"/>':'<path d="m18 22 32 36 32-36M18 22h64"/><circle cx="18" cy="22" r="9"/><circle cx="82" cy="22" r="9"/><circle cx="50" cy="58" r="9"/>'}</svg></div><h3>${clean(s.title)}</h3><p>${s.body}</p><div class="card-scope">${s.scope}</div>${link('services/'+s.id,p().learnMore)}</article>`).join('')}</div>`;}
+function process(){return `<div class="process">${c().process.map(([t,b],i)=>`<article><span class="mono">0${i+1}</span><h3>${t}</h3><p>${b}</p></article>`).join('')}</div>`;}
+function contactBand(){return `<section class="contact-band"><div class="wrap"><div><span class="eyebrow">${c().talk}</span><h2>${clean(c().contactTitle)}</h2></div>${link('contact',c().contactCTA,'button primary')}</div></section>`;}
+function techPanel(tabs=true){return `${tabs?`<div class="tabs" role="tablist" aria-label="${c().navTechnology}">${coreTechKeys.map(k=>`<button id="tab-${k}" role="tab" data-tech="${k}" aria-controls="tech-panel" aria-selected="${k===selected}" tabindex="${k===selected?'0':'-1'}">${techName(k)}</button>`).join('')}</div>`:''}<div class="tech-panel" id="tech-panel" ${tabs?'role="tabpanel" tabindex="0"':''}><div class="diagram-column"><div class="diagram" id="diagram"></div><div class="diagram-caption mono"><span>${c().conceptual}</span><span id="diagram-code"></span></div><div id="demo-controls" class="demo-controls" hidden><button class="button outline" id="demo-play"></button><button class="small-button" id="demo-next">${c().next}</button><button class="small-button" id="demo-reset">${c().reset}</button></div><p id="demo-status" role="status" hidden></p></div><div class="tech-copy"><span class="eyebrow" id="tech-name"></span><h3 id="tech-title"></h3><p id="tech-description"></p><div class="agent-fit"><span>${window.agentRelevance[language].label}</span><p id="agent-relevance"></p></div><div class="tech-help"><h4>${c().helpTitle}</h4><p id="tech-help"></p></div><div id="tech-link"></div></div></div>`;}
+function architecture(){return window.createArchitecture({copy:window.technologyCopy[language],base:c(),href,arrow,agent:window.agentRelevance[language]});}
+function tolangSpotlight(){const t=window.tolangCopy[language];return `<section class="tolang-spotlight"><div class="wrap"><div class="tolang-heading"><div><span class="eyebrow">${t.eyebrow}</span><div class="tolang-wordmark" aria-hidden="true">Tolang<span>.</span></div></div><div><h2>${t.title}</h2><p>${t.intro}</p>${link('technology/tooling',t.cta)}</div></div><div class="language-pipeline" aria-label="${t.pipeline.join(' → ')}">${t.pipeline.map((label,i)=>`<a href="${href('technology/'+['tolang','tooling','tvm','tvm'][i])}"><span class="pipeline-index mono">0${i+1}</span><span class="pipeline-glyph" aria-hidden="true">${['{ }','→','01','∥'][i]}</span><strong>${label}</strong>${arrow}</a>`).join('')}</div><div class="tolang-features">${t.features.map((f,i)=>`<article><span class="mono">0${i+1}</span><div><h3>${f.title}</h3><p>${f.body}</p></div></article>`).join('')}</div></div></section>`;}
+function home(){return `<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><span class="eyebrow">CONCURSYS / ${window.agentCopy[language].eyebrow}</span><h1>${c().heroTitle}</h1><p>${c().heroBody}</p><div class="hero-actions">${link('contact',c().discuss,'button primary')}${link('services',c().explore)}</div></div>${art()}</div><div class="wrap expertise-rail">${window.agentCopy[language].coreLabels.map((title,i)=>`<a href="${href('technology/'+['tolang','tvm','ocap','blockgit','glvm'][i])}"><strong>${['Tolang','TVM','OCAP','BlockGit','GLVM'][i]}</strong><span>${title}</span>${arrow}</a>`).join('')}</div></section><section class="section light"><div class="wrap">${sectionHead(c().serviceLabel,c().servicesTitle,c().servicesIntro)}${serviceCards()}</div></section>${tolangSpotlight()}${architecture().view}<section class="section company-preview light"><div class="wrap split"><div><span class="eyebrow">${c().originalLabel}</span><h2>${window.agentCopy[language].bridgeTitle}</h2><p>${window.agentCopy[language].bridgeBody}</p>${link('company',c().navCompany)}</div>${flow()}</div></section>${contactBand()}`;}
+function pageHero(label,title,intro,visual=''){return `<section class="page-hero wrap ${visual?'with-visual':''}"><div><span class="eyebrow">${label}</span><h1>${clean(title)}</h1><p>${intro}</p>${link('contact',c().discuss,'button primary')}</div>${visual}</section>`;}
+function servicesPage(){return `${breadcrumb(c().navServices)}${pageHero(c().navServices,c().servicesTitle,p().servicesIntro,`<div class="service-index">${c().services.map((s,i)=>link('services/'+s.id,`<span class="mono">0${i+1}</span><span class="service-index-title">${clean(s.title)}</span>`,'service-index-link')).join('')}</div>`)}<section class="section light"><div class="wrap">${serviceCards()}</div></section><section class="section wrap">${sectionHead(p().approach,c().originalTitle,c().servicesIntro)}${process()}</section>${contactBand()}`;}
+function detailService(){const d=p().serviceDetails[key],service=c().services.find(s=>s.id===key);const related=key==='agent'?['durable','ocap','glvm']:key==='vm'?['tvm','ocap']:['blockgit','glvm'];return `${breadcrumb(clean(service.title),c().navServices)}${pageHero(d.eyebrow,d.title,d.intro,`<aside class="scope-panel"><span class="eyebrow">${c().deliverables}</span><div>${service.scope.split(' · ').map((s,i)=>`<p><span class="mono">0${i+1}</span>${s}</p>`).join('')}</div></aside>`)}<section class="section light"><div class="wrap detail-grid"><div><span class="eyebrow">01 / ${p().serviceDetail}</span><h2>${d.questionsTitle}</h2></div><div class="numbered-list">${d.questions.map((q,i)=>`<article><span class="mono">0${i+1}</span><h3>${q}</h3></article>`).join('')}</div></div></section><section class="section wrap"><div class="detail-grid"><div><span class="eyebrow">02 / ${c().deliverables}</span><h2>${d.deliverablesTitle}</h2></div><div class="numbered-list">${d.deliverables.map((q,i)=>`<article><span class="mono">0${i+1}</span><p>${q}</p></article>`).join('')}</div></div><div class="related"><h3>${p().related}</h3>${related.map(k=>link('technology/'+k,techName(k),'related-link')).join('')}</div></section>${contactBand()}`;}
+function technologyPage(){return `${breadcrumb(c().navTechnology)}${pageHero(c().navTechnology,c().techTitle,p().technologyIntro)}${architecture().view}<section class="section technology"><div class="wrap"><div class="tech-directory">${techKeys.map(k=>`<a href="${href('technology/'+k)}"><span class="mono">${techName(k)}</span><h3>${c().tech[k].title}</h3><span>${p().learnMore} ${arrow}</span></a>`).join('')}</div></div></section><section class="section light"><div class="wrap split"><div><span class="eyebrow">${c().originalLabel}</span><h2>${c().originalTitle}</h2><p>${c().originalBody}</p><p class="note">${c().originalNote}</p></div>${flow()}</div></section>${contactBand()}`;}
+function detailTech(){const t=c().tech[key],d=p().techDetails[key];return `${breadcrumb(techName(key),c().navTechnology)}<section class="tech-detail-hero wrap"><span class="eyebrow">${p().technologyDetail} / ${techName(key)}</span><h1>${techName(key)}</h1>${techPanel(false)}${window.technologyCopy[language].modules[key]?`<div class="detail-status"><span class="status ${window.technologyCopy[language].modules[key].status}">${window.technologyCopy[language][window.technologyCopy[language].modules[key].status]}</span></div>`:''}</section>${key==="tolang"?tolangSpotlight():''}<section class="section light"><div class="wrap detail-grid"><div><span class="eyebrow">${t.name}</span><h2>${d.focusTitle}</h2></div><div class="numbered-list">${d.points.map((q,i)=>`<article><span class="mono">0${i+1}</span><p>${q}</p></article>`).join('')}</div></div></section><div class="wrap related"><h3>${p().related}</h3>${techKeys.filter(k=>k!==key).map(k=>link('technology/'+k,techName(k),'related-link')).join('')}</div>${contactBand()}`;}
+function companyPage(){return `${breadcrumb(c().navCompany)}${pageHero(c().navCompany,c().companyTitle,p().companyIntro,`<div class="company-art"><div class="brand-symbol" role="img" aria-label="ConcurSys"></div><span class="mono">CONCURSYS INC.</span></div>`)}<section class="section light"><div class="wrap split"><div><span class="eyebrow">${c().originalLabel}</span><h2>${c().originalTitle}</h2><p>${c().originalBody}</p><p class="note">${c().originalNote}</p><a class="text-link" href="https://www.alux.network/" target="_blank" rel="noopener">${c().aluxLink}${arrow}</a></div>${flow()}</div></section><section class="section wrap">${sectionHead(p().approach,c().servicesTitle,c().servicesIntro)}${process()}<div class="section-end">${link('team',window.technologyCopy[language].team)}</div></section>${contactBand()}`;}
+function teamPage(){const t=window.teamCopy[language];return `${breadcrumb(window.technologyCopy[language].team,c().navCompany)}${pageHero(window.technologyCopy[language].team,t.title,t.intro)}<section class="team-section light"><div class="wrap">${[['frank','Frank He','FH','https://github.com/atticbee'],['tomislav','Tomislav Grospić','TG','https://github.com/tgrospic']].map(([id,name,initials,github],i)=>`<article class="team-profile"><div class="team-identity"><span class="mono">0${i+1} / CONCURSYS</span><div class="team-avatar" role="img" aria-label="${name}" style="background-image:url(/assets/${id}-avatar.png)"></div><h2>${name}</h2><p>${t[id].role}</p><div class="team-social"><a class="text-link" href="${github}" target="_blank" rel="noopener">GitHub${arrow}</a><a class="text-link" href="https://www.linkedin.com/in/${id==="frank"?"frank-he-26968711":"tgrospic"}" target="_blank" rel="noopener">LinkedIn${arrow}</a><a class="text-link" href="https://x.com/${id==="frank"?"atticbeeus":"grospic"}" target="_blank" rel="noopener">X${arrow}</a></div></div><div class="team-bio">${t[id].bio.map(b=>`<p>${b}</p>`).join('')}<div class="team-focus">${t[id].focus.map(f=>`<span>${f}</span>`).join('')}</div></div></article>`).join('')}</div></section>${contactBand()}`;}
+function joinPage(){const t=window.joinCopy[language];return `${breadcrumb(t.nav,c().navCompany)}<section class="page-hero wrap"><span class="eyebrow">CONCURSYS / ${t.nav}</span><h1>${t.title}</h1><p class="lead">${t.intro}</p></section><section class="section light"><div class="wrap split"><div><span class="eyebrow">${t.label}</span><h2>${c().originalTitle}</h2><p>${t.body}</p><a class="button join-email" href="mailto:info@concursys.io?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.email)}">${t.cta}${arrow}</a></div>${flow()}</div></section>`;}
+function contactPage(){return `${breadcrumb(c().talk)}<section class="contact-page wrap"><div><span class="eyebrow">${c().talk}</span><h1>${clean(c().contactTitle)}</h1><p class="lead">${p().contactIntro}</p><a class="email" href="mailto:info@concursys.io">info@concursys.io</a><button class="small-button" id="copy-email">${c().copyEmail}</button><p id="copy-status" role="status"></p></div><form id="contact-form"><label for="project">${p().projectLabel}<span>*</span></label><input id="project" name="project" required maxlength="160" autocomplete="organization"><label for="email">${p().emailLabel}<span>*</span></label><input id="email" name="email" type="email" required autocomplete="email" maxlength="254"><label for="challenge">${p().challengeLabel}<span>*</span></label><textarea id="challenge" name="challenge" rows="4" required maxlength="4000"></textarea><label for="scope">${p().scopeLabel}</label><textarea id="scope" name="scope" rows="2" maxlength="1200"></textarea><button class="button primary" type="submit">${p().prepareEmail}${arrow}</button><p class="form-hint">${p().emailHint}</p></form></section><section class="section light"><div class="wrap">${sectionHead(p().approach,c().servicesIntro,'')}${process()}</div></section>`;}
+function drawModule(id){
+const labels={en:['Compiler','Replay','State','Shard A','Atomic boundary','Shard B','Discovery','Capabilities','Orchestration'],zh:['编译器','重放验证','状态','分片 A','原子性边界','分片 B','服务发现','能力授权','协同编排'],ko:['컴파일러','재실행 검증','상태','샤드 A','원자성 경계','샤드 B','서비스 탐색','권한','오케스트레이션'],ja:['コンパイラ','リプレイ検証','状態','シャード A','アトミシティ境界','シャード B','サービス探索','権限','オーケストレーション'],ar:['المترجم','إعادة التنفيذ','الحالة','الشظية A','حدود الذرّية','الشظية B','اكتشاف الخدمات','الصلاحيات','التنسيق']}[language];
+const paths={tolang:['Tolang',labels[0],c().diagram.bytecode,'TVM'],replay:['COMM','BranchId','ReplayTrie',labels[1]],atomicity:c().diagram.stages,evm:['EVM','TSAC','TVM',labels[2]],framework:['Segments','Partitions','Fringe','BlockGit'],node:['RPC','TVM','P2P','BlockGit'],tooling:['LSP','Tolang',labels[0],'Playground'],sharding:[labels[3],labels[4],labels[5]],worldos:[labels[6],labels[7],labels[8],'GLVM']};
+const vals=paths[id]||[techName(id)];return '<div class="module-path">'+vals.map((v,i)=>'<div><span class="mono">0'+(i+1)+'</span><strong>'+escape(v)+'</strong></div>').join('')+'</div>';
+}
+function mobileDiagram(){const d=c().diagram;let labels=[];
+if(selected==='glvm')labels=['GLVM',d.shared,'TVM · TVM · TVM'];
+else if(selected==='tvm')labels=[d.source,d.bytecode,'TVM',d.process+' A · B · C',d.channel];
+else if(selected==='ocap')labels=[d.task,d.capability,d.allowed,d.unreachable];
+else if(selected==='durable')labels=d.stages;
+else if(selected==='blockgit')labels=['B0','B1 / B2','B3 / B4','B5','B6'];
+else return '';
+return '<div class="mobile-diagram '+selected+'">'+labels.map((v,i)=>'<div class="mobile-node '+(selected==='durable'&&i===step?'active':'')+'"><span class="mono">0'+(i+1)+'</span><strong>'+escape(v).replace(/\n/g,' ')+'</strong></div>').join('')+'</div>';
+}
+function renderTech(){if(!$('diagram'))return;const t=c().tech[selected];document.querySelectorAll('[data-tech]').forEach(b=>{const active=b.dataset.tech===selected;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});if($('tab-'+selected))$('tech-panel').setAttribute('aria-labelledby','tab-'+selected);$('tech-name').textContent=t.name;$('tech-title').textContent=t.title;$('tech-description').textContent=t.body;$('agent-relevance').textContent=window.agentRelevance[language].modules[selected];$('tech-help').textContent=t.help;$('diagram').innerHTML=({glvm:drawGLVM,tvm:drawTVM,blockgit:drawBlockGit,ocap:drawOCAP,durable:drawDurable})[selected]?.(c().diagram)||drawModule(selected);$('diagram').insertAdjacentHTML('beforeend',mobileDiagram());$('diagram').classList.toggle('has-mobile',!!mobileDiagram());$('diagram-code').textContent=techName(selected);$('tech-link').innerHTML=link(group==='technology'&&key?'contact':'technology/'+selected,group==='technology'&&key?c().architectureCTA:p().learnMore);$('demo-controls').hidden=selected!=='durable';$('demo-status').hidden=selected!=='durable';$('demo-play').textContent=playing?c().pause:step===4?c().replay:c().play;$('demo-next').disabled=step===4;$('demo-status').textContent=`${c().step} ${step+1} / 5 ${language==='zh'?'——':'—'} ${c().diagram.steps[step]}`;}
+function stop(){clearTimeout(timer);playing=false;}
+function tick(){if(!playing)return;step=Math.min(4,step+1);if(step===4)stop();else timer=setTimeout(tick,1600);renderTech();}
+function closeMenus(){document.querySelectorAll('.nav-toggle').forEach(b=>{b.setAttribute('aria-expanded','false');$(b.getAttribute('aria-controls')).hidden=true;});}
+function render(){architectureStop?.dispose?.();document.documentElement.lang=language;document.documentElement.dir=language==='ar'?'rtl':'ltr';document.body.className=group==='home'?'is-home':'is-inner';const title=group==='home'?c().pageTitle:`${group==='services'?(key?serviceName(key):c().navServices):group==='technology'?(key?techName(key):c().navTechnology):group==='company'?c().navCompany:group==='team'?window.technologyCopy[language].team:group==='join'?window.joinCopy[language].nav:c().talk} | ConcurSys`;document.title=title;const description=group==="home"?c().meta:group==="services"?(key?p().serviceDetails[key].intro:p().servicesIntro):group==="technology"?(key?c().tech[key].body:p().technologyIntro):group==="team"?window.teamCopy[language].intro:group==="join"?window.joinCopy[language].intro:group==="company"?p().companyIntro:p().contactIntro;document.querySelector('meta[name="description"]').content=description;const canonical='https://concursys.io'+href(page);document.querySelector('link[rel="canonical"]').href=canonical;document.querySelector('meta[property="og:title"]').content=title;document.querySelector('meta[property="og:url"]').content=canonical;document.querySelector('meta[property="og:description"]').content=description;document.querySelectorAll('link[rel="alternate"]').forEach(el=>{const lang=el.hreflang==='zh-Hans'?'zh':el.hreflang;el.href='https://concursys.io'+(page==='home'?'/':'/'+page+'.html')+(['en','x-default'].includes(lang)?'':'?lang='+lang);});$('site').innerHTML=`<a class="skip" href="#main">${c().skip}</a>${header()}<main id="main">${group==='home'?home():group==='services'?(key?detailService():servicesPage()):group==='technology'?(key?detailTech():technologyPage()):group==='company'?companyPage():group==='team'?teamPage():group==='join'?joinPage():contactPage()}</main>${footer()}`;renderTech();bind();protectTerms();}
+function protectTerms(){const terms=language==='zh'?['全球计算机','并发系统','分布式系统','虚拟机','运行时','字节码','元组空间','跨区块','跨分片','公链 Agent','执行支持']:language==='ja'?['技術サービス','仮想マシン','分散実行','エージェント','パブリックチェーン']:language==='ko'?['분산 시스템','가상 머신']:[];if(!terms.length)return;const root=$('site'),walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);for(const n of nodes){if(n.parentElement.closest('svg,select,script,.mono,.term'))continue;let value=n.textContent;if(!terms.some(t=>value.includes(t)))continue;const pattern=new RegExp('('+terms.join('|')+')','g'),frag=document.createDocumentFragment();for(const part of value.split(pattern)){if(terms.includes(part)){const span=document.createElement('span');span.className='term';span.textContent=part;frag.append(span);}else frag.append(document.createTextNode(part));}n.replaceWith(frag);}}
+function bind(){
+if(document.querySelector('.architecture-board'))architectureStop=architecture().bind();
+$('language').addEventListener('change',e=>{stop();language=e.target.value;history.replaceState(null,'',href(page));render();});
+$('menu').addEventListener('click',()=>{const open=$('navigation').classList.toggle('open');$('menu').setAttribute('aria-expanded',String(open));$('menu').setAttribute('aria-label',open?c().menuClose:c().menuOpen);if(!open)closeMenus();});
+document.querySelectorAll('.nav-toggle').forEach(b=>b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';closeMenus();b.setAttribute('aria-expanded',String(open));$(b.getAttribute('aria-controls')).hidden=!open;}));
+document.querySelectorAll('[data-tech]').forEach(b=>{const choose=()=>{stop();selected=b.dataset.tech;renderTech();};b.addEventListener('click',choose);b.addEventListener('keydown',e=>{const tabs=[...document.querySelectorAll('[data-tech]')];let i=tabs.indexOf(b);if(e.key==='ArrowRight')i=(i+(language==='ar'?tabs.length-1:1))%tabs.length;else if(e.key==='ArrowLeft')i=(i+(language==='ar'?1:tabs.length-1))%tabs.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=tabs.length-1;else return;e.preventDefault();stop();selected=tabs[i].dataset.tech;renderTech();tabs[i].focus();});});
+if($('demo-play')){$('demo-play').onclick=()=>{if(playing)stop();else{if(step===4)step=0;playing=true;timer=setTimeout(tick,1600);}renderTech();};$('demo-next').onclick=()=>{stop();step=Math.min(4,step+1);renderTech();};$('demo-reset').onclick=()=>{stop();step=0;renderTech();};}
+if($('copy-email'))$('copy-email').onclick=async()=>{try{await navigator.clipboard.writeText('info@concursys.io');$('copy-status').textContent=c().copied;}catch{$('copy-status').textContent=c().copyFailed;}};
+if($('contact-form'))$('contact-form').addEventListener('submit',e=>{e.preventDefault();const body=`${p().projectLabel}: ${$('project').value}\n${p().emailLabel}: ${$('email').value}\n\n${p().challengeLabel}:\n${$('challenge').value}\n\n${p().scopeLabel}:\n${$('scope').value}`;location.href=`mailto:info@concursys.io?subject=${encodeURIComponent(c().emailSubject+' — '+$('project').value)}&body=${encodeURIComponent(body)}`;});
+const art=$('hero-art');if(art){art.addEventListener('pointermove',e=>{if(reduceMotion.matches||e.pointerType!=='mouse')return;const r=art.getBoundingClientRect();art.style.setProperty('--rx',`${-(e.clientY-r.top-r.height/2)/r.height*4}deg`);art.style.setProperty('--ry',`${(e.clientX-r.left-r.width/2)/r.width*5}deg`);});art.addEventListener('pointerleave',()=>{art.style.setProperty('--rx','0deg');art.style.setProperty('--ry','0deg');});}
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.nav-group'))closeMenus();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const active=document.querySelector('.nav-toggle[aria-expanded="true"]');if(active){closeMenus();active.focus();}else if($('navigation').classList.contains('open')){$('navigation').classList.remove('open');$('menu').setAttribute('aria-expanded','false');$('menu').focus();}}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();architectureStop?.();renderTech();}});
+reduceMotion.addEventListener('change',()=>{stop();architectureStop?.();renderTech();const art=$('hero-art');if(art){art.style.setProperty('--rx','0deg');art.style.setProperty('--ry','0deg');}});
+// A background mark uses a neutral hit target for the native page context menu.
+document.addEventListener('contextmenu',e=>{const mark=e.target.closest('.brand');if(!mark)return;const url=mark.getAttribute('href');mark.removeAttribute('href');setTimeout(()=>mark.setAttribute('href',url),0);});
+render();
 })();
