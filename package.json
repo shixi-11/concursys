@@ -1,0 +1,1 @@
+{"name":"concursys-website","version":"1.0.0","private":true,"description":"ConcurSys bilingual technical services website","scripts":{"start":"node server.mjs","check":"node --check public/app.js && node --check public/content.js && node --check server.mjs"}}
