@@ -79,6 +79,7 @@
     document.querySelector('.skip').textContent=c.skip;
     document.querySelector('meta[name=description]').content=c.meta;
     document.title=language==='en'?'ConcurSys — Deep engineering. Real execution.':'ConcurSys｜底层技术与系统工程服务';
+    document.querySelector('link[rel=canonical]').href=language==='zh'?'https://concursys.io/?lang=zh':'https://concursys.io/';
     $('service-rows').innerHTML=c.services.map((s,i)=>`<article class="service-row" id="service-${s.id}"><span class="number mono">${String(i+1).padStart(2,'0')}</span><h3>${displayCopy(s.title)}</h3><p>${displayCopy(s.body)}</p><div class="service-scope"><span class="mono">${c.deliverables}</span><p>${displayCopy(s.scope)}</p></div></article>`).join('');
     $('process').innerHTML=c.process.map((p,i)=>`<article><span class="mono">0${i+1}</span><h3>${displayCopy(p[0])}</h3><p>${displayCopy(p[1])}</p></article>`).join('');
     const subject=language==='en'?'ConcurSys technical services':'ConcurSys 技术服务咨询';
