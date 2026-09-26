@@ -26,3 +26,13 @@ www的既有CNAME为concursys.io.，TTL3600，保持原值。Vercel主域与www�
 北京时间2026-09-27 05:21:18，两个正式HTTPS域名均返回200，首页与Git一致，Logo及主视觉文件核验通过。根域公共DNS查询已返回216.150.1.1；www的递归链查询仍可带旧IP缓存，所以不声称全球所有解析器已同步。
 
 邮箱MX保持：1 aspmx.l.google.com；5 alt1.aspmx.l.google.com、alt2.aspmx.l.google.com；10 alt3.aspmx.l.google.com、alt4.aspmx.l.google.com。没有测试邮件收发。
+
+## 多页与 Agent 技术展示升级（2026-09-27）
+
+网站内容提交 cc61e64518d08c26e82382646ca59820ffa98230；资源缓存修复提交 730be3e。两次提交均为SSH签名，已核验有效，并同步到既有私有仓库的main和feat/concursys-pages-brand。Vercel生产项目已实际显示main的新版提交Ready。
+
+本次发布包含24个独立页面、五语言、14模块能力地图、Tolang优势板块和两人团队。首次正式访问发现旧app.js缓存与新HTML混用导致空白；生成器现为所有JS/CSS加入内容哈希，Logo也更新版本参数。在同一浏览器重新访问后正常，无需用户清空缓存。
+
+54个已跟踪public文件从concursys.io返回HTTP 200，文本行尾归一后及二进制资源均与交付源码一致，完整结果保存在output/upgrade/live-resources.json。Chrome正式首页已实际查看，点入Tolang详情并点击Logo返回中文首页；www.concursys.io/team.html?lang=zh已确认两位成员和新内容正常。页面截图在output/upgrade/live-home.png。
+
+此升级未修改DNS、邮箱、Vercel配置或ALUX仓库。回退可选择a808f1a之前的既有生产部署；优先保留当前多页结构并做针对性修复。此后的文档记录提交不改变public目录内容。

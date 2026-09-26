@@ -21,3 +21,5 @@
 只同步本轮明确文件，核对远端 main 和 Vercel 生产来源，访问正式域名与关键子页面。发布结果记入 deployment.md。视觉截图与检查证据位于 output/upgrade。
 
 历史未跟踪素材和辅助脚本不纳入本次提交：design/capture.mjs、correct-provenance.py、hero-exploration.png、inspect-assets.py、prepare-assets.py、refine-content.py、public/assets/favicon.svg。不得清理或覆盖。
+
+已收口：内容与缓存修复已同步main；54个正式资源与源码一致，官网及www关键页面真实浏览器验证通过。详见deployment.md及output/upgrade。
