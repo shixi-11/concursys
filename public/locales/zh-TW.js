@@ -147,7 +147,7 @@
   "skip": "跳至主要內容",
   "artAlt": "由相互連接的運算路徑構成的抽象雕塑",
   "meta": "從程式語言、執行時到共識技術，為 Agent 打造保存狀態、明確權限與驗證執行的工程基礎。我們是 ALUX 底層技術的研發團隊。",
-  "pageTitle": "ConcurSys｜為 Agent 打造執行底座",
+  "pageTitle": "ConcurSys — 智能體執行基礎設施",
   "navLabel": "主導覽",
   "languageLabel": "選擇語言",
   "emailSubject": "ConcurSys 技術服務諮詢",
