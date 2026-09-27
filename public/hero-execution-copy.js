@@ -100,3 +100,141 @@ window.heroExecutionCopy = {
     mapLink: 'استكشف المعمارية'
   }
 };
+
+Object.entries({
+  "en": {
+    "label": "Interactive execution model",
+    "run": "Run a task",
+    "pause": "Pause",
+    "continue": "Continue",
+    "resume": "Resume task",
+    "replay": "Run again",
+    "reset": "Reset",
+    "scenario": "Task scenario",
+    "allowed": "Within authority",
+    "denied": "Outside authority",
+    "status": {
+      "idle": "Ready to explore",
+      "defined": "Tolang · concurrent tasks defined",
+      "authorized": "OCAP · access allowed",
+      "waiting": "TVM · waiting for a dependency",
+      "resumed": "TVM · execution resumed",
+      "verified": "ReplayTrie + BlockGit · validation stage",
+      "denied": "OCAP · access refused"
+    },
+    "deniedTitle": "Authority is a boundary.",
+    "deniedBody": "This example requests a resource outside its granted capabilities. The task stops at the permission boundary.",
+    "waitTitle": "Waiting does not mean starting over.",
+    "waitBody": "The model is waiting for an external dependency. Resume the task to see execution continue from its preserved state.",
+    "doneTitle": "From execution to verification.",
+    "doneBody": "The model reaches replay validation and consensus. ReplayTrie supplies execution evidence; BlockGit coordinates concurrent history."
+  },
+  "zh": {
+    "label": "交互执行演示",
+    "run": "启动任务",
+    "pause": "暂停",
+    "continue": "继续",
+    "resume": "恢复任务",
+    "replay": "重新演示",
+    "reset": "重置",
+    "scenario": "任务场景",
+    "allowed": "权限范围内",
+    "denied": "越权访问",
+    "status": {
+      "idle": "准备开始",
+      "defined": "Tolang · 定义并发任务",
+      "authorized": "OCAP · 允许访问",
+      "waiting": "TVM · 等待依赖",
+      "resumed": "TVM · 恢复执行",
+      "verified": "ReplayTrie + BlockGit · 验证阶段",
+      "denied": "OCAP · 拒绝访问"
+    },
+    "deniedTitle": "权限，是明确的边界。",
+    "deniedBody": "这个示例请求了授权范围外的资源，任务在权限边界处停止。",
+    "waitTitle": "等待，不必从头开始。",
+    "waitBody": "演示中的任务正在等待外部依赖。点击恢复任务，查看执行如何从保留的状态继续。",
+    "doneTitle": "从执行，走向验证。",
+    "doneBody": "演示进入重放验证与共识阶段。ReplayTrie 提供执行证据，BlockGit 协调并发历史。"
+  },
+  "ja": {
+    "label": "実行モデルを体験",
+    "run": "タスクを開始",
+    "pause": "一時停止",
+    "continue": "続行",
+    "resume": "タスクを再開",
+    "replay": "もう一度",
+    "reset": "リセット",
+    "scenario": "タスクの条件",
+    "allowed": "権限の範囲内",
+    "denied": "権限外のアクセス",
+    "status": {
+      "idle": "開始できます",
+      "defined": "Tolang · 並行タスクを定義",
+      "authorized": "OCAP · アクセスを許可",
+      "waiting": "TVM · 依存先を待機",
+      "resumed": "TVM · 実行を再開",
+      "verified": "ReplayTrie + BlockGit · 検証段階",
+      "denied": "OCAP · アクセスを拒否"
+    },
+    "deniedTitle": "権限が境界を定める。",
+    "deniedBody": "この例は許可された範囲外のリソースを要求するため、権限の境界で停止します。",
+    "waitTitle": "待機しても、最初からやり直さない。",
+    "waitBody": "モデルは外部の依存先を待っています。タスクを再開すると、保持した状態から実行が続きます。",
+    "doneTitle": "実行から検証へ。",
+    "doneBody": "モデルはリプレイ検証と合意の段階に進みます。ReplayTrie が実行の証拠を提供し、BlockGit が並行する履歴を調整します。"
+  },
+  "ko": {
+    "label": "인터랙티브 실행 모델",
+    "run": "작업 시작",
+    "pause": "일시 정지",
+    "continue": "계속",
+    "resume": "작업 재개",
+    "replay": "다시 실행",
+    "reset": "초기화",
+    "scenario": "작업 조건",
+    "allowed": "권한 범위 내",
+    "denied": "권한 밖의 접근",
+    "status": {
+      "idle": "시작 준비 완료",
+      "defined": "Tolang · 동시 작업 정의",
+      "authorized": "OCAP · 접근 허용",
+      "waiting": "TVM · 의존성 대기",
+      "resumed": "TVM · 실행 재개",
+      "verified": "ReplayTrie + BlockGit · 검증 단계",
+      "denied": "OCAP · 접근 거부"
+    },
+    "deniedTitle": "권한은 명확한 경계입니다.",
+    "deniedBody": "이 예시는 허용된 범위 밖의 리소스를 요청하므로 권한 경계에서 작업이 멈춥니다.",
+    "waitTitle": "기다려도 처음부터 다시 시작하지 않습니다.",
+    "waitBody": "모델이 외부 의존성을 기다리고 있습니다. 작업을 재개하면 보존된 상태에서 실행이 이어집니다.",
+    "doneTitle": "실행에서 검증으로.",
+    "doneBody": "모델이 재실행 검증과 합의 단계에 도달합니다. ReplayTrie는 실행 증거를 제공하고 BlockGit은 동시 이력을 조율합니다."
+  },
+  "ar": {
+    "label": "نموذج تنفيذ تفاعلي",
+    "run": "ابدأ مهمة",
+    "pause": "إيقاف مؤقت",
+    "continue": "متابعة",
+    "resume": "استأنف المهمة",
+    "replay": "تشغيل مجدداً",
+    "reset": "إعادة ضبط",
+    "scenario": "سيناريو المهمة",
+    "allowed": "ضمن الصلاحيات",
+    "denied": "خارج الصلاحيات",
+    "status": {
+      "idle": "جاهز للاستكشاف",
+      "defined": "Tolang · تحديد المهام المتزامنة",
+      "authorized": "OCAP · السماح بالوصول",
+      "waiting": "TVM · انتظار اعتماد خارجي",
+      "resumed": "TVM · استئناف التنفيذ",
+      "verified": "ReplayTrie + BlockGit · مرحلة التحقق",
+      "denied": "OCAP · رفض الوصول"
+    },
+    "deniedTitle": "الصلاحيات تحدد الحدود.",
+    "deniedBody": "يطلب هذا المثال مورداً خارج الصلاحيات الممنوحة، فتتوقف المهمة عند حدود الوصول.",
+    "waitTitle": "الانتظار لا يعني البدء من جديد.",
+    "waitBody": "ينتظر النموذج اعتماداً خارجياً. استأنف المهمة لترى التنفيذ يتابع من الحالة المحفوظة.",
+    "doneTitle": "من التنفيذ إلى التحقق.",
+    "doneBody": "يصل النموذج إلى التحقق بإعادة التنفيذ والإجماع. يوفّر ReplayTrie أدلة التنفيذ، وينسّق BlockGit السجل المتزامن."
+  }
+}).forEach(([lang,demo])=>window.heroExecutionCopy[lang].demo=demo);

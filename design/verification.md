@@ -35,3 +35,13 @@ Logo回首页保留语言；独立导航入口和技术子菜单；语言选择�
 - Desktop hero and map visually checked. Logo home navigation and map Next step checked. Five-language catalog, 24 routes, 120 sitemap URLs, and JavaScript syntax checks passed.
 - Figma execution model: https://www.figma.com/design/XtsxMyBSbsv9bWPOAmhEB6?node-id=2-2
 - Screenshot evidence lives under output/upgrade/20260927-home-*.png. These are local browser observations, not evidence of a production deployment.
+
+## 2026-09-27 Comfort, menus and execution demonstration
+
+- Navigation parents are now single disclosure buttons. Clicking text or arrow expands the same menu. Overview links remain inside each submenu; Team remains a direct link. Desktop click, Enter, Space, Escape, mutually exclusive opening, Overview navigation, and Chinese mobile expansion were exercised.
+- Footer email moved under brand introduction; copyright centered in a separate bottom row. Font size and column rhythm adjusted; desktop and mobile layouts inspected.
+- Connector routing uses bottom-edge ports, row gutters and outer rails rather than curves across card interiors. All 14 module selections / 40 relation paths were checked against rendered card rectangles: zero interior crossings at desktop size. Mobile uses selected/connected cards and the textual relation list without background lines.
+- Added user-started deterministic execution model with authorized and unauthorized scenarios. Normal path waits for visitor Resume, then reaches the verification stage; denied access stops at OCAP. Browser flows checked. Four state-machine tests cover the gate, wait/resume, pause/reset/disposal and background-tab pause.
+- New refinement stylesheet uses neutral charcoal surfaces, restrained blue-green accents, softer boundaries, conventional body fonts and a more compact heading scale. Team biographies, original transparent avatars, technology content and routes remain intact.
+- All 24 English routes were rendered and checked for one H1, one footer email, three menu triggers, stylesheet loading and horizontal overflow; no failures. Five-language mobile home checks passed for layout, demo controls, footer placement and menu count. Actual homepage, menu, footer, architecture, contact and team views inspected. Five-language catalog and 120 sitemap URL checks pass.
+- Local evidence: output/upgrade/refinement-route-audit.json and screenshot files. Production verification is recorded separately after synchronization.

@@ -15,7 +15,17 @@ window.createArchitecture = function({copy,base,href,arrow,agent}) {
   return {view,bind(){
     const board=document.querySelector('.architecture-board');if(!board)return;
     let active=initial,playing=false,timer=null,idx=-1;
-function drawLinks(){const canvas=board.querySelector('.arch-canvas'),svg=board.querySelector('.arch-lines'),r=canvas.getBoundingClientRect();svg.setAttribute('viewBox','0 0 '+r.width+' '+r.height);const source=canvas.querySelector('[data-module="'+active+'"]');if(!source)return;const s=source.getBoundingClientRect();const x=s.x-r.x+s.width/2,y=s.y-r.y+s.height/2;svg.innerHTML=modules[active].links.map(k=>{const n=canvas.querySelector('[data-module="'+k+'"]');if(!n)return '';const t=n.getBoundingClientRect(),tx=t.x-r.x+t.width/2,ty=t.y-r.y+t.height/2,mid=(y+ty)/2;return '<path d="M '+x+' '+y+' C '+x+' '+mid+', '+tx+' '+mid+', '+tx+' '+ty+'"/>';}).join('');}
+function drawLinks(){
+ const canvas=board.querySelector('.arch-canvas'),svg=board.querySelector('.arch-lines'),r=canvas.getBoundingClientRect();
+ svg.setAttribute('viewBox','0 0 '+r.width+' '+r.height);
+ const source=canvas.querySelector('[data-module="'+active+'"]');if(!source)return;
+ const anchor=node=>{const rect=node.getBoundingClientRect(),row=node.closest('.arch-nodes');const bounds=row?row.getBoundingClientRect():rect;return {x:rect.left-r.left+rect.width/2,y:rect.bottom-r.top,lane:bounds.bottom-r.top+8,row};};
+ const from=anchor(source),rtl=getComputedStyle(canvas).direction==='rtl';
+ svg.innerHTML=modules[active].links.map((key,index)=>{const target=canvas.querySelector('[data-module="'+key+'"]');if(!target)return '';const to=anchor(target),rail=rtl?r.width-8-index*3:8+index*3;
+ const path=from.row&&from.row===to.row?'M '+from.x+' '+from.y+' V '+from.lane+' H '+to.x+' V '+to.y:'M '+from.x+' '+from.y+' V '+from.lane+' H '+rail+' V '+to.lane+' H '+to.x+' V '+to.y;
+ return '<path d="'+path+'" data-from="'+active+'" data-to="'+key+'"/>';
+ }).join('');
+}
 const resizeObserver=new ResizeObserver(drawLinks);resizeObserver.observe(board);
     const sequence=['tolang','tvm','ocap','durable','atomicity','replay','blockgit','node'];
     function render(k){active=k;const d=info(k);document.querySelectorAll('[data-module]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.module===k));b.classList.toggle('connected',modules[k].links.includes(b.dataset.module));b.classList.toggle('dim',b.dataset.module!==k&&!modules[k].links.includes(b.dataset.module));});board.dataset.activeLayer=modules[k].layer;document.getElementById('arch-inspector').innerHTML=`<span class="status ${d.status}">${copy[d.status]}</span><span class="eyebrow">${copy.role}</span><h3>${name(k)}</h3><h4>${d.title}</h4><p>${d.body}</p><div class="agent-fit"><span>${agent.label}</span><p>${agent.modules[k]}</p></div><div class="arch-connections"><span class="eyebrow">${copy.connections}</span>${modules[k].links.map(n=>`<button data-inspect="${n}">${name(n)} ${arrow}</button>`).join('')}</div><a class="text-link" href="${href('technology/'+k)}">${copy.details}${arrow}</a>`;document.querySelectorAll('[data-inspect]').forEach(b=>b.onclick=()=>{stop();render(b.dataset.inspect);});requestAnimationFrame(drawLinks);}

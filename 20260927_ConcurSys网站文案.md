@@ -1159,6 +1159,98 @@ See how language, authority, runtime, and consensus fit together.
 
 Explore the architecture
 
+**demo.label**
+
+Interactive execution model
+
+**demo.run**
+
+Run a task
+
+**demo.pause**
+
+Pause
+
+**demo.continue**
+
+Continue
+
+**demo.resume**
+
+Resume task
+
+**demo.replay**
+
+Run again
+
+**demo.reset**
+
+Reset
+
+**demo.scenario**
+
+Task scenario
+
+**demo.allowed**
+
+Within authority
+
+**demo.denied**
+
+Outside authority
+
+**demo.status.idle**
+
+Ready to explore
+
+**demo.status.defined**
+
+Tolang · concurrent tasks defined
+
+**demo.status.authorized**
+
+OCAP · access allowed
+
+**demo.status.waiting**
+
+TVM · waiting for a dependency
+
+**demo.status.resumed**
+
+TVM · execution resumed
+
+**demo.status.verified**
+
+ReplayTrie + BlockGit · validation stage
+
+**demo.status.denied**
+
+OCAP · access refused
+
+**demo.deniedTitle**
+
+Authority is a boundary.
+
+**demo.deniedBody**
+
+This example requests a resource outside its granted capabilities. The task stops at the permission boundary.
+
+**demo.waitTitle**
+
+Waiting does not mean starting over.
+
+**demo.waitBody**
+
+The model is waiting for an external dependency. Resume the task to see execution continue from its preserved state.
+
+**demo.doneTitle**
+
+From execution to verification.
+
+**demo.doneBody**
+
+The model reaches replay validation and consensus. ReplayTrie supplies execution evidence; BlockGit coordinates concurrent history.
+
 ## 简体中文
 
 ### 为 Agent， 构建执行底座。
@@ -2319,6 +2411,98 @@ ReplayTrie 为重放执行提供依据，BlockGit 则协调并发区块历史与
 **mapLink**
 
 探索技术架构
+
+**demo.label**
+
+交互执行演示
+
+**demo.run**
+
+启动任务
+
+**demo.pause**
+
+暂停
+
+**demo.continue**
+
+继续
+
+**demo.resume**
+
+恢复任务
+
+**demo.replay**
+
+重新演示
+
+**demo.reset**
+
+重置
+
+**demo.scenario**
+
+任务场景
+
+**demo.allowed**
+
+权限范围内
+
+**demo.denied**
+
+越权访问
+
+**demo.status.idle**
+
+准备开始
+
+**demo.status.defined**
+
+Tolang · 定义并发任务
+
+**demo.status.authorized**
+
+OCAP · 允许访问
+
+**demo.status.waiting**
+
+TVM · 等待依赖
+
+**demo.status.resumed**
+
+TVM · 恢复执行
+
+**demo.status.verified**
+
+ReplayTrie + BlockGit · 验证阶段
+
+**demo.status.denied**
+
+OCAP · 拒绝访问
+
+**demo.deniedTitle**
+
+权限，是明确的边界。
+
+**demo.deniedBody**
+
+这个示例请求了授权范围外的资源，任务在权限边界处停止。
+
+**demo.waitTitle**
+
+等待，不必从头开始。
+
+**demo.waitBody**
+
+演示中的任务正在等待外部依赖。点击恢复任务，查看执行如何从保留的状态继续。
+
+**demo.doneTitle**
+
+从执行，走向验证。
+
+**demo.doneBody**
+
+演示进入重放验证与共识阶段。ReplayTrie 提供执行证据，BlockGit 协调并发历史。
 
 ## 한국어
 
@@ -3481,6 +3665,98 @@ ReplayTrie는 실행을 재생해 확인할 근거를 제공하고, BlockGit은 
 
 아키텍처 살펴보기
 
+**demo.label**
+
+인터랙티브 실행 모델
+
+**demo.run**
+
+작업 시작
+
+**demo.pause**
+
+일시 정지
+
+**demo.continue**
+
+계속
+
+**demo.resume**
+
+작업 재개
+
+**demo.replay**
+
+다시 실행
+
+**demo.reset**
+
+초기화
+
+**demo.scenario**
+
+작업 조건
+
+**demo.allowed**
+
+권한 범위 내
+
+**demo.denied**
+
+권한 밖의 접근
+
+**demo.status.idle**
+
+시작 준비 완료
+
+**demo.status.defined**
+
+Tolang · 동시 작업 정의
+
+**demo.status.authorized**
+
+OCAP · 접근 허용
+
+**demo.status.waiting**
+
+TVM · 의존성 대기
+
+**demo.status.resumed**
+
+TVM · 실행 재개
+
+**demo.status.verified**
+
+ReplayTrie + BlockGit · 검증 단계
+
+**demo.status.denied**
+
+OCAP · 접근 거부
+
+**demo.deniedTitle**
+
+권한은 명확한 경계입니다.
+
+**demo.deniedBody**
+
+이 예시는 허용된 범위 밖의 리소스를 요청하므로 권한 경계에서 작업이 멈춥니다.
+
+**demo.waitTitle**
+
+기다려도 처음부터 다시 시작하지 않습니다.
+
+**demo.waitBody**
+
+모델이 외부 의존성을 기다리고 있습니다. 작업을 재개하면 보존된 상태에서 실행이 이어집니다.
+
+**demo.doneTitle**
+
+실행에서 검증으로.
+
+**demo.doneBody**
+
+모델이 재실행 검증과 합의 단계에 도달합니다. ReplayTrie는 실행 증거를 제공하고 BlockGit은 동시 이력을 조율합니다.
+
 ## 日本語
 
 ### エージェントの 実行基盤。
@@ -4642,6 +4918,98 @@ ReplayTrieは実行をリプレイして確認する根拠となり、BlockGit�
 
 アーキテクチャを見る
 
+**demo.label**
+
+実行モデルを体験
+
+**demo.run**
+
+タスクを開始
+
+**demo.pause**
+
+一時停止
+
+**demo.continue**
+
+続行
+
+**demo.resume**
+
+タスクを再開
+
+**demo.replay**
+
+もう一度
+
+**demo.reset**
+
+リセット
+
+**demo.scenario**
+
+タスクの条件
+
+**demo.allowed**
+
+権限の範囲内
+
+**demo.denied**
+
+権限外のアクセス
+
+**demo.status.idle**
+
+開始できます
+
+**demo.status.defined**
+
+Tolang · 並行タスクを定義
+
+**demo.status.authorized**
+
+OCAP · アクセスを許可
+
+**demo.status.waiting**
+
+TVM · 依存先を待機
+
+**demo.status.resumed**
+
+TVM · 実行を再開
+
+**demo.status.verified**
+
+ReplayTrie + BlockGit · 検証段階
+
+**demo.status.denied**
+
+OCAP · アクセスを拒否
+
+**demo.deniedTitle**
+
+権限が境界を定める。
+
+**demo.deniedBody**
+
+この例は許可された範囲外のリソースを要求するため、権限の境界で停止します。
+
+**demo.waitTitle**
+
+待機しても、最初からやり直さない。
+
+**demo.waitBody**
+
+モデルは外部の依存先を待っています。タスクを再開すると、保持した状態から実行が続きます。
+
+**demo.doneTitle**
+
+実行から検証へ。
+
+**demo.doneBody**
+
+モデルはリプレイ検証と合意の段階に進みます。ReplayTrie が実行の証拠を提供し、BlockGit が並行する履歴を調整します。
+
 ## العربية
 
 ### الأسس الهندسية لتشغيل الوكلاء.
@@ -5802,3 +6170,95 @@ ReplayTrie + BlockGit
 **mapLink**
 
 استكشف المعمارية
+
+**demo.label**
+
+نموذج تنفيذ تفاعلي
+
+**demo.run**
+
+ابدأ مهمة
+
+**demo.pause**
+
+إيقاف مؤقت
+
+**demo.continue**
+
+متابعة
+
+**demo.resume**
+
+استأنف المهمة
+
+**demo.replay**
+
+تشغيل مجدداً
+
+**demo.reset**
+
+إعادة ضبط
+
+**demo.scenario**
+
+سيناريو المهمة
+
+**demo.allowed**
+
+ضمن الصلاحيات
+
+**demo.denied**
+
+خارج الصلاحيات
+
+**demo.status.idle**
+
+جاهز للاستكشاف
+
+**demo.status.defined**
+
+Tolang · تحديد المهام المتزامنة
+
+**demo.status.authorized**
+
+OCAP · السماح بالوصول
+
+**demo.status.waiting**
+
+TVM · انتظار اعتماد خارجي
+
+**demo.status.resumed**
+
+TVM · استئناف التنفيذ
+
+**demo.status.verified**
+
+ReplayTrie + BlockGit · مرحلة التحقق
+
+**demo.status.denied**
+
+OCAP · رفض الوصول
+
+**demo.deniedTitle**
+
+الصلاحيات تحدد الحدود.
+
+**demo.deniedBody**
+
+يطلب هذا المثال مورداً خارج الصلاحيات الممنوحة، فتتوقف المهمة عند حدود الوصول.
+
+**demo.waitTitle**
+
+الانتظار لا يعني البدء من جديد.
+
+**demo.waitBody**
+
+ينتظر النموذج اعتماداً خارجياً. استأنف المهمة لترى التنفيذ يتابع من الحالة المحفوظة.
+
+**demo.doneTitle**
+
+من التنفيذ إلى التحقق.
+
+**demo.doneBody**
+
+يصل النموذج إلى التحقق بإعادة التنفيذ والإجماع. يوفّر ReplayTrie أدلة التنفيذ، وينسّق BlockGit السجل المتزامن.
