@@ -92,7 +92,7 @@ html[dir=rtl] .hero-art{transform:scaleX(-1)}html[dir=rtl] .art-caption{transfor
 
 /* Keep the primary action in the first reading sequence on wide screens. */
 @media(min-width:801px){.hero-grid{min-height:695px}.hero-copy{max-width:780px;padding-top:95px;padding-bottom:105px}.hero-copy h1{font-size:72px;max-width:780px;text-wrap:initial}.hero-art{inset:0 -30px 0 -30px;opacity:1}.art-image{background-size:auto 100%;background-position:right center}.hero-copy>p{max-width:455px}.art-caption{right:40px}}
-.header .brand{background:#edf5f1;padding:7px 12px;border-radius:2px}.header .brand-logo{width:166px;height:39px}
+.header .brand{background:transparent;padding:7px 12px;border-radius:0}.header .brand-logo{width:166px;height:39px}
 @media(max-width:1150px){.header .brand{padding:6px 9px}.header .brand-logo{width:145px;height:35px}}
 @media(max-width:600px){.header .brand{padding:5px 8px}.header .brand-logo{width:137px;height:33px}.hero-copy h1{font-size:43px;text-wrap:initial}}
 @media(max-width:370px){.header .brand-logo{width:117px;height:30px}.hero-copy h1{font-size:38px}}
@@ -127,3 +127,5 @@ html:lang(zh) .tolang-heading h2{font-size:30px}html:lang(ar) .pipeline-glyph{di
 @media(max-width:360px){html[lang=ja] .hero-copy h1{font-size:28px}}
 
 @media(min-width:801px){.architecture-board{overflow:visible;background:#102125}.arch-inspector{position:sticky;top:104px;align-self:start;max-height:calc(100vh - 124px);overflow-y:auto}.arch-canvas{min-width:0}}
+
+.footer-wordmark{display:inline-block;font-family:var(--sans);font-size:32px;font-weight:500;letter-spacing:-.045em;line-height:1.5;color:#deebe8}.footer-wordmark:hover{color:#a0e9ce}

@@ -25,7 +25,7 @@
 
 正式网页位于 public；五语言文案阅读稿为 `20260927_ConcurSys网站文案.md`。结构化文案分为基础、页面、技术、团队、Agent 相关性和 Tolang 板块，均覆盖五语言。
 
-使用用户指定的原彩色 ConcurSys_logo.png，未重绘标识。深色页头以浅色底承托原Logo。主视觉为原创生成的互锁金属与青色玻璃结构；人物为卡通虚拟形象。Space Grotesk 本地托管并附 OFL 许可。页面没有运行时外部字体或第三方脚本请求。
+使用用户指定的原彩色 ConcurSys_logo.png，未重绘标识。原Logo直接呈现在深色页头，无额外底板。主视觉为原创生成的互锁金属与青色玻璃结构；人物为卡通虚拟形象。Space Grotesk 本地托管并附 OFL 许可。页面没有运行时外部字体或第三方脚本请求。
 
 截图和测试证据在本机 output/upgrade，不进入 Git。技术网站参考见 design/website-references.md，验收记录见 design/verification.md。
 
