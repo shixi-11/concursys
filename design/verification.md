@@ -25,3 +25,13 @@ Logo回首页保留语言；独立导航入口和技术子菜单；语言选择�
 主视觉是生成的抽象结构图片，技术图是可交互DOM/SVG。视觉已按实际截图检查；未声称用户已最终认可。生产结果与来源提交另记于 deployment.md。
 
 生产首次复核发现旧脚本缓存与新HTML混用导致空白，已在生成器为全部JS/CSS加入内容哈希版本参数，并为替换的Logo更新资源版本。构建检查验证应用版本引用；上线后重新访问验证。
+
+## 2026-09-27 Agent execution and brand refinement
+
+- Header now uses the original transparent ConcurSys symbol alone: 66 px desktop and 56 px mobile, with home navigation preserved. Footer retains the upright text wordmark.
+- Homepage replaces decorative rings with an interactive execution model: Agent tasks, OCAP boundary, Tolang, TVM, and ReplayTrie / BlockGit. Four explanatory controls were clicked and verified in the browser.
+- The full 14-module map remains on Technology; its playback controls now precede the board. Homepage links to it instead of duplicating the complete map. Repeated homepage technology links were replaced by an entry to the two existing team profiles.
+- Five language homepages and Technology pages checked at 390 px: no horizontal overflow, four hero steps, two team entries, and 14 map modules. English, Chinese, Korean, Japanese, and Arabic mobile hero layouts visually reviewed. Japanese headline revised to avoid a stranded verb ending. Section headings now convert editorial breaks into spaces to prevent joined Arabic sentences.
+- Desktop hero and map visually checked. Logo home navigation and map Next step checked. Five-language catalog, 24 routes, 120 sitemap URLs, and JavaScript syntax checks passed.
+- Figma execution model: https://www.figma.com/design/XtsxMyBSbsv9bWPOAmhEB6?node-id=2-2
+- Screenshot evidence lives under output/upgrade/20260927-home-*.png. These are local browser observations, not evidence of a production deployment.

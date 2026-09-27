@@ -2,11 +2,11 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 const ctx={window:{}};vm.createContext(ctx);
-for(const file of ['content','locales/ko','locales/ja','locales/ar','brand-copy','page-copy','technology-copy','team-copy','join-copy','agent-copy','agent-relevance','tolang-copy'])vm.runInContext(fs.readFileSync('public/'+file+'.js','utf8'),ctx);
+for(const file of ['content','locales/ko','locales/ja','locales/ar','brand-copy','page-copy','technology-copy','team-copy','join-copy','agent-copy','agent-relevance','tolang-copy','hero-execution-copy'])vm.runInContext(fs.readFileSync('public/'+file+'.js','utf8'),ctx);
 const langs=['en','zh','ko','ja','ar'];
 const shape=(obj,prefix='')=>Object.entries(obj).flatMap(([k,v])=>v&&typeof v==='object'?shape(v,prefix+k+'.'):[prefix+k]).sort();
 const summary={};
-for(const catalog of ['siteCopy','pageCopy','technologyCopy','teamCopy','joinCopy','agentCopy','agentRelevance','tolangCopy']){
+for(const catalog of ['siteCopy','pageCopy','technologyCopy','teamCopy','joinCopy','agentCopy','agentRelevance','tolangCopy','heroExecutionCopy']){
  const reference=shape(ctx.window[catalog].en);summary[catalog]=reference.length;
  for(const lang of langs){const data=ctx.window[catalog][lang];assert.deepEqual(shape(data),reference,catalog+': '+lang);const walk=o=>Object.values(o).forEach(v=>typeof v==='object'?walk(v):assert.ok(typeof v==='string'&&v.trim().length,catalog+' '+lang+' empty field'));walk(data);}
 }
