@@ -325,7 +325,7 @@ html:lang(zh) .footer h3,html:lang(zh-TW) .footer h3,html:lang(ja) .footer h3,ht
 .footer-link svg.arrow{width:12px;height:12px;opacity:0;transition:opacity .2s}
 .footer-link:hover{color:var(--text)}
 .footer-link:hover svg.arrow{opacity:1}
-.footer-base{display:flex;justify-content:space-between;gap:20px;margin-top:56px;padding-block:24px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
+.footer-base{display:flex;justify-content:center;text-align:center;gap:20px;margin-top:56px;padding-block:24px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
 
 /* Inner pages */
 .breadcrumb{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:28px;font-size:13px;color:var(--faint)}
@@ -590,7 +590,7 @@ html:lang(zh) .contact-page h1,html:lang(zh-TW) .contact-page h1,html:lang(ja) .
  .contact-band{padding-block:80px}
  .footer-grid{grid-template-columns:1fr 1fr;gap:32px 20px}
  .footer-grid>div:first-child{grid-column:1/-1}
- .footer-base{flex-direction:column;gap:6px}
+ .footer-base{flex-direction:column;align-items:center;gap:6px}
  .page-hero{padding-block:36px 64px}
  .tech-directory{grid-template-columns:minmax(0,1fr)}
  .team-profile{grid-template-columns:minmax(0,1fr);gap:12px;padding-block:40px}
