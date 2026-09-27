@@ -45,3 +45,5 @@ Logo回首页保留语言；独立导航入口和技术子菜单；语言选择�
 - New refinement stylesheet uses neutral charcoal surfaces, restrained blue-green accents, softer boundaries, conventional body fonts and a more compact heading scale. Team biographies, original transparent avatars, technology content and routes remain intact.
 - All 24 English routes were rendered and checked for one H1, one footer email, three menu triggers, stylesheet loading and horizontal overflow; no failures. Five-language mobile home checks passed for layout, demo controls, footer placement and menu count. Actual homepage, menu, footer, architecture, contact and team views inspected. Five-language catalog and 120 sitemap URL checks pass.
 - Local evidence: output/upgrade/refinement-route-audit.json and screenshot files. Production verification is recorded separately after synchronization.
+
+收藏元数据：英语首页标题更新为 ConcurSys — Agent Execution Infrastructure；全部页面使用带内容版本的 192×192 透明品牌 PNG favicon 与 Apple touch icon；主题色同步深色背景。24 页生成和五语言结构验证通过。既有收藏自定义名称不由网站覆盖。
