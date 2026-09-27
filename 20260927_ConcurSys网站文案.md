@@ -4,7 +4,7 @@
 
 Language, runtime and consensus engineering for agents that need persistent state, explicit authority and verifiable execution. Built by the team behind ALUX.
 
-导航：Services / Technology / Company / Team
+导航：Services / Technology / About / Team
 
 Discuss your project / Explore our expertise
 
@@ -6269,7 +6269,7 @@ OCAP · 접근 거부
 
 Ingeniería de lenguajes, entornos de ejecución y consenso para agentes que necesitan estado persistente, autoridad explícita y ejecución verificable. Desarrollada por el equipo detrás de ALUX.
 
-导航：Servicios / Tecnología / Empresa / Equipo
+导航：Servicios / Tecnología / Nosotros / Equipo
 
 Hablemos de su proyecto / Conozca nuestra experiencia
 
@@ -7522,7 +7522,7 @@ El modelo llega a la validación por reproducción y al consenso. ReplayTrie apo
 
 Ingénierie du langage, de l'environnement d'exécution et du consensus pour des agents qui exigent un état persistant, une autorité explicite et une exécution vérifiable. Conçu par l'équipe derrière ALUX.
 
-导航：Services / Technologie / Entreprise / Équipe
+导航：Services / Technologie / À propos / Équipe
 
 Parlons de votre projet / Découvrir notre expertise
 
@@ -8775,7 +8775,7 @@ Le modèle atteint la validation par rejeu et le consensus. ReplayTrie fournit l
 
 Sprach-, Laufzeit- und Konsens-Engineering für Agenten, die persistenten Zustand, explizite Befugnisse und verifizierbare Ausführung benötigen. Entwickelt vom Team hinter ALUX.
 
-导航：Leistungen / Technologie / Unternehmen / Team
+导航：Leistungen / Technologie / Über uns / Team
 
 Projekt besprechen / Unsere Expertise
 
@@ -10028,7 +10028,7 @@ Das Modell erreicht Replay-Validierung und Konsens. ReplayTrie liefert Ausführu
 
 Разработка языков, сред выполнения и консенсуса для агентов, которым нужны постоянное состояние, явные полномочия и проверяемое исполнение. От команды, создающей ALUX.
 
-导航：Услуги / Технологии / Компания / Команда
+导航：Услуги / Технологии / О нас / Команда
 
 Обсудить проект / Наша экспертиза
 
@@ -11281,7 +11281,7 @@ OCAP · в доступе отказано
 
 نطوّر اللغات وبيئات التشغيل وتقنيات الإجماع للوكلاء الذين يحتاجون إلى حالة مستمرة وصلاحيات واضحة وتنفيذ قابل للتحقق. نحن الفريق الذي يطوّر الأسس التقنية لـ ALUX.
 
-导航：الخدمات / التقنيات / عن الشركة / الفريق
+导航：الخدمات / التقنيات / من نحن / الفريق
 
 ناقش مشروعك معنا / استكشف خبراتنا
 

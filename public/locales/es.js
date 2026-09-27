@@ -3,7 +3,7 @@
  "siteCopy": {
   "navServices": "Servicios",
   "navTechnology": "Tecnología",
-  "navCompany": "Empresa",
+  "navCompany": "Nosotros",
   "talk": "Hablemos",
   "heroTitle": "Cimientos<br>para agentes.",
   "heroBody": "Ingeniería de lenguajes, entornos de ejecución y consenso para agentes que necesitan estado persistente, autoridad explícita y ejecución verificable. Desarrollada por el equipo detrás de ALUX.",

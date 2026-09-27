@@ -723,3 +723,4 @@ html[dir=rtl] .mp-mod:hover svg.arrow{transform:scaleX(-1)}
 @media (max-width:900px){.mp-row{grid-template-columns:minmax(0,1fr)}.mp-layer{border-inline-end:0;border-bottom:1px solid var(--line);padding:14px 18px}.mp-mod{padding:16px 18px}}
 @media (max-width:640px){.mp-mods{grid-template-columns:minmax(0,1fr)}.mp-mod{border-inline-start:0;border-top:1px solid var(--line)}.mp-mod:first-child{border-top:0}.mp-global{flex-wrap:wrap;padding:14px 18px}.map-entry{padding-block:80px}}
 @media (prefers-reduced-motion:reduce){.map-preview .mp-row{opacity:1!important;transform:none!important}}
+html:lang(zh) :is(h1,h2,h3),html:lang(ja) :is(h1,h2,h3),html:lang(ko) :is(h1,h2,h3,p){word-break:keep-all;overflow-wrap:anywhere}

@@ -3,7 +3,7 @@
  "siteCopy": {
   "navServices": "Leistungen",
   "navTechnology": "Technologie",
-  "navCompany": "Unternehmen",
+  "navCompany": "Über uns",
   "talk": "Kontakt",
   "heroTitle": "Fundamente<br>für Agenten.",
   "heroBody": "Sprach-, Laufzeit- und Konsens-Engineering für Agenten, die persistenten Zustand, explizite Befugnisse und verifizierbare Ausführung benötigen. Entwickelt vom Team hinter ALUX.",

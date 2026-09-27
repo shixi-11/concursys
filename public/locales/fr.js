@@ -3,7 +3,7 @@
  "siteCopy": {
   "navServices": "Services",
   "navTechnology": "Technologie",
-  "navCompany": "Entreprise",
+  "navCompany": "À propos",
   "talk": "Parlons-en",
   "heroTitle": "Les fondations<br>des agents.",
   "heroBody": "Ingénierie du langage, de l'environnement d'exécution et du consensus pour des agents qui exigent un état persistant, une autorité explicite et une exécution vérifiable. Conçu par l'équipe derrière ALUX.",

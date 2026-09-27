@@ -1,5 +1,5 @@
 window.siteCopy.ar = {
-navServices:'الخدمات',navTechnology:'التقنيات',navCompany:'عن الشركة',talk:'تواصل معنا',
+navServices:'الخدمات',navTechnology:'التقنيات',navCompany:'من نحن',talk:'تواصل معنا',
 heroTitle:'هندسة من الأساس.<br>تنفيذ على أرض الواقع.',heroBody:'خدمات تقنية لتشغيل الوكلاء على سلاسل الكتل العامة، والآلات الافتراضية، والأنظمة الموزعة.',discuss:'ناقش مشروعك معنا',explore:'استكشف خبراتنا',
 railAgent:'تشغيل الوكلاء على السلاسل العامة',railVM:'هندسة الآلات الافتراضية',railDistributed:'الأنظمة الموزعة',
 serviceLabel:'01 / الخدمات',servicesTitle:'أصعب تحديات أنظمتك.<br>محور عملنا الهندسي.',servicesIntro:'من تصميم المعمارية إلى التطبيق، نعمل في طبقة التنفيذ.',deliverables:'نطاق العمل الهندسي',
