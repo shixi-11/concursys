@@ -10,6 +10,7 @@ window.bindExecutionDemo=function(root,copy,onPhase){
  function advance(next){clear();state=next;paused=false;onPhase(phases[state]);paint();if(state==='denied'){root.querySelector('#execution-detail').innerHTML='<h3>'+copy.deniedTitle+'</h3><p>'+copy.deniedBody+'</p>';}else if(state==='waiting'){root.querySelector('#execution-detail').innerHTML='<h3>'+copy.waitTitle+'</h3><p>'+copy.waitBody+'</p>';}else if(state==='verified'){root.querySelector('#execution-detail').innerHTML='<h3>'+copy.doneTitle+'</h3><p>'+copy.doneBody+'</p>';}schedule();}
  function restart(){clear();state='idle';paused=false;onPhase(0);paint();}
  run.onclick=()=>{if(paused){paused=false;schedule();paint();}else if(state==='idle'||terminal())advance('defined');else if(state==='waiting')advance('resumed');else{clear();paused=true;paint();}};
+ const sceneResume=root.querySelector('[data-demo-resume]');if(sceneResume)sceneResume.onclick=()=>{if(state==='waiting')advance('resumed');};
  reset.onclick=restart;scenario.onchange=restart;
  const hide=()=>{if(document.hidden&&timer){clear();paused=true;paint();}};
  document.addEventListener('visibilitychange',hide);

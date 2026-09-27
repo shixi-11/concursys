@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 function setup(){
  const tasks=new Map(),events=new Map();let id=0;
- const nodes=Object.fromEntries(['run','reset','scenario','status'].map(k=>[k,{value:'allowed',setAttribute(){}}]));
+ const nodes=Object.fromEntries(['run','reset','scenario','status','resume'].map(k=>[k,{value:'allowed',setAttribute(){}}]));
  const root={dataset:{},querySelector(s){return s==='#execution-detail'?{}:nodes[s.match(/data-demo-(\w+)/)[1]];}};
  const sandbox={window:{},document:{hidden:false,addEventListener:(k,f)=>events.set(k,f),removeEventListener:k=>events.delete(k)},setTimeout:f=>{tasks.set(++id,f);return id;},clearTimeout:i=>tasks.delete(i)};
  vm.createContext(sandbox);vm.runInContext(fs.readFileSync('public/execution-demo.js','utf8'),sandbox);
@@ -17,3 +17,5 @@ test('authorized task waits for visitor input before it can reach verification',
 test('denied access never advances to execution or verification',()=>{const s=setup();s.nodes.scenario.value='denied';s.nodes.run.onclick();s.tick();assert.equal(s.root.dataset.demoState,'denied');assert.equal(s.tasks.size,0);assert.deepEqual(s.phases,[0,1]);});
 test('pause, reset and disposal clear pending transitions',()=>{const s=setup();s.nodes.run.onclick();s.nodes.run.onclick();assert.equal(s.root.dataset.demoPaused,'true');assert.equal(s.tasks.size,0);s.nodes.run.onclick();assert.equal(s.tasks.size,1);s.nodes.reset.onclick();assert.equal(s.root.dataset.demoState,'idle');assert.equal(s.tasks.size,0);s.nodes.run.onclick();s.demo.dispose();assert.equal(s.tasks.size,0);assert.equal(s.events.size,0);});
 test('hidden pages pause rather than silently complete the demonstration',()=>{const s=setup();s.nodes.run.onclick();s.sandbox.document.hidden=true;s.events.get('visibilitychange')();assert.equal(s.tasks.size,0);assert.equal(s.root.dataset.demoPaused,'true');assert.equal(s.root.dataset.demoState,'defined');});
+
+test('scene resume only releases an actually waiting task',()=>{const s=setup();s.nodes.resume.onclick();assert.equal(s.root.dataset.demoState,'idle');s.nodes.run.onclick();s.tick();s.tick();s.nodes.resume.onclick();assert.equal(s.root.dataset.demoState,'resumed');s.tick();assert.equal(s.root.dataset.demoState,'verified');});

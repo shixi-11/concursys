@@ -88,3 +88,16 @@ html:lang(zh) h1,html:lang(zh) h2,html:lang(ja) h1,html:lang(ja) h2,html:lang(ko
 @media(prefers-reduced-motion:reduce){.execution-model *{animation:none!important;transition:none!important}}
 @media(max-width:700px){.header nav{top:100%;max-height:calc(100dvh - 96px);background:#151e24;border-color:#34434a}.header nav .dropdown{background:#1a282e;border-color:#34434a}.header nav .nav-trigger{justify-content:space-between;width:100%;text-align:start}.header nav .nav-group{display:block;border-color:#34434a}}
 @media(max-width:600px){.header nav{max-height:calc(100dvh - 80px)}}
+
+/* Header proportions and an anchored footer contact block. */
+.header .brand-logo{width:54px;height:54px}
+.header #language{font-size:16px;line-height:1.4;width:116px;min-height:44px;padding:8px 26px 8px 10px;background-position:right 8px center}
+.header .nav-trigger{gap:8px;position:relative;font-size:15px;font-weight:400}
+.header .nav-trigger svg{width:10px;height:10px;stroke-width:1.5}
+.header .nav-trigger[aria-expanded=true]{color:#dce9e7}
+.header .nav-trigger[aria-expanded=true]:after{content:'';position:absolute;inset-inline:0;bottom:0;height:1px;background:#8acfc7}
+.footer-contact{margin-top:24px;padding-top:18px;border-top:1px solid #303c43;max-width:260px}
+.footer-contact>span{display:block;color:#91a7ad;font:12px/1.5 var(--body);margin-bottom:7px}
+.footer-contact .footer-email{display:inline-flex;align-items:center;gap:14px;margin:0;font:15px/1.6 var(--body);color:#d5dfdf;min-height:32px}
+.footer-contact .arrow{width:14px;height:14px;color:#8acfc7}
+@media(max-width:600px){.header .brand-logo{width:46px;height:46px}.header #language{font-size:15px;width:110px}.footer-contact{max-width:100%;width:280px;margin-top:20px}.footer-contact .footer-email{font-size:16px}}
