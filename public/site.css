@@ -633,3 +633,49 @@ html[dir=rtl] .stack-title>span:not(.stack-sq){direction:rtl}
 .demo-controls{flex-wrap:wrap}
 .tech-detail-hero>h1{overflow-wrap:break-word;hyphens:auto}
 @media (max-width:640px){.tech-detail-hero>h1{font-size:clamp(32px,10vw,46px);margin-bottom:28px}}
+
+/* Effects layer */
+.hero-field{position:absolute;inset:0 0 auto 0;width:100%;pointer-events:none;mask-image:radial-gradient(ellipse 75% 70% at 50% 35%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 35%,#000 30%,transparent 80%);opacity:.9}
+.hero-bg::before{opacity:.55}
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;pointer-events:none;background:linear-gradient(90deg,var(--accent-deep),var(--accent));transform-origin:0 50%;transform:scaleX(0)}
+@supports (animation-timeline:scroll()){.progress{animation:grow linear both;animation-timeline:scroll(root)}@keyframes grow{to{transform:scaleX(1)}}}
+html[dir=rtl] .progress{transform-origin:100% 50%}
+/* primary button sheen */
+.primary{position:relative;overflow:hidden;isolation:isolate}
+.primary::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s var(--ease)}
+.primary:hover::after{transform:translateX(120%)}
+/* stack tilt and spotlight */
+.stack{transform:perspective(1800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .45s var(--ease),box-shadow .45s;will-change:transform}
+.stack .stack-glow{position:absolute;inset:0;pointer-events:none;z-index:4;border-radius:inherit;opacity:0;transition:opacity .3s;background:radial-gradient(520px circle at var(--sx,50%) var(--sy,50%),rgba(46,232,223,.07),transparent 55%)}
+.stack.lit .stack-glow{opacity:1}
+.stack.lit{box-shadow:0 50px 140px -40px rgba(0,0,0,.85),0 0 0 1px rgba(46,232,223,.12),inset 0 1px 0 rgba(255,255,255,.05)}
+/* spine pulse while a task moves between layers */
+.stack-main::after{content:'';position:absolute;top:18px;bottom:18px;left:calc(50% - 1px);width:2px;pointer-events:none;background:linear-gradient(180deg,transparent,var(--accent),transparent) 0 -40%/100% 34% no-repeat;opacity:0}
+.stack-hero:is([data-demo-state=defined],[data-demo-state=authorized],[data-demo-state=resumed]) .stack-main::after{opacity:1;animation:spine 1.3s linear infinite}
+@keyframes spine{to{background-position:0 140%}}
+.stack-hero:is([data-demo-state=defined],[data-demo-state=authorized],[data-demo-state=resumed],[data-demo-state=verified]) .stack-main .stratum+.stratum::before{border-color:var(--accent);background:var(--accent);box-shadow:0 0 12px var(--accent)}
+/* headings rise word by word */
+[data-split] .w{display:inline-block;overflow:clip;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+[data-split] .w>span{display:inline-block;transform:translateY(105%);transition:transform .9s var(--ease);transition-delay:calc(var(--wi) * 45ms)}
+[data-split].words-in .w>span{transform:none}
+/* Tolang code types in */
+.code pre.typing .l{animation:typeline .55s steps(28,end) both;animation-delay:calc(var(--n) * 140ms + 150ms)}
+.code pre:not(.typing) .l{clip-path:inset(0 100% 0 0)}
+@keyframes typeline{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.code pre.typing .l:last-child::after{content:'';display:inline-block;width:8px;height:1.1em;margin-inline-start:4px;vertical-align:-2px;background:var(--accent);animation:caret 1s steps(1) infinite;animation-delay:1.6s}
+@keyframes caret{50%{opacity:0}}
+/* pipeline flow */
+.pipeline{position:relative}
+.pipeline::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;z-index:2;pointer-events:none;background:linear-gradient(90deg,transparent,var(--accent),transparent) -40% 0/30% 100% no-repeat;animation:flow 3.2s linear infinite}
+@keyframes flow{to{background-position:140% 0}}
+/* service rows */
+.svc{position:relative}
+.svc::after{content:'';position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease)}
+html[dir=rtl] .svc::after{transform-origin:100% 50%}
+.svc:hover::after{transform:none}
+/* ALUX mark */
+.alux-mark img{transition:transform .6s var(--ease),opacity .2s}
+.alux-mark:hover img{transform:translateY(-3px)}
+@media (prefers-reduced-motion:reduce){.stack{transform:none!important}.hero-field{display:none}[data-split] .w>span{transform:none}.code pre .l{clip-path:none!important}.pipeline::before,.stack-main::after{display:none}}
+[data-split] .w,[data-split] .w>span{max-width:100%;hyphens:auto;overflow-wrap:break-word}

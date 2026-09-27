@@ -17,7 +17,7 @@ await connect();
 fs.mkdirSync(outDir,{recursive:true});
 const mobile=W<700;
 await send('Emulation.setDeviceMetricsOverride',{width:W,height:H,deviceScaleFactor:1,mobile});
-await send('Page.enable');
+await send('Page.enable');if(process.env.RM)await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
 for(const r of routes){
   await send('Page.navigate',{url:base+r});await sleep(2600);if(process.env.PRE){await send('Runtime.evaluate',{expression:process.env.PRE});await sleep(Number(process.env.WAIT||2000));}
   const {result}=await send('Runtime.evaluate',{expression:'document.documentElement.scrollHeight',returnByValue:true});
@@ -27,7 +27,7 @@ for(const r of routes){
   const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true,clip:{x:0,y:0,width:W,height:full,scale:1}});
   const name=(r.replace(/^\//,'').replace(/[\/?=&.]+/g,'_')||'home')+`-${W}.png`;
   fs.writeFileSync(path.join(outDir,name),Buffer.from(shot.data,'base64'));
-  const info=await send('Runtime.evaluate',{expression:"JSON.stringify({overflow:document.documentElement.scrollWidth>innerWidth,h1:document.querySelectorAll('h1').length,err:window.__errs||0})",returnByValue:true});
+  const info=await send('Runtime.evaluate',{expression:"JSON.stringify({overflow:document.documentElement.scrollWidth>innerWidth,h1:document.querySelectorAll('h1').length,err:window.__errs||0,st:window.__st,now:document.querySelector('.stack-hero')?.dataset.demoState})",returnByValue:true});
   console.log(name,full,info.result.value);
 }
 ws.close();proc.kill();

@@ -28,7 +28,9 @@ The website connects these technologies to practical engineering services: agent
 - [Company](https://concursys.io/company.html): ConcurSys and its work on ALUX.
 - [Team](https://concursys.io/team.html): Frank He and Tomislav Grospić.
 
-The site supports multiple languages, defaults to English, and preserves language selection in the URL through `?lang=`. Arabic uses a right-to-left layout.
+The site is available in ten languages: English, Simplified Chinese, Traditional Chinese, Japanese, Korean, Spanish, French, German, Russian, and Arabic. It defaults to English and preserves the selection in the URL through `?lang=`. Arabic uses a right-to-left layout.
+
+The homepage opens with a layered view of the agent execution stack: Tolang, OCAP, TVM, and BlockGit, with GLVM spanning them. Visitors can run a task through the layers, resume it after a wait, or watch an out-of-authority request stop at the OCAP boundary.
 
 Interactive execution examples are educational models, not live network telemetry or transactions. The contact form prepares an email draft; it does not send messages automatically.
 
@@ -55,6 +57,13 @@ node design/verify-i18n.mjs
 
 # Verify the execution demonstration state machine
 node --test design/execution-demo.test.mjs
+
+# With the preview running and Chrome installed:
+# sweep every page and language at mobile and desktop widths
+node design/check-layout.mjs
+
+# capture full-page screenshots for visual review
+node design/snap.mjs output/review 1440x900 / /technology.html
 ```
 
 Generated pages are committed to the repository. After editing source content or page templates, regenerate them before submitting changes. Check affected pages in a browser at desktop and mobile widths, including the relevant language and interaction states.
@@ -63,9 +72,13 @@ Generated pages are committed to the repository. After editing source content or
 
 ```text
 public/                  Deployable website: pages, scripts, styles, and assets
+public/site.css          Design system and page styles
+public/stack-hero.js     Homepage execution stack diagram
 public/locales/          Additional language catalogs
 design/build-pages.mjs   Static page and metadata generator
 design/verify-i18n.mjs   Content and resource checks
+design/check-layout.mjs  Layout sweep across pages, languages, and widths
+design/snap.mjs          Screenshot tool for visual review
 server.mjs              Local preview server
 ```
 

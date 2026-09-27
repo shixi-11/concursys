@@ -7,7 +7,7 @@ window.createStackHero=function({s,h,t,site,rel,href,arrow,techName}){
   const head=(k,cap)=>`<div class="stratum-head"><span class="tag">${tag(k)}</span><span class="stratum-sub">${s.layers[k]}</span>${cap?`<span class="stratum-cap">${cap}</span>`:''}</div>`;
   const tiles=(k,gate)=>`<div class="tiles">${s.tiles[k].map((x,i)=>`<span class="tile"${gate===i?' data-gate':''}>${esc(x)}</span>`).join('')}</div>`;
   const view=`<div class="stack-hero" data-layer="tolang" data-demo-state="idle">
-<div class="stack" >
+<div class="stack"><span class="stack-glow" aria-hidden="true"></span>
  <div class="stack-bar"><div class="stack-title"><span class="stack-sq" aria-hidden="true"></span><span>${s.frame}</span><span class="stack-by">${s.builtBy}</span></div>
   <div class="stack-ctrl"><button type="button" class="ctl ctl-run" data-demo-run>${h.demo.run}</button><select class="ctl" data-demo-scenario aria-label="${h.demo.scenario}"><option value="allowed">${h.demo.allowed}</option><option value="denied">${h.demo.denied}</option></select><button type="button" class="ctl ctl-ghost" data-demo-reset>${h.demo.reset}</button></div></div>
  <div class="stack-body">
