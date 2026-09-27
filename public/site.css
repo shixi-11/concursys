@@ -100,8 +100,8 @@ html[dir=rtl] .dropdown.mega{transform:translateX(50%)}
 .hero{position:relative;padding:56px 0 96px;overflow:clip;isolation:isolate;margin-top:-72px;padding-top:120px}
 .hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
 .hero-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(120,170,180,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(120,170,180,.07) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 60% 30%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 60% 30%,#000 20%,transparent 75%)}
-.hero-bg::after{content:'';position:absolute;width:980px;height:720px;top:-260px;inset-inline-end:-220px;background:radial-gradient(closest-side,rgba(46,232,223,.16),rgba(11,127,168,.08) 45%,transparent 72%);animation:drift 18s ease-in-out infinite alternate}
-@keyframes drift{to{transform:translate(-90px,70px) scale(1.08)}}
+.hero-bg::after{content:'';position:absolute;width:1100px;height:720px;top:-300px;left:calc(50% - 550px);background:radial-gradient(closest-side,rgba(46,232,223,.16),rgba(11,127,168,.08) 45%,transparent 72%);animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translateY(60px) scale(1.1)}}
 .hero-head{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:980px;margin:0 auto 64px}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font:500 12px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;animation:rise .8s var(--ease) both}
 .hero-eyebrow i{width:6px;height:6px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
@@ -679,3 +679,7 @@ html[dir=rtl] .svc::after{transform-origin:100% 50%}
 .alux-mark:hover img{transform:translateY(-3px)}
 @media (prefers-reduced-motion:reduce){.stack{transform:none!important}.hero-field{display:none}[data-split] .w>span{transform:none}.code pre .l{clip-path:none!important}.pipeline::before,.stack-main::after{display:none}}
 [data-split] .w,[data-split] .w>span{max-width:100%;hyphens:auto;overflow-wrap:break-word}
+.hero-actions{gap:14px}
+.hero-actions .button{min-width:210px}
+.hero-actions .outline{background:rgba(12,20,27,.55);backdrop-filter:blur(6px)}
+@media (max-width:640px){.hero-actions{flex-direction:column;align-items:stretch;width:100%;max-width:340px}.hero-actions .button{min-width:0}}

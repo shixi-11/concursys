@@ -27,7 +27,7 @@ for(const r of routes){
   const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true,clip:{x:0,y:0,width:W,height:full,scale:1}});
   const name=(r.replace(/^\//,'').replace(/[\/?=&.]+/g,'_')||'home')+`-${W}.png`;
   fs.writeFileSync(path.join(outDir,name),Buffer.from(shot.data,'base64'));
-  const info=await send('Runtime.evaluate',{expression:"JSON.stringify({overflow:document.documentElement.scrollWidth>innerWidth,h1:document.querySelectorAll('h1').length,err:window.__errs||0,st:window.__st,now:document.querySelector('.stack-hero')?.dataset.demoState})",returnByValue:true});
+  const info=await send('Runtime.evaluate',{expression:process.env.EXPR||"JSON.stringify({overflow:document.documentElement.scrollWidth>innerWidth,h1:document.querySelectorAll('h1').length,err:window.__errs||0,st:window.__st,now:document.querySelector('.stack-hero')?.dataset.demoState})",returnByValue:true});
   console.log(name,full,info.result.value);
 }
 ws.close();proc.kill();
