@@ -2,11 +2,11 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 const sandbox={window:{}};vm.runInNewContext(fs.readFileSync('public/content.js','utf8'),sandbox);
 for(const lang of ['ko','ja','ar'])vm.runInNewContext(fs.readFileSync(`public/locales/${lang}.js`,'utf8'),sandbox);
-for(const file of ['brand-copy','page-copy','technology-copy','team-copy','join-copy','agent-copy','agent-relevance','tolang-copy','hero-execution-copy'])vm.runInNewContext(fs.readFileSync(`public/${file}.js`,'utf8'),sandbox);
+for(const file of ['brand-copy','page-copy','technology-copy','team-copy','join-copy','agent-copy','agent-relevance','tolang-copy','hero-execution-copy','stack-copy','locales/zh-TW','locales/es','locales/fr','locales/de','locales/ru'])vm.runInNewContext(fs.readFileSync(`public/${file}.js`,'utf8'),sandbox);
 let out='';
-for(const lang of ['en','zh','ko','ja','ar']){
+for(const lang of ['en','zh','zh-TW','ja','ko','es','fr','de','ru','ar']){
  const c=sandbox.window.siteCopy[lang];const clean=s=>s.replaceAll('<br>',' ');
- out+=`## ${({en:'English',zh:'简体中文',ko:'한국어',ja:'日本語',ar:'العربية'})[lang]}\n\n`;
+ out+=`## ${({en:'English',zh:'简体中文','zh-TW':'繁體中文',ja:'日本語',ko:'한국어',es:'Español',fr:'Français',de:'Deutsch',ru:'Русский',ar:'العربية'})[lang]}\n\n`;
  out+=`### ${clean(c.heroTitle)}\n\n${c.heroBody}\n\n`;
  out+=`导航：${c.navServices} / ${c.navTechnology} / ${c.navCompany} / ${sandbox.window.technologyCopy[lang].team}\n\n${c.discuss} / ${c.explore}\n\n`;
  out+=`### ${clean(c.servicesTitle)}\n\n${c.servicesIntro}\n\n`;

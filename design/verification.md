@@ -47,3 +47,14 @@ Logo回首页保留语言；独立导航入口和技术子菜单；语言选择�
 - Local evidence: output/upgrade/refinement-route-audit.json and screenshot files. Production verification is recorded separately after synchronization.
 
 收藏元数据：英语首页标题更新为 ConcurSys — Agent Execution Infrastructure；全部页面使用带内容版本的 192×192 透明品牌 PNG favicon 与 Apple touch icon；主题色同步深色背景。24 页生成和五语言结构验证通过。既有收藏自定义名称不由网站覆盖。
+
+
+## 2026-09-27 整站视觉重设计与十语言
+
+- 设计依据：taste-skill（design-taste-frontend、redesign-existing-projects）审美审计；参考 Cockroach Labs 平台架构图的分层表达；ALUX 技术分层与术语以 alux-network-expert 技能为准。
+- 五层叠加样式表合并为单一 site.css；字体换为本地托管 Geist / Geist Mono；品牌青色为唯一强调色。
+- 首屏：居中主张 + Agent 执行技术栈分层图（Tolang / OCAP / TVM / BlockGit，GLVM 持续演进）。TVM 进程轨道、COMM 事件、BlockGit DAG 与 Fringe 为 canvas 动画，离开视口、后台和减少动态设置下暂停。任务演示实测：定义、授权、等待、恢复、验证依次出现，轨迹逐条记录；超出权限停在 OCAP。状态机测试 6/6 通过。
+- 首页顺序：首屏、服务、Tolang、ALUX 专区（官网、Runtime Lab、GitHub）、能力地图入口、联系。ALUX 不在首屏顶部。
+- 语言：与连珠馆一致的 10 种（zh、zh-TW、en、ja、ko、es、fr、de、ru、ar），切换器为翻译图标加下拉列表。新增 5 种由最终英文 / 简中稿完整翻译；verify-i18n 检查 10 种语言结构一致、11 条 hreflang、240 条站点地图、禁用术语。
+- 术语核对：按 ALUX 专家技能逐条检查 10 种语言，修正 126 处（含 Fringe 与 BlockGit 顺序的事实错误、WASM guest 与 capability 误译、各语言统一译法）。
+- 截图验收：桌面 1440 与手机 390，首页（en / zh / ar / de / ru）、技术、TVM 详情、团队、公司、服务、联系页实际查看。截图在 output/redesign，不进入 Git。
