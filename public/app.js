@@ -10,7 +10,9 @@ let executionDemo;
 let selected=group==='technology'&&key?key:'glvm',step=0,playing=false,timer;
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)');
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const clean=s=>String(s).replace(/<br>/g,' ');
+// A line break between two CJK characters or punctuation marks joins without a space.
+const cjk=/[　-ヿ㐀-鿿＀-￯]/;
+const clean=s=>String(s).replace(/(.?)<br>(.?)/g,(m,a,b)=>a+(cjk.test(a)&&cjk.test(b)?'':' ')+b);
 const svg=(body,label)=>`<svg viewBox="0 0 660 400" role="img" aria-label="${escape(label)}">${body}</svg>`;
 const text=(x,y,s,cls='')=>`<text x="${x}" y="${y}" class="${cls}">${escape(s)}</text>`;
 const line=(d,extra='')=>`<path class="line ${extra}" d="${d}"/>`;

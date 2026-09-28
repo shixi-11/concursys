@@ -20,7 +20,7 @@
    {
     "id": "agent",
     "title": "Ejecución de agentes<br>en cadenas públicas",
-    "body": "Soporte de ingeniería para agentes que necesitan estado persistente, ejecución coordinada y autoridad explícita en cadenas públicas.",
+    "body": "Apoyo de ingeniería para agentes que necesitan estado persistente, ejecución coordinada y autoridad explícita en cadenas públicas.",
     "scope": "Arquitectura · Integración del entorno de ejecución · Pruebas de ejecución"
    },
    {
@@ -46,7 +46,7 @@
   "tech": {
    "glvm": {
     "name": "MÁQUINA VIRTUAL LÓGICA GLOBAL",
-    "title": "Un modelo lógico entre máquinas.",
+    "title": "Un modelo lógico común a varias máquinas.",
     "body": "GLVM es la arquitectura de ejecución a nivel de sistema que estamos desarrollando sobre las TVM participantes. Define un modelo lógico compartido por encima de cada motor de bytecode.",
     "help": "Arquitectura de ejecución, límites del entorno de ejecución y diseño de integración."
    },
@@ -64,13 +64,13 @@
    },
    "ocap": {
     "name": "CAPACIDADES DE OBJETO",
-    "title": "Haga explícita la autoridad.",
+    "title": "Hacer explícita la autoridad.",
     "body": "Las capacidades de objeto usan referencias infalsificables para definir a qué puede acceder una tarea. En las interacciones nativas de TVM, el entorno de ejecución impone estos límites; los servicios externos y los entornos alojados necesitan sus propios controles.",
     "help": "Límites de capacidad, diseño de mínima autoridad y revisiones de integración."
    },
    "durable": {
     "name": "EJECUCIÓN DURADERA",
-    "title": "Lleve la ejecución hacia adelante.",
+    "title": "Dar continuidad a la ejecución.",
     "body": "Una cadena pública puede ofrecer un entorno duradero para agentes. El estado de ejecución y las continuaciones preservados permiten que el trabajo espere a lo largo de varios bloques y se reanude cuando sus dependencias estén listas.",
     "help": "Persistencia de estado, flujos de espera y reanudación, requisitos de reproducción y límites de finalización."
    }
@@ -175,7 +175,7 @@
   "serviceDetails": {
    "agent": {
     "eyebrow": "EJECUCIÓN DE AGENTES EN CADENAS PÚBLICAS",
-    "title": "Soporte de ingeniería para la ejecución on-chain.",
+    "title": "Apoyo de ingeniería para la ejecución on-chain.",
     "intro": "Ayudamos a los equipos a analizar agentes que se ejecutan en cadenas públicas: cómo se coordina la ejecución, cómo se conserva el estado y cómo se representa la autoridad en el límite del entorno de ejecución. El trabajo se ajusta a los requisitos del sistema subyacente.",
     "questionsTitle": "Preguntas que abordamos",
     "questions": [
@@ -193,7 +193,7 @@
    "vm": {
     "eyebrow": "INGENIERÍA DE MÁQUINAS VIRTUALES",
     "title": "Entornos de ejecución de bytecode a la medida del sistema.",
-    "intro": "Trabajamos en la ejecución de bytecode, la coordinación de procesos y la semántica del entorno de ejecución. El foco puede incluir un entorno TVM concreto, su cadena de herramientas o el comportamiento necesario en el límite entre un entorno de ejecución y el sistema que lo rodea.",
+    "intro": "Trabajamos en la ejecución de bytecode, la coordinación de procesos y la semántica del entorno de ejecución. El trabajo puede abarcar un entorno TVM concreto, su cadena de herramientas o el comportamiento necesario en el límite entre un entorno de ejecución y el sistema que lo rodea.",
     "questionsTitle": "Preguntas que abordamos",
     "questions": [
      "¿Qué operaciones de bytecode y qué semántica de ejecución debe admitir el entorno de ejecución?",
@@ -349,11 +349,11 @@
    },
    "node": {
     "name": "Nodo · RPC · P2P",
-    "title": "La superficie del entorno de ejecución orientada a la red",
-    "body": "La capa de nodo conecta la ejecución con los métodos RPC admitidos, la comunicación entre pares y el contexto de almacenamiento. Los endpoints exactos y el comportamiento operativo dependen de la superficie de implementación actual.",
+    "title": "La interfaz del entorno de ejecución hacia la red",
+    "body": "La capa de nodo conecta la ejecución con los métodos RPC admitidos, la comunicación entre pares y el contexto de almacenamiento. Los endpoints exactos y el comportamiento operativo dependen de la implementación actual.",
     "help": "Integración de nodos, alcance de RPC admitido, comunicación entre pares y límites de almacenamiento.",
     "points": [
-     "Expone métodos RPC eth_* compatibles con Ethereum.",
+     "Expone los métodos RPC eth_* de Ethereum admitidos.",
      "El gossip P2P transmite los mensajes de red entre los pares participantes.",
      "El contexto de almacenamiento del nodo y las superficies de servicio estáticas rodean al entorno de ejecución."
     ],
@@ -361,7 +361,7 @@
    },
    "tooling": {
     "name": "Compilador · LSP · Playground",
-    "title": "Inspeccionar y ejercitar la lógica de servicio durante el desarrollo",
+    "title": "Inspeccionar y probar la lógica de servicio durante el desarrollo",
     "body": "Los diagnósticos del compilador y los flujos de trabajo del servidor de lenguaje y del Playground ayudan a examinar los programas Tolang antes de conectarlos a un nodo.",
     "help": "Integración del compilador, diagnóstico, flujos de trabajo en el editor y evaluación temprana en el entorno de ejecución.",
     "points": [
@@ -384,10 +384,10 @@
     "status": "roadmap"
    },
    "worldos": {
-    "name": "World OS y superficies de cliente",
+    "name": "World OS e interfaces de cliente",
     "title": "Llevar el modelo de ejecución a nuevos entornos",
-    "body": "Una capa World OS programable y el despliegue en dispositivos cliente son líneas a largo plazo del sistema. Son elementos de la hoja de ruta, no capacidades actuales del entorno de ejecución.",
-    "help": "Futuros modelos de despliegue y las abstracciones a nivel de sistema necesarias para admitirlos.",
+    "body": "Una capa World OS programable y el despliegue en dispositivos cliente son líneas de desarrollo a largo plazo del sistema. Son elementos de la hoja de ruta, no capacidades actuales del entorno de ejecución.",
+    "help": "Futuros modelos de despliegue y las abstracciones a nivel de sistema necesarias para sustentarlos.",
     "points": [
      "GLVM es el modelo a nivel de sistema en evolución sobre las TVM participantes.",
      "El despliegue de TVM en dispositivos cliente sigue previsto.",
@@ -432,9 +432,9 @@
   }
  },
  "joinCopy": {
-  "nav": "Únase",
+  "nav": "Únase a nosotros",
   "title": "Construya los cimientos con nosotros.",
-  "intro": "¿Le interesan los sistemas concurrentes, los lenguajes de programación o la ejecución distribuida? Preséntese y cuéntenos en qué trabajo de ingeniería quiere contribuir.",
+  "intro": "¿Le interesan los sistemas concurrentes, los lenguajes de programación o la ejecución distribuida? Preséntese y cuéntenos a qué trabajo de ingeniería le gustaría contribuir.",
   "label": "Intereses de ingeniería",
   "body": "Háblenos de un sistema que haya construido, de un problema difícil que haya investigado o de una contribución de código abierto de la que se sienta orgulloso. Incluya enlaces que nos ayuden a entender su trabajo.",
   "cta": "Preséntese",
@@ -471,7 +471,7 @@
    "glvm": "GLVM es un modelo lógico compartido en evolución sobre las TVM participantes para coordinar la ejecución a nivel de sistema.",
    "tolang": "Tolang expresa lógica de servicio concurrente que puede compilarse para su ejecución en TVM.",
    "tvm": "TVM ejecuta bytecode y coordina la comunicación entre procesos concurrentes.",
-   "ocap": "Las capacidades de objeto hacen explícito a qué objetos y recursos puede llegar un agente.",
+   "ocap": "Las capacidades de objeto hacen explícito a qué objetos y recursos puede acceder un agente.",
    "durable": "La ejecución duradera preserva el estado y las continuaciones para que el trabajo pueda esperar dependencias y reanudarse más tarde.",
    "atomicity": "La atomicidad entre bloques mantiene en espera el estado de ALUX hasta la confirmación o cancelación; los efectos secundarios externos no se revierten automáticamente.",
    "replay": "La reproducción ofrece una base para volver a ejecutar de forma determinista y comprobar las decisiones registradas.",
@@ -527,12 +527,12 @@
   "states": [
    {
     "label": "01 / DEFINIR",
-    "title": "Exprese trabajo concurrente.",
+    "title": "Expresar el trabajo concurrente.",
     "body": "Tolang usa el cálculo de procesos para describir servicios que dividen el trabajo, se comunican y avanzan de forma concurrente."
    },
    {
     "label": "02 / AUTORIZAR",
-    "title": "Haga explícita la autoridad.",
+    "title": "Hacer explícita la autoridad.",
     "body": "Las capacidades de objeto usan referencias infalsificables para definir a qué objetos y recursos puede acceder una tarea."
    },
    {
@@ -542,7 +542,7 @@
    },
    {
     "label": "04 / VERIFICAR",
-    "title": "Inspeccione ejecución y acuerdo.",
+    "title": "Inspeccionar la ejecución y el acuerdo.",
     "body": "ReplayTrie ofrece una base para reproducir la ejecución, mientras BlockGit coordina el historial de bloques concurrentes y el estado."
    }
   ],
@@ -558,8 +558,8 @@
    "replay": "Ejecutar de nuevo",
    "reset": "Reiniciar",
    "scenario": "Escenario de la tarea",
-   "allowed": "Dentro de la autoridad",
-   "denied": "Fuera de la autoridad",
+   "allowed": "Dentro de lo autorizado",
+   "denied": "Fuera de lo autorizado",
    "status": {
     "idle": "Listo para explorar",
     "defined": "Tolang · tareas concurrentes definidas",
@@ -596,7 +596,7 @@
     "tolangc → .tox"
    ],
    "ocap": [
-    "Refs infalsificables",
+    "Ref. infalsificables",
     "Canales con guarda",
     "Atenuación",
     "Delegación"
@@ -612,7 +612,7 @@
   "trace": "Traza de la tarea",
   "traceIdle": "Ejecute una tarea para seguirla a través de cada capa.",
   "readTitle": "Cómo leer el diagrama.",
-  "readIntro": "Cada estrato es una capa del entorno de ejecución de ALUX que construye ConcurSys. Seleccione una capa o ejecute una tarea y obsérvela atravesarlas.",
+  "readIntro": "Cada estrato es una capa del entorno de ejecución de ALUX que construye ConcurSys. Seleccione una capa o ejecute una tarea y observe cómo las atraviesa.",
   "aluxTitle": "Desarrollamos ALUX. Los mismos cimientos pueden impulsar su sistema.",
   "aluxLab": "Runtime Lab",
   "aluxCode": "GitHub",

@@ -6,7 +6,7 @@
   "navCompany": "À propos",
   "talk": "Parlons-en",
   "heroTitle": "Les fondations<br>des agents.",
-  "heroBody": "Ingénierie du langage, de l'environnement d'exécution et du consensus pour des agents qui exigent un état persistant, une autorité explicite et une exécution vérifiable. Conçu par l'équipe derrière ALUX.",
+  "heroBody": "Ingénierie du langage, de l'environnement d'exécution et du consensus pour des agents qui exigent un état persistant, une autorité explicite et une exécution vérifiable. Conçue par l'équipe à l'origine d'ALUX.",
   "discuss": "Parlons de votre projet",
   "explore": "Découvrir notre expertise",
   "railAgent": "Exécution d'agents sur chaîne publique",
@@ -41,13 +41,13 @@
   "techIntro": "Une technologie originale, de l'environnement d'exécution du bytecode à la couche de consensus.",
   "durableTab": "Exécution durable",
   "conceptual": "Architecture conceptuelle",
-  "helpTitle": "Comment nous pouvons aider",
+  "helpTitle": "Comment nous pouvons vous aider",
   "architectureCTA": "Parlons de votre architecture",
   "tech": {
    "glvm": {
     "name": "MACHINE VIRTUELLE LOGIQUE GLOBALE",
     "title": "Un modèle logique commun aux machines.",
-    "body": "GLVM est l'architecture d'exécution de niveau système que nous développons à travers les TVM participantes. Elle définit un modèle logique partagé au-dessus des moteurs de bytecode individuels.",
+    "body": "GLVM est l'architecture d'exécution de niveau système que nous développons sur l'ensemble des TVM participantes. Elle définit un modèle logique partagé au-dessus des moteurs de bytecode individuels.",
     "help": "Architecture d'exécution, frontières de l'environnement d'exécution et conception de l'intégration."
    },
    "tvm": {
@@ -70,7 +70,7 @@
    },
    "durable": {
     "name": "EXÉCUTION DURABLE",
-    "title": "Prolonger l'exécution.",
+    "title": "Poursuivre l'exécution.",
     "body": "Une chaîne publique peut offrir un environnement durable aux agents. Grâce à l'état d'exécution et aux continuations préservés, le travail peut attendre d'un bloc à l'autre et reprendre dès que ses dépendances sont prêtes.",
     "help": "Persistance de l'état, flux d'attente et de reprise, exigences de rejeu et frontières de finalisation."
    }
@@ -118,7 +118,7 @@
   "step": "ÉTAPE",
   "companyLabel": "03 / ENTREPRISE",
   "companyTitle": "Conçu par ceux qui ont créé la technologie.",
-  "companyBody": "ConcurSys est l'entreprise technologique américaine derrière ALUX. Nous mettons notre propre ingénierie du langage, de l'environnement d'exécution et du consensus au service des équipes qui bâtissent les fondations de l'ordinateur mondial.",
+  "companyBody": "ConcurSys est l'entreprise technologique américaine à l'origine d'ALUX. Nous mettons notre propre ingénierie du langage, de l'environnement d'exécution et du consensus au service des équipes qui bâtissent les fondations de l'ordinateur mondial.",
   "aluxLink": "Découvrir ALUX",
   "process": [
    [
@@ -135,7 +135,7 @@
    ]
   ],
   "contactLabel": "04 / CONSTRUISONS",
-  "contactTitle": "Confiez-nous<br>le problème difficile.",
+  "contactTitle": "Confiez-nous<br>votre problème épineux.",
   "contactBody": "Dites-nous ce que vous construisez, où l'exécution se complique et ce qui doit fonctionner.",
   "contactCTA": "Engager une discussion technique",
   "copyEmail": "Copier l'adresse e-mail",
@@ -146,7 +146,7 @@
   "menuClose": "Fermer la navigation",
   "skip": "Aller au contenu",
   "artAlt": "Une sculpture abstraite de chemins de calcul interconnectés",
-  "meta": "Ingénierie du langage, de l'environnement d'exécution et du consensus pour des agents qui exigent un état persistant, une autorité explicite et une exécution vérifiable. Conçu par l'équipe derrière ALUX.",
+  "meta": "Ingénierie du langage, de l'environnement d'exécution et du consensus pour des agents qui exigent un état persistant, une autorité explicite et une exécution vérifiable. Conçue par l'équipe à l'origine d'ALUX.",
   "pageTitle": "ConcurSys — Infrastructure d'exécution pour agents",
   "navLabel": "Navigation principale",
   "languageLabel": "Choisir la langue",
@@ -171,12 +171,12 @@
   "required": "Veuillez remplir les champs obligatoires.",
   "servicesIntro": "Nous intervenons sur la couche d'exécution : de l'ingénierie des environnements d'exécution et du bytecode jusqu'à la coordination et à la gestion d'état requises entre les machines participantes. Chaque mission commence par les contraintes du système et le comportement précis à construire ou à examiner.",
   "technologyIntro": "Nos travaux couvrent l'exécution du langage et du bytecode, la coordination des processus, les frontières d'autorité, les modèles d'exécution durable et l'accord distribué. Ces technologies nourrissent notre pratique d'ingénierie ; chaque système doit néanmoins être évalué au regard de ses propres exigences et de son environnement de déploiement.",
-  "companyIntro": "ConcurSys est l'entreprise technologique américaine derrière ALUX. Nous développons les technologies de langage, d'environnement d'exécution et de consensus sous-jacentes, et mettons cette expérience d'ingénierie au service des équipes qui travaillent sur l'ordinateur mondial.",
+  "companyIntro": "ConcurSys est l'entreprise technologique américaine à l'origine d'ALUX. Nous développons les technologies de langage, d'environnement d'exécution et de consensus sous-jacentes, et mettons cette expérience d'ingénierie au service des équipes qui travaillent sur l'ordinateur mondial.",
   "serviceDetails": {
    "agent": {
     "eyebrow": "EXÉCUTION D'AGENTS SUR CHAÎNE PUBLIQUE",
     "title": "Un accompagnement technique pour l'exécution on-chain.",
-    "intro": "Nous aidons les équipes à raisonner sur les agents qui s'exécutent sur des chaînes publiques : coordination de l'exécution, continuité de l'état et représentation de l'autorité à la frontière de l'environnement d'exécution. Le travail est cadré selon les exigences du système sous-jacent.",
+    "intro": "Nous aidons les équipes à analyser les agents qui s'exécutent sur des chaînes publiques : coordination de l'exécution, continuité de l'état et représentation de l'autorité à la frontière de l'environnement d'exécution. Le travail est cadré selon les exigences du système sous-jacent.",
     "questionsTitle": "Les questions que nous traitons",
     "questions": [
      "Quelles étapes d'exécution doivent se dérouler on-chain, et quelles dépendances se situent hors de la chaîne ?",
@@ -229,8 +229,8 @@
    "glvm": {
     "focusTitle": "Une architecture de niveau système en développement",
     "points": [
-     "GLVM est une architecture d'exécution évolutive, développée à travers les TVM participantes.",
-     "Elle définit un modèle logique partagé au-dessus des moteurs de bytecode individuels ; elle n'est pas présentée comme un produit fini et disponible à grande échelle.",
+     "GLVM est une architecture d'exécution évolutive, développée sur l'ensemble des TVM participantes.",
+     "Elle définit un modèle logique partagé au-dessus des moteurs de bytecode individuels ; elle n'est pas présentée comme un produit fini en disponibilité générale.",
      "Un échange technique peut clarifier les frontières de l'environnement d'exécution, les hypothèses de coordination et les besoins d'intégration d'un système donné."
     ]
    },
@@ -279,7 +279,7 @@
    "Consensus et réseau",
    "Trajectoire d'évolution"
   ],
-  "current": "Fondation actuelle",
+  "current": "Socle actuel",
   "evolving": "En évolution continue",
   "roadmap": "Feuille de route",
   "role": "Rôle du module",
@@ -325,8 +325,8 @@
    },
    "evm": {
     "name": "EVM & TSAC",
-    "title": "Des charges EVM prises en charge, coordonnées par TVM",
-    "body": "ALUX prend actuellement en charge certaines charges de travail EVM dans des environnements d'exécution isolés. TSAC coordonne avec TVM les opérations pertinentes sur l'état global ; la compatibilité dépend du périmètre pris en charge.",
+    "title": "Des charges de travail EVM compatibles, coordonnées par TVM",
+    "body": "ALUX gère actuellement certaines charges de travail EVM dans des environnements d'exécution isolés. TSAC coordonne avec TVM les opérations pertinentes sur l'état global ; la compatibilité dépend du périmètre pris en charge.",
     "help": "Frontières d'intégration EVM, coordination TSAC et revue de compatibilité des charges de travail.",
     "points": [
      "Chaque instance EVM conserve sa propre pile d'exécution et sa propre mémoire.",
@@ -349,7 +349,7 @@
    },
    "node": {
     "name": "Nœud · RPC · P2P",
-    "title": "La surface de l'environnement d'exécution côté réseau",
+    "title": "L'interface réseau de l'environnement d'exécution",
     "body": "La couche nœud relie l'exécution aux méthodes RPC prises en charge, à la communication entre pairs et au contexte de stockage. Les points d'accès exacts et le comportement opérationnel dépendent de l'implémentation actuelle.",
     "help": "Intégration des nœuds, périmètre RPC pris en charge, communication entre pairs et frontières du stockage.",
     "points": [
@@ -365,7 +365,7 @@
     "body": "Les diagnostics du compilateur, le serveur de langage et le Playground aident les développeurs à examiner les programmes Tolang avant de les connecter à un nœud.",
     "help": "Intégration du compilateur, diagnostics, flux de travail d'édition et évaluation précoce de l'exécution.",
     "points": [
-     "Les diagnostics du compilateur signalent les problèmes tout au long du chemin du source au bytecode.",
+     "Les diagnostics du compilateur signalent les problèmes tout au long du passage du code source au bytecode.",
      "Les flux de travail LSP permettent une inspection et une édition sensibles au langage.",
      "Les exécutions, l'expansion et le formatage dans le Playground aident à examiner le comportement des services."
     ],
@@ -386,10 +386,10 @@
    "worldos": {
     "name": "World OS et interfaces client",
     "title": "Étendre le modèle d'exécution à de nouveaux environnements",
-    "body": "Une couche World OS programmable et le déploiement sur les appareils clients sont des orientations à plus long terme pour le système. Ils figurent à la feuille de route et ne sont pas des capacités actuelles de l'environnement d'exécution.",
+    "body": "Une couche World OS programmable et le déploiement sur les appareils clients sont des orientations à plus long terme pour le système. Ils figurent sur la feuille de route et ne sont pas des capacités actuelles de l'environnement d'exécution.",
     "help": "Futurs modèles de déploiement et abstractions de niveau système nécessaires pour les prendre en charge.",
     "points": [
-     "GLVM est le modèle de niveau système en évolution à travers les TVM participantes.",
+     "GLVM est le modèle de niveau système en évolution couvrant l'ensemble des TVM participantes.",
      "Le déploiement de TVM sur les appareils clients reste prévu.",
      "Une couche World OS programmable reste une orientation de la feuille de route."
     ],
@@ -404,13 +404,13 @@
   ]
  },
  "teamCopy": {
-  "title": "Les personnes derrière les systèmes",
+  "title": "Les personnes qui conçoivent les systèmes",
   "intro": "ConcurSys réunit une expérience approfondie des systèmes de risque quantitatif et du calcul concurrent. Cette expertise nourrit les technologies d'environnement d'exécution, de langage et de consensus que nous construisons.",
   "frank": {
    "role": "Fondateur et président",
    "bio": [
     "Frank He (Atticbee) est chercheur et entrepreneur dans le domaine de la blockchain ; ses travaux incluent la conception et l'implémentation de machines virtuelles concurrentes. Avant ConcurSys, il a passé plus de 15 ans comme analyste quantitatif et développeur senior chez Bloomberg, Lehman Brothers et Barclays Capital, où il a construit des systèmes de calcul de risque hautement évolutifs.",
-    "Chez ConcurSys, il met cette expérience au service de l'architecture des systèmes concurrents. Ses travaux réunissent l'environnement d'exécution, le langage de programmation et les technologies de consensus développés pour ALUX en une fondation d'ingénierie cohérente."
+    "Chez ConcurSys, il met cette expérience au service de l'architecture des systèmes concurrents. Ses travaux réunissent l'environnement d'exécution, le langage de programmation et les technologies de consensus développés pour ALUX en un socle d'ingénierie cohérent."
    ],
    "focus": [
     "Systèmes concurrents",
@@ -444,7 +444,7 @@
  "agentCopy": {
   "eyebrow": "Infrastructure pour agents",
   "title": "Les fondations<br>des agents.",
-  "body": "Ingénierie du langage, de l'environnement d'exécution et du consensus pour des agents qui exigent un état persistant, une autorité explicite et une exécution vérifiable. Conçu par l'équipe derrière ALUX.",
+  "body": "Ingénierie du langage, de l'environnement d'exécution et du consensus pour des agents qui exigent un état persistant, une autorité explicite et une exécution vérifiable. Conçue par l'équipe à l'origine d'ALUX.",
   "rails": [
    "État persistant",
    "Autorité explicite",
@@ -506,7 +506,7 @@
    },
    {
     "title": "Une voie vers les services persistants",
-    "body": "Tolang se compile en bytecode TVM, où les processus peuvent se poursuivre au-delà des attentes et se coordonner par des canaux. Le langage relie la logique de service à l'environnement d'exécution ; les garanties de persistance et de transaction dépendent du système ALUX environnant."
+    "body": "Tolang se compile en bytecode TVM, où les processus peuvent se poursuivre après une attente et se coordonner par des canaux. Le langage relie la logique de service à l'environnement d'exécution ; les garanties de persistance et de transaction dépendent du système ALUX environnant."
    },
    {
     "title": "Une boucle de développement pratique",
@@ -592,7 +592,7 @@
    "tolang": [
     "Processus",
     "Canaux typés",
-    "Motifs de jointure",
+    "Motifs Join",
     "tolangc → .tox"
    ],
    "ocap": [
@@ -617,6 +617,6 @@
   "aluxLab": "Runtime Lab",
   "aluxCode": "GitHub",
   "servicesLabel": "Services",
-  "codeCaption": "Deux agents rendent compte en parallèle. La jointure ne se déclenche que lorsque les deux résultats existent."
+  "codeCaption": "Deux agents rendent compte en parallèle. Le join ne se déclenche que lorsque les deux résultats sont disponibles."
  }
 });

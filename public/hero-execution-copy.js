@@ -21,7 +21,7 @@ window.heroExecutionCopy = {
   },
   zh: {
     eyebrow: 'Agent 执行底层技术',
-    title: '从意图出发，<br>让执行有据可循。',
+    title: '从意图<br>到执行。',
     body: 'ConcurSys 研发 ALUX 底层的语言、运行时与共识技术。它们共同构成表达、协调和检查 Agent 任务的工程层。',
     diagramLabel: '执行原理示意',
     agents: 'Agent 任务',
@@ -51,7 +51,7 @@ window.heroExecutionCopy = {
     proof: 'ReplayTrie + BlockGit',
     states: [
       { label: '01 / 정의', title: '동시 작업을 표현합니다.', body: 'Tolang은 프로세스 계산으로 작업을 나누고 통신하며 동시에 진행하는 서비스를 기술합니다.' },
-      { label: '02 / 권한 설정', title: '권한을 명확히 합니다.', body: '객체 능력은 위조할 수 없는 참조로 작업이 접근할 수 있는 객체와 리소스를 정의합니다.' },
+      { label: '02 / 권한 설정', title: '권한을 명확히 합니다.', body: '객체 케이퍼빌리티는 위조할 수 없는 참조로 작업이 접근할 수 있는 객체와 리소스를 정의합니다.' },
       { label: '03 / 실행', title: '조율하고 기다렸다 재개합니다.', body: 'TVM은 채널로 통신하는 프로세스를 실행하며, 보존된 실행 상태는 의존성이 준비될 때까지 기다렸다가 재개할 수 있습니다.' },
       { label: '04 / 검증', title: '실행과 합의를 살펴봅니다.', body: 'ReplayTrie는 실행을 재생해 확인할 근거를 제공하고, BlockGit은 동시 블록 이력과 상태를 조율합니다.' }
     ],
@@ -72,7 +72,7 @@ window.heroExecutionCopy = {
     states: [
       { label: '01 / 定義', title: '並行処理を記述する。', body: 'Tolangはプロセス計算によって、処理を分け、通信し、並行して進めるサービスを記述します。' },
       { label: '02 / 権限設定', title: '権限を明確にする。', body: 'オブジェクトケイパビリティは偽造できない参照を使い、タスクがアクセスできるオブジェクトとリソースを定めます。' },
-      { label: '03 / 実行', title: '調整し、待機し、再開する。', body: 'TVMはチャネルで通信するプロセスを実行します。保持された実行状態は依存先を待ち、準備が整うと再開できます。' },
+      { label: '03 / 実行', title: '協調し、待機し、再開する。', body: 'TVMはチャネルで通信するプロセスを実行します。保持された実行状態は依存先を待ち、準備が整うと再開できます。' },
       { label: '04 / 検証', title: '実行と合意を確認する。', body: 'ReplayTrieは実行をリプレイして確認する根拠となり、BlockGitは並行ブロック履歴と状態を調整します。' }
     ],
     mapTitle: 'エージェント実行基盤を見る。',
@@ -90,10 +90,10 @@ window.heroExecutionCopy = {
     runtime: 'عمليات TVM',
     proof: 'ReplayTrie + BlockGit',
     states: [
-      { label: '01 / التعريف', title: 'عبّر عن العمل المتزامن.', body: 'تستخدم Tolang حساب العمليات لوصف خدمات تقسّم العمل وتتواصل وتتقدم بالتوازي.' },
-      { label: '02 / التفويض', title: 'اجعل الصلاحيات واضحة.', body: 'تستخدم صلاحيات الكائنات مراجع غير قابلة للتزوير لتحديد الكائنات والموارد التي تستطيع المهمة الوصول إليها.' },
+      { label: '01 / التعريف', title: 'عبّر عن العمل المتزامن.', body: 'تستخدم Tolang حساب العمليات لوصف خدمات تقسّم العمل وتتواصل وتتقدم بصورة متزامنة.' },
+      { label: '02 / التفويض', title: 'اجعل الصلاحيات واضحة.', body: 'تستخدم قدرات الكائنات مراجع غير قابلة للتزوير لتحديد الكائنات والموارد التي تستطيع المهمة الوصول إليها.' },
       { label: '03 / التنفيذ', title: 'نسّق وانتظر ثم استأنف.', body: 'تشغّل TVM عمليات تتواصل عبر القنوات؛ ويمكن لحالة التنفيذ المحفوظة انتظار اعتمادياتها ثم الاستئناف عند جاهزيتها.' },
-      { label: '04 / التحقق', title: 'افحص التنفيذ والإجماع.', body: 'توفر ReplayTrie أساسًا لإعادة تنفيذ العمل وفحصه، بينما ينسق BlockGit سجل الكتل المتزامنة والحالة.' }
+      { label: '04 / التحقق', title: 'افحص التنفيذ والإجماع.', body: 'يوفّر ReplayTrie أساسًا لإعادة تنفيذ العمل وفحصه، بينما ينسق BlockGit سجل الكتل المتزامنة والحالة.' }
     ],
     mapTitle: 'استكشف بنية تنفيذ الوكلاء.',
     mapBody: 'تعرّف على ترابط اللغة والصلاحيات وبيئة التشغيل والإجماع.',
@@ -123,7 +123,7 @@ Object.entries({
       "denied": "OCAP · access refused"
     },
     "deniedTitle": "Authority is a boundary.",
-    "deniedBody": "This example requests a resource outside its granted capabilities. The task stops at the permission boundary.",
+    "deniedBody": "This example requests a resource outside its granted capabilities. The task stops at the authority boundary.",
     "waitTitle": "Waiting does not mean starting over.",
     "waitBody": "The model is waiting for an external dependency. Resume the task to see execution continue from its preserved state.",
     "doneTitle": "From execution to verification.",
@@ -142,17 +142,17 @@ Object.entries({
     "denied": "越权访问",
     "status": {
       "idle": "准备开始",
-      "defined": "Tolang · 定义并发任务",
+      "defined": "Tolang · 已定义并发任务",
       "authorized": "OCAP · 允许访问",
       "waiting": "TVM · 等待依赖",
-      "resumed": "TVM · 恢复执行",
+      "resumed": "TVM · 已恢复执行",
       "verified": "ReplayTrie + BlockGit · 验证阶段",
       "denied": "OCAP · 拒绝访问"
     },
     "deniedTitle": "权限，是明确的边界。",
     "deniedBody": "这个示例请求了授权范围外的资源，任务在权限边界处停止。",
     "waitTitle": "等待，不必从头开始。",
-    "waitBody": "演示中的任务正在等待外部依赖。点击恢复任务，查看执行如何从保留的状态继续。",
+    "waitBody": "演示中的任务正在等待外部依赖。点击“恢复任务”，查看执行如何从保留的状态继续。",
     "doneTitle": "从执行，走向验证。",
     "doneBody": "演示进入重放验证与共识阶段。ReplayTrie 提供执行证据，BlockGit 协调并发历史。"
   },
@@ -162,7 +162,7 @@ Object.entries({
     "pause": "一時停止",
     "continue": "続行",
     "resume": "タスクを再開",
-    "replay": "もう一度",
+    "replay": "もう一度実行",
     "reset": "リセット",
     "scenario": "タスクの条件",
     "allowed": "権限の範囲内",
@@ -181,7 +181,7 @@ Object.entries({
     "waitTitle": "待機しても、最初からやり直さない。",
     "waitBody": "モデルは外部の依存先を待っています。タスクを再開すると、保持した状態から実行が続きます。",
     "doneTitle": "実行から検証へ。",
-    "doneBody": "モデルはリプレイ検証とコンセンサスの段階に進みます。ReplayTrie が実行の証拠を提供し、BlockGit が並行する履歴を調整します。"
+    "doneBody": "モデルはリプレイ検証とコンセンサスの段階に進みます。ReplayTrieが実行の証跡を提供し、BlockGitが並行する履歴を調整します。"
   },
   "ko": {
     "label": "인터랙티브 실행 모델",
@@ -212,11 +212,11 @@ Object.entries({
   },
   "ar": {
     "label": "نموذج تنفيذ تفاعلي",
-    "run": "ابدأ مهمة",
+    "run": "تشغيل مهمة",
     "pause": "إيقاف مؤقت",
     "continue": "متابعة",
-    "resume": "استأنف المهمة",
-    "replay": "تشغيل مجدداً",
+    "resume": "استئناف المهمة",
+    "replay": "تشغيل مجددًا",
     "reset": "إعادة ضبط",
     "scenario": "سيناريو المهمة",
     "allowed": "ضمن الصلاحيات",
@@ -225,15 +225,15 @@ Object.entries({
       "idle": "جاهز للاستكشاف",
       "defined": "Tolang · تحديد المهام المتزامنة",
       "authorized": "OCAP · السماح بالوصول",
-      "waiting": "TVM · انتظار اعتماد خارجي",
+      "waiting": "TVM · انتظار اعتمادية",
       "resumed": "TVM · استئناف التنفيذ",
       "verified": "ReplayTrie + BlockGit · مرحلة التحقق",
       "denied": "OCAP · رفض الوصول"
     },
     "deniedTitle": "الصلاحيات تحدد الحدود.",
-    "deniedBody": "يطلب هذا المثال مورداً خارج الصلاحيات الممنوحة، فتتوقف المهمة عند حدود الوصول.",
+    "deniedBody": "يطلب هذا المثال موردًا خارج الصلاحيات الممنوحة، فتتوقف المهمة عند حدود الصلاحيات.",
     "waitTitle": "الانتظار لا يعني البدء من جديد.",
-    "waitBody": "ينتظر النموذج اعتماداً خارجياً. استأنف المهمة لترى التنفيذ يتابع من الحالة المحفوظة.",
+    "waitBody": "ينتظر النموذج اعتمادية خارجية. استأنف المهمة لترى التنفيذ يتابع من الحالة المحفوظة.",
     "doneTitle": "من التنفيذ إلى التحقق.",
     "doneBody": "يصل النموذج إلى التحقق بإعادة التنفيذ والإجماع. يوفّر ReplayTrie أدلة التنفيذ، وينسّق BlockGit السجل المتزامن."
   }

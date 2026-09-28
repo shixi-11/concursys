@@ -8,7 +8,7 @@
   "heroTitle": "Fundamente<br>für Agenten.",
   "heroBody": "Sprach-, Laufzeit- und Konsens-Engineering für Agenten, die persistenten Zustand, explizite Befugnisse und verifizierbare Ausführung benötigen. Entwickelt vom Team hinter ALUX.",
   "discuss": "Projekt besprechen",
-  "explore": "Unsere Expertise",
+  "explore": "Expertise entdecken",
   "railAgent": "Agentenausführung auf Public Chains",
   "railVM": "Engineering virtueller Maschinen",
   "railDistributed": "Verteilte Systeme",
@@ -52,7 +52,7 @@
    },
    "tvm": {
     "name": "TUPLE-SPACE VIRTUAL MACHINE",
-    "title": "Wo Bytecode zur Ausführung wird.",
+    "title": "Wo aus Bytecode Ausführung wird.",
     "body": "TVM ist die konkrete Bytecode-Engine auf einer beteiligten Maschine. Sie führt Tolang-Bytecode aus und koordiniert nebenläufige Prozesse über Kanäle und Kommunikationsereignisse.",
     "help": "Engineering von Bytecode-Laufzeitumgebungen, Prozesskoordination, Toolchain-Integration und Diagnose."
    },
@@ -66,11 +66,11 @@
     "name": "OBJEKT-CAPABILITIES",
     "title": "Befugnisse explizit machen.",
     "body": "Objekt-Capabilities legen über unfälschbare Referenzen fest, worauf eine Aufgabe zugreifen kann. Bei TVM-nativen Interaktionen erzwingt die Laufzeitumgebung diese Grenzen; externe Dienste und gehostete Umgebungen benötigen eigene Kontrollen.",
-    "help": "Capability-Grenzen, Least-Authority-Design und Integrationsreviews."
+    "help": "Capability-Grenzen, Least-Authority-Design und Integrationsprüfungen."
    },
    "durable": {
     "name": "DAUERHAFTE AUSFÜHRUNG",
-    "title": "Ausführung weitertragen.",
+    "title": "Ausführung fortführen.",
     "body": "Eine Public Chain kann Agenten eine dauerhafte Umgebung bieten. Dank erhaltenem Ausführungszustand und Continuations kann Arbeit über Blöcke hinweg warten und fortgesetzt werden, sobald ihre Abhängigkeiten bereitstehen.",
     "help": "Zustandspersistenz, Warte- und Fortsetzungsabläufe, Replay-Anforderungen und Finalisierungsgrenzen."
    }
@@ -109,7 +109,7 @@
   "originalLabel": "EIGENES SYSTEM-ENGINEERING",
   "originalTitle": "Von der Sprache bis zum Konsens.",
   "originalBody": "ConcurSys entwickelt die Technologie hinter ALUX: Tolang, die TVM-Bytecode-Laufzeitumgebung, ReplayTrie und das BlockGit-Konsensprotokoll. Unsere Arbeit verbindet Sprachdesign, nebenläufige Ausführung und verteilte Einigung.",
-  "originalNote": "GLVM ist die sich weiterentwickelnde Architektur auf Systemebene. Shard-übergreifende Ausführung und weitere Einsatzumgebungen bleiben Entwicklungsrichtungen.",
+  "originalNote": "GLVM ist die sich weiterentwickelnde Architektur auf Systemebene. Shard-übergreifende Ausführung und weitere Einsatzumgebungen sind weiterhin Entwicklungsziele.",
   "play": "Ablauf abspielen",
   "pause": "Ablauf pausieren",
   "replay": "Ablauf wiederholen",
@@ -118,7 +118,7 @@
   "step": "SCHRITT",
   "companyLabel": "03 / UNTERNEHMEN",
   "companyTitle": "Entwickelt von den Köpfen hinter der Technologie.",
-  "companyBody": "ConcurSys ist das US-Technologieunternehmen hinter ALUX. Wir bringen unser eigenes Sprach-, Laufzeit- und Konsens-Engineering in technische Leistungen für Teams ein, die an den Fundamenten des globalen Computers bauen.",
+  "companyBody": "ConcurSys ist das US-Technologieunternehmen hinter ALUX. Unser eigenes Sprach-, Laufzeit- und Konsens-Engineering bieten wir als technische Leistungen für Teams an, die an den Fundamenten des globalen Computers bauen.",
   "aluxLink": "ALUX entdecken",
   "process": [
    [
@@ -135,7 +135,7 @@
    ]
   ],
   "contactLabel": "04 / GEMEINSAM BAUEN",
-  "contactTitle": "Bringen Sie uns<br>das schwierige Problem.",
+  "contactTitle": "Bringen Sie uns<br>Ihr schwierigstes Problem.",
   "contactBody": "Erzählen Sie uns, was Sie bauen, wo die Ausführung schwierig wird und was funktionieren muss.",
   "contactCTA": "Technisches Gespräch starten",
   "copyEmail": "E-Mail-Adresse kopieren",
@@ -185,7 +185,7 @@
     ],
     "deliverablesTitle": "Mögliche Engineering-Ergebnisse",
     "deliverables": [
-     "Eine Ausführungsarchitektur und Grenzübersicht, abgeleitet aus den festgelegten Systemanforderungen.",
+     "Eine Ausführungsarchitektur samt Übersicht der Grenzen, abgeleitet aus den festgelegten Systemanforderungen.",
      "Ein Plan zur Laufzeitintegration, der die relevanten Schnittstellen für Zustand, Koordination und Befugnisse beschreibt.",
      "Gezielte Ausführungstests und technische Notizen für vereinbarte Szenarien und Fehlerfälle."
     ]
@@ -203,7 +203,7 @@
     "deliverablesTitle": "Mögliche Engineering-Ergebnisse",
     "deliverables": [
      "Ein Laufzeitdesign oder Implementierungsplan, abgestimmt auf die erforderliche Ausführungssemantik.",
-     "Integrationsleitfaden für Bytecode, Compiler und Toolchain, Prozesse und Kommunikationsgrenzen.",
+     "Integrationsleitfaden für die Grenzen von Bytecode, Compiler/Toolchain, Prozessen und Kommunikation.",
      "Ein fokussierter Diagnose- oder Testplan für repräsentative Ausführungspfade und Grenzfälle."
     ]
    },
@@ -239,7 +239,7 @@
     "points": [
      "TVM ist die Bytecode-Engine auf einer beteiligten Maschine und führt Tolang-Bytecode aus.",
      "Kanäle und Kommunikationsereignisse sind die beschriebenen Mechanismen zur Koordination nebenläufiger Prozesse.",
-     "Laufzeitarbeit kann Ausführungssemantik, Toolchain-Integration, Diagnose und Prozessgrenzen untersuchen."
+     "Arbeiten an der Laufzeitumgebung können Ausführungssemantik, Toolchain-Integration, Diagnose und Prozessgrenzen untersuchen."
     ]
    },
    "blockgit": {
@@ -255,7 +255,7 @@
     "points": [
      "Objekt-Capability-Design legt über unfälschbare Referenzen fest, worauf eine Aufgabe zugreifen kann.",
      "Bei TVM-nativen Interaktionen erzwingt die Laufzeitumgebung diese Befugnisgrenzen.",
-     "Externe Dienste und gehostete Umgebungen erfordern eigene Zugriffskontrollen und ein Integrationsreview."
+     "Externe Dienste und gehostete Umgebungen erfordern eigene Zugriffskontrollen und eine Integrationsprüfung."
     ]
    },
    "durable": {
@@ -269,7 +269,7 @@
   }
  },
  "technologyCopy": {
-  "mapTitle": "Im Inneren des Agenten-Ausführungsstacks.",
+  "mapTitle": "Ein Blick in den Ausführungsstack für Agenten.",
   "mapIntro": "Folgen Sie dem Weg von der Sprache über Laufzeitumgebung, Befugnisse und Zustand bis zum Konsens. Erfahren Sie, was jede Schicht zur Ausführung eines Agenten beiträgt und wie die Schichten zusammenhängen.",
   "mapHint": "Wählen Sie ein Modul, um seine Aufgaben und verbundenen Komponenten zu sehen.",
   "layers": [
@@ -339,7 +339,7 @@
     "name": "Segments · Partitions · Fringe",
     "title": "Ausführungsarbeit für Scheduling und Finalität strukturieren",
     "body": "Framework-Dienste versiegeln Ausführungstraces zu Segmenten und Partitionen für die Blockproduktion; sobald BlockGit einen Fringe finalisiert, werden dessen nebenläufige Blöcke zu einem einzigen Zustandsübergang zusammengeführt.",
-    "help": "Ausführungsplanung, Umgang mit Abhängigkeiten und die Übergabe von Laufzeitarbeit an die Blockproduktion.",
+    "help": "Ausführungsplanung, Umgang mit Abhängigkeiten und die Übergabe der Arbeit von der Laufzeitumgebung an die Blockproduktion.",
     "points": [
      "Segmente erfassen begrenzte Abschnitte des Ausführungsfortschritts.",
      "Partitionen fassen die versiegelten Segmente einer Transaktion zur Aufnahme in einen Block zusammen.",
@@ -349,7 +349,7 @@
    },
    "node": {
     "name": "Node · RPC · P2P",
-    "title": "Die netzwerkseitige Oberfläche der Laufzeitumgebung",
+    "title": "Die Netzwerkschnittstelle der Laufzeitumgebung",
     "body": "Die Node-Schicht verbindet die Ausführung mit unterstützten RPC-Methoden, Peer-Kommunikation und Speicherkontext. Konkrete Endpunkte und Betriebsverhalten hängen vom aktuellen Implementierungsstand ab.",
     "help": "Node-Integration, unterstützter RPC-Umfang, Peer-Kommunikation und Speichergrenzen.",
     "points": [
@@ -366,7 +366,7 @@
     "help": "Compiler-Integration, Diagnose, Editor-Workflows und frühe Laufzeitevaluierung.",
     "points": [
      "Compiler-Diagnosen machen Probleme auf dem Weg vom Quellcode zum Bytecode sichtbar.",
-     "LSP-Workflows unterstützen sprachbewusste Analyse und Bearbeitung.",
+     "LSP-Workflows unterstützen sprachspezifische Analyse und Bearbeitung.",
      "Playground-Läufe, Expansion und Formatierung helfen, das Dienstverhalten zu untersuchen."
     ],
     "status": "current"
@@ -386,12 +386,12 @@
    "worldos": {
     "name": "World OS & Client-Umgebungen",
     "title": "Das Ausführungsmodell auf neue Umgebungen ausweiten",
-    "body": "Eine programmierbare World-OS-Schicht und der Einsatz auf Client-Geräten sind langfristige Richtungen für das System. Sie sind Roadmap-Themen, keine aktuellen Fähigkeiten der Laufzeitumgebung.",
+    "body": "Eine programmierbare World-OS-Schicht und der Einsatz auf Client-Geräten sind langfristige Entwicklungsziele des Systems. Sie sind Roadmap-Themen, keine aktuellen Fähigkeiten der Laufzeitumgebung.",
     "help": "Künftige Einsatzmodelle und die Abstraktionen auf Systemebene, die dafür nötig sind.",
     "points": [
      "GLVM ist das sich weiterentwickelnde Modell auf Systemebene über beteiligte TVMs hinweg.",
      "Der Einsatz von TVM auf Client-Geräten ist weiterhin geplant.",
-     "Eine programmierbare World-OS-Schicht bleibt eine Richtung auf der Roadmap."
+     "Eine programmierbare World-OS-Schicht steht weiterhin auf der Roadmap."
     ],
     "status": "roadmap"
    }
@@ -405,7 +405,7 @@
  },
  "teamCopy": {
   "title": "Die Menschen hinter den Systemen",
-  "intro": "ConcurSys vereint tiefe Erfahrung in quantitativen Risikosystemen und nebenläufigem Rechnen. Diese Arbeit prägt die Laufzeit-, Sprach- und Konsenstechnologien, die wir bauen.",
+  "intro": "ConcurSys vereint fundierte Erfahrung mit quantitativen Risikosystemen und nebenläufiger Datenverarbeitung. Diese Arbeit prägt die Laufzeit-, Sprach- und Konsenstechnologien, die wir entwickeln.",
   "frank": {
    "role": "Gründer & Präsident",
    "bio": [
@@ -421,7 +421,7 @@
   "tomislav": {
    "role": "CTO",
    "bio": [
-    "Tomislavs Interesse am Rechnen begann mit fünf Jahren mit einem Taschenrechner aus Pappe und mit zehn mit Assembler-Programmierung auf dem C64c. Mehr als ein Jahrzehnt in der Elektronik und zwei Jahrzehnte Programmierung in Sprachen wie JavaScript und Haskell prägten seinen Ansatz: das Modell erkunden, die Mechanik verstehen, dann bauen.",
+    "Tomislavs Interesse an Computern begann mit fünf Jahren mit einem Taschenrechner aus Pappe; mit zehn folgte Assembler-Programmierung auf dem C64c. Mehr als ein Jahrzehnt in der Elektronik und zwei Jahrzehnte Programmierung in Sprachen wie JavaScript und Haskell prägten seinen Ansatz: das Modell erkunden, die Mechanik verstehen, dann bauen.",
     "Seine Arbeit zur Nebenläufigkeit stützt sich auf den Prozesskalkül. Bei ConcurSys verbindet er formale Modelle von Prozessen und Kommunikation mit praktischem Laufzeit-Engineering und bringt dieselbe Neugier und intensive Projektbeteiligung in die Fundamente von ALUX ein."
    ],
    "focus": [
@@ -438,7 +438,7 @@
   "label": "Technische Interessen",
   "body": "Erzählen Sie uns von einem System, das Sie gebaut haben, einem schwierigen Problem, das Sie untersucht haben, oder einem Open-Source-Beitrag, auf den Sie stolz sind. Fügen Sie Links hinzu, die uns helfen, Ihre Arbeit zu verstehen.",
   "cta": "Stellen Sie sich vor",
-  "subject": "Zusammenarbeit mit ConcurSys",
+  "subject": "Mitarbeit bei ConcurSys",
   "email": "Über mich:\n\nTechnische Interessen:\n\nAusgewählte Arbeiten und Links:\n"
  },
  "agentCopy": {
@@ -453,10 +453,10 @@
   ],
   "servicesTitle": "Ein Agent braucht ein Fundament.<br>Wir bauen es.",
   "servicesIntro": "Von der Sprache, in der ein Agent läuft, bis zum Netzwerk, das seine Arbeit verifiziert: Wir bauen die Schichten, die Ausführung möglich machen.",
-  "mapTitle": "Im Inneren des Agenten-Ausführungsstacks.",
+  "mapTitle": "Ein Blick in den Ausführungsstack für Agenten.",
   "mapIntro": "Folgen Sie dem Weg von der Sprache über Laufzeitumgebung, Befugnisse und Zustand bis zum Konsens. Erfahren Sie, was jede Schicht zur Ausführung eines Agenten beiträgt und wie die Schichten zusammenhängen.",
   "bridgeTitle": "Von der Absicht eines Agenten<br>zum Systemverhalten.",
-  "bridgeBody": "Ein Modell kann eine Aktion vorschlagen. Das Ausführungssystem muss festlegen, was laufen darf, worauf zugegriffen werden kann, wie Zustand Wartezeiten übersteht und wie Ergebnisse vereinbart werden. Das sind die technischen Fragen hinter unserer Arbeit an ALUX.",
+  "bridgeBody": "Ein Modell kann eine Aktion vorschlagen. Das Ausführungssystem muss festlegen, was laufen darf, worauf zugegriffen werden kann, wie Zustand Wartezeiten übersteht und wie Einigkeit über Ergebnisse erzielt wird. Das sind die technischen Fragen hinter unserer Arbeit an ALUX.",
   "coreLabels": [
    "Native nebenläufige Sprache",
    "Ausführungsengine für Agenten",
@@ -477,11 +477,11 @@
    "replay": "Replay bildet die Grundlage, um Ausführung deterministisch erneut auszuführen und ihre aufgezeichneten Entscheidungen zu prüfen.",
    "framework": "Segmente, Partitionen und Fringes ordnen Ausführung, Wiederherstellung und Finalisierungsgrenzen.",
    "blockgit": "BlockGit koordiniert nebenläufige Blockhistorie und Zustand zwischen verteilten Beteiligten.",
-   "evm": "EVM/TSAC ermöglicht bestehenden EVM-Contracts die Teilnahme über eine Koordination durch TVM.",
+   "evm": "Mit EVM/TSAC können bestehende EVM-Contracts teilnehmen, koordiniert durch TVM.",
    "node": "Node-Schnittstellen verbinden Anfragen von Agenten und Zustandsabfragen; P2P übernimmt die Verbreitung zwischen Nodes.",
    "tooling": "Compiler, LSP und Playground helfen, Programmlogik zu erstellen und zu prüfen.",
    "sharding": "Shard-übergreifende Atomarität ist eine Entwicklungsrichtung, um Agentenarbeit über Shards hinweg zu koordinieren.",
-   "worldos": "World OS und der Einsatz auf Clients sind Roadmap-Richtungen für eine programmierbare Ausführungsumgebung."
+   "worldos": "World OS und der Einsatz auf Clients stehen auf der Roadmap für eine programmierbare Ausführungsumgebung."
   }
  },
  "tolangCopy": {
@@ -569,7 +569,7 @@
     "verified": "ReplayTrie + BlockGit · Validierungsphase",
     "denied": "OCAP · Zugriff verweigert"
    },
-   "deniedTitle": "Befugnisse sind eine Grenze.",
+   "deniedTitle": "Befugnisse ziehen Grenzen.",
    "deniedBody": "Dieses Beispiel fordert eine Ressource außerhalb der gewährten Capabilities an. Die Aufgabe stoppt an der Berechtigungsgrenze.",
    "waitTitle": "Warten heißt nicht neu beginnen.",
    "waitBody": "Das Modell wartet auf eine externe Abhängigkeit. Setzen Sie die Aufgabe fort, um zu sehen, wie die Ausführung ab dem gesicherten Zustand weiterläuft.",
@@ -578,7 +578,7 @@
   }
  },
  "stackCopy": {
-  "relation": "Das Technologie-Dienstleistungsunternehmen von ALUX",
+  "relation": "Der Technologie-Dienstleister von ALUX",
   "frame": "Stack für Agentenausführung",
   "builtBy": "Entwickelt von ConcurSys",
   "layers": {
@@ -598,7 +598,7 @@
    "ocap": [
     "Unfälschbare Refs",
     "Bewachte Kanäle",
-    "Abschwächung",
+    "Rechteeinschränkung",
     "Delegation"
    ]
   },
@@ -613,10 +613,10 @@
   "traceIdle": "Starten Sie eine Aufgabe, um sie durch alle Schichten zu verfolgen.",
   "readTitle": "So lesen Sie das Diagramm.",
   "readIntro": "Jede Ebene ist eine Schicht der ALUX-Laufzeitumgebung, die ConcurSys baut. Wählen Sie eine Schicht oder starten Sie eine Aufgabe und verfolgen Sie, wie sie die Schichten durchläuft.",
-  "aluxTitle": "Wir entwickeln ALUX. Dieselben Fundamente können Ihr System antreiben.",
+  "aluxTitle": "Wir entwickeln ALUX. Dieselben Fundamente können Ihr System tragen.",
   "aluxLab": "Runtime Lab",
   "aluxCode": "GitHub",
   "servicesLabel": "Leistungen",
-  "codeCaption": "Zwei Agenten melden sich parallel. Der Join feuert erst, wenn beide Ergebnisse vorliegen."
+  "codeCaption": "Zwei Agenten liefern parallel Ergebnisse. Der Join feuert erst, wenn beide vorliegen."
  }
 });
