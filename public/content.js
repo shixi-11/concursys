@@ -1,6 +1,6 @@
 window.siteCopy = {
   en: {
-    navServices:'Services',navTechnology:'Technology',navCompany:'About',talk:'Let’s talk',
+    navServices:'Services',navTechnology:'Technology',navCompany:'About Us',talk:'Let’s talk',
     heroTitle:'Deep engineering.<br>Real execution.',heroBody:'Technical services for public-chain agent execution, virtual machines, and distributed systems.',discuss:'Discuss your project',explore:'Explore our expertise',
     railAgent:'Public-chain agent execution',railVM:'Virtual machine engineering',railDistributed:'Distributed systems',
     serviceLabel:'01 / SERVICES',servicesTitle:'Your hardest systems problems.<br>Our engineering focus.',servicesIntro:'From architecture to implementation, we work at the execution layer.',deliverables:'ENGINEERING SCOPE',

@@ -5,7 +5,7 @@
   "description": "ConcurSys multilingual technical services website",
   "scripts": {
     "start": "node server.mjs",
-    "check": "node --check public/app.js && node --check public/architecture.js && node --check public/stack-hero.js && node --check server.mjs && node design/verify-i18n.mjs",
+    "check": "node --check public/app.js && node --check public/architecture.js && node --check public/stack-hero.js && node --check public/company-copy.js && node --check server.mjs && node design/verify-i18n.mjs",
     "build": "node design/build-pages.mjs"
   },
   "license": "PolyForm-Noncommercial-1.0.0"

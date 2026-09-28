@@ -23,12 +23,12 @@ The website connects these technologies to practical engineering services: agent
 
 ## Explore the website
 
-- [Services](https://concursys.io/services.html): engineering engagements and deliverables.
-- [Technology](https://concursys.io/technology.html): the capability map and individual technical overviews.
-- [Company](https://concursys.io/company.html): ConcurSys and its work on ALUX.
-- [Team](https://concursys.io/team.html): Frank He and Tomislav Grospić.
+- [Services](https://concursys.io/services): engineering engagements and deliverables.
+- [Technology](https://concursys.io/technology): the capability map and individual technical overviews.
+- [About Us](https://concursys.io/company): ConcurSys, its technology, and its work on ALUX.
+- [Team](https://concursys.io/team): Frank He and Tomislav Grospić.
 
-The site is available in ten languages: English, Simplified Chinese, Traditional Chinese, Japanese, Korean, Spanish, French, German, Russian, and Arabic. It defaults to English and preserves the selection in the URL through `?lang=`. Arabic uses a right-to-left layout.
+The site is available in ten languages: English, Simplified Chinese, Traditional Chinese, Japanese, Korean, Spanish, French, German, Russian, and Arabic. English lives at the root and every other language has its own path, for example `/zh/technology/blockgit`; older `.html?lang=` links redirect to the new addresses. Arabic uses a right-to-left layout.
 
 The homepage opens with a layered view of the agent execution stack: Tolang, OCAP, TVM, and BlockGit, with GLVM spanning them. Visitors can run a task through the layers, resume it after a wait, or watch an out-of-authority request stop at the OCAP boundary.
 
@@ -63,7 +63,7 @@ node --test design/execution-demo.test.mjs
 node design/check-layout.mjs
 
 # capture full-page screenshots for visual review
-node design/snap.mjs output/review 1440x900 / /technology.html
+node design/snap.mjs output/review 1440x900 / /zh/technology
 ```
 
 Generated pages are committed to the repository. After editing source content or page templates, regenerate them before submitting changes. Check affected pages in a browser at desktop and mobile widths, including the relevant language and interaction states.

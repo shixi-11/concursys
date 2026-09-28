@@ -6,7 +6,8 @@ const chrome=process.env.CHROME||'C:/Program Files/Google/Chrome/Application/chr
 const base=process.env.BASE||'http://localhost:4317';
 const langs=(process.env.LANGS||'en,zh,zh-TW,ja,ko,es,fr,de,ru,ar').split(',');
 const widths=(process.env.WIDTHS||'390,1440').split(',').map(Number);
-const allRoutes=['/','/services.html','/services/agent.html','/services/vm.html','/services/distributed.html','/technology.html',...['glvm','tolang','tvm','blockgit','ocap','durable','atomicity','replay','framework','evm','node','tooling','sharding','worldos'].map(k=>`/technology/${k}.html`),'/company.html','/team.html','/join.html','/contact.html'];
+const allRoutes=['/','/services','/services/agent','/services/vm','/services/distributed','/technology',...['glvm','tolang','tvm','blockgit','ocap','durable','atomicity','replay','framework','evm','node','tooling','sharding','worldos'].map(k=>`/technology/${k}`),'/company','/team','/join','/contact'];
+const urlFor=(r,lang)=>lang==='en'?r:'/'+lang+(r==='/'?'':r);
 const routes=process.env.ROUTES?process.env.ROUTES.split(','):allRoutes;
 const port=9700+Math.floor(Math.random()*200);
 const profile=path.resolve(process.env.TEMP||'.','ccs-layout-'+port);
@@ -20,7 +21,7 @@ await send('Runtime.enable');
 const probe=`JSON.stringify((()=>{const W=document.documentElement.clientWidth;const bad=[...document.querySelectorAll('main *, header *, footer *')].filter(e=>{const r=e.getBoundingClientRect();if(!r.width)return false;if(e.closest('.marquee,.lang-list,.dropdown,[hidden],.stack-tabs,canvas'))return false;return r.right>W+1||r.left<-1;}).slice(0,3).map(e=>(e.className||e.tagName)+':'+(e.textContent||'').trim().slice(0,30));return {scroll:document.documentElement.scrollWidth>W+1,h1:document.querySelectorAll('h1').length,site:!!document.querySelector('#site .header')&&!!document.querySelector('#site footer'),bad,lang:document.documentElement.lang};})())`;
 const fails=[];let n=0;
 for(const w of widths){await send('Emulation.setDeviceMetricsOverride',{width:w,height:900,deviceScaleFactor:1,mobile:w<700});
- for(const lang of langs)for(const r of routes){errors.length=0;await send('Page.navigate',{url:base+r+(lang==='en'?'':(r.includes('?')?'&':'?')+'lang='+lang)});await sleep(1100);
+ for(const lang of langs)for(const r of routes){errors.length=0;await send('Page.navigate',{url:base+urlFor(r,lang)});await sleep(1100);
   const res=JSON.parse((await send('Runtime.evaluate',{expression:probe,returnByValue:true})).result.value);n++;
   if(!res.site||res.scroll||res.h1!==1||res.bad.length||errors.length)fails.push({w,lang,r,...res,errors:[...errors]});}}
 console.log(JSON.stringify({checked:n,fails},null,1));

@@ -1,0 +1,18 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path((?!(?:zh-TW|zh|ja|ko|es|fr|de|ru|ar)(?:/|$)).*)",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "(?<lang>zh-TW|zh|ja|ko|es|fr|de|ru|ar)"
+        }
+      ],
+      "destination": "/:lang/:path",
+      "permanent": true
+    }
+  ]
+}

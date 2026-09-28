@@ -11,10 +11,11 @@ const server = http.createServer(async(req,res)=>{
   try {
     const url = new URL(req.url, 'http://localhost');
     const decoded = decodeURIComponent(url.pathname);
-    const target = path.resolve(root, '.' + (decoded === '/' ? '/index.html' : decoded));
-    if(target !== root && !target.startsWith(root + path.sep)){res.writeHead(403);res.end();return;}
-    const info=await stat(target);
-    if(!info.isFile()){res.writeHead(404);res.end();return;}
+    const clean = decoded.replace(/\/+$/,'') || '/';
+    const candidates = path.extname(clean) ? [clean] : [clean + '.html', clean + '/index.html'];
+    let target, info;
+    for(const c of candidates){const t=path.resolve(root, '.' + (c === '/.html' ? '/index.html' : c));if(t !== root && !t.startsWith(root + path.sep)){res.writeHead(403);res.end();return;}try{const s=await stat(t);if(s.isFile()){target=t;info=s;break;}}catch{}}
+    if(!target){res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'});res.end('Not found');return;}
     const data=await readFile(target);
     res.writeHead(200, {'Content-Type':types[path.extname(target)] || 'application/octet-stream','Content-Length':data.length,'Cache-Control':'no-cache','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin'});
     res.end(req.method==='HEAD'?undefined:data);
