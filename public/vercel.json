@@ -4,6 +4,37 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.concursys.io"
+        }
+      ],
+      "destination": "https://concursys.io/:path",
+      "permanent": true
+    },
+    {
+      "source": "/zh-Hant",
+      "destination": "/zh-TW",
+      "permanent": true
+    },
+    {
+      "source": "/zh-Hant/:path(.*)",
+      "destination": "/zh-TW/:path",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/company",
+      "permanent": true
+    },
+    {
+      "source": "/join-us",
+      "destination": "/join",
+      "permanent": true
+    },
+    {
       "source": "/:path((?!(?:zh-TW|zh|ja|ko|es|fr|de|ru|ar)(?:/|$)).*)",
       "has": [
         {
